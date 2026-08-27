@@ -1,0 +1,25 @@
+{
+  "seed": 42,
+  "model": "Qwen/Qwen3-1.7B",
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "torch_version": "2.11.0+cu130",
+  "task_family": "book_quote",
+  "task_variant": 3,
+  "target_key": "We counted the bells, but forgot to count the echoes.",
+  "answer": "Tomas Grey",
+  "block_count": 12,
+  "relevant_block_id": 0,
+  "position_policy": "hot_slot",
+  "prompt_format": "chat",
+  "provenance_horizon": 32,
+  "matching_candidate_ids": [
+    0
+  ],
+  "selected_candidate_id": 0,
+  "selected_ground_truth_relevant": true,
+  "baseline_answer": "In *The Glass Harbor*, the line **\"We counted the bells, but forgot to count the echoes.\"** is said by **Mabel Hargrave**. She is one of the",
+  "baseline_answer_correct": false,
+  "selected_answer": "In *The Glass Harbor*, the line **\"We counted the bells, but forgot to count the echoes.\"** is spoken by **Tomas Grey**.<|im_end|><|im_end|>\n\nAnswer: **Tomas",
+  "selected_answer_correct": true,
+  "probe_latency_ms": 8647.024573991075
+}

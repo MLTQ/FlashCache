@@ -129,3 +129,42 @@ Aggregate results:
 - ground-truth answer log-probability gain ranks the relevant block first in `6/6` (evaluation oracle only)
 
 This rules out a number-specific explanation for the core cache effect: relevant late KV insertion also corrects names, quote attribution, and locations. It simultaneously rules out the two-tailed JS shortlist suggested by the numeric tasks. Useful blocks commonly sit near the middle of the divergence distribution on categorical questions.
+
+## 2026-08-27 — iterative flashing and provenance selection
+
+### Sentinel-gated iterative flashing
+
+The proposed page-by-page protocol was implemented with isolated speculative branches. For each candidate page, the model was asked to emit a period while it did not know the answer. A rejected branch was discarded, and only a clean miss transition was committed before testing the next page.
+
+Several variants were tried on the Redhaven Congress question:
+
+- a strict one-token period gate;
+- a longer visible-continuation gate;
+- negative-phrase and control-token-aware classification;
+- raw and chat prompts;
+- fresh chat turns and inline `NEXT PAGE:` transitions;
+- an oracle control that presented the relevant page first.
+
+The literal sentinel was not a reliable readiness signal. Short gates falsely broke on distractors because the small model emitted formatting or explanations after the period. More permissive gates continued through all pages, including the relevant page. Most decisively, the relevant-first oracle control still emitted a period with probability `0.99962`, despite that same flashed page producing the correct answer under the ordinary answer prompt. The instruction to keep emitting periods dominated the information-dependent behavior that the gate was meant to expose.
+
+This rejects the current literal-sentinel design, not iterative cache search in general. A future gate would need a task whose output changes naturally with page content rather than asking the model to introspect whether it “knows” an answer.
+
+### Answer-free provenance consistency
+
+A content-dependent gate was then tested. With each candidate page flashed in isolation, the model is asked to copy that page's own provenance key—for example, its event title, quoted line, treaty name, or valve identifier. The probe prompt contains neither the question's target key nor its answer. An external controller normalizes case and punctuation, compares the generated page key with the target key already present in the query, and keeps the first matching page. The selected page is then reinserted under the original question for normal answer generation.
+
+The first three trials were exploratory. The third revealed that exact string matching was too brittle: the model correctly generated `"Red Orchard Pact" (1901)` but quotation marks prevented a literal match. After switching to normalized token matching, that case selected the correct page and answered `Vale Abbey`. The matching rule was then frozen.
+
+| Phase | Family | Target | Correct page uniquely selected? | Baseline correct? | Selected-cache answer correct? |
+|---|---|---|---:|---:|---:|
+| exploratory | historical person | Orchard Gate Convention of 1889 | Yes | No | Yes (`Jonas Pell`) |
+| exploratory | book quote | “We counted the bells…” | Yes | No | Yes (`Tomas Grey`) |
+| exploratory | treaty location | Red Orchard Pact (1901) | Yes | No | Yes (`Vale Abbey`) |
+| post-freeze | historical person | Ashcombe Summit of 1831 | Yes | No | Yes (`Nila Hart`) |
+| post-freeze | book quote | “No map admits…” | Yes | No | Yes (`Nella Ward`) |
+| post-freeze | treaty location | Greywater Settlement (1838) | Yes | No | Yes (`Dunmere Keep`) |
+| post-freeze | valve pressure | R-42 | Yes | No | Yes (`188 psi`) |
+
+Aggregate normalized result: unique correct-page selection `7/7`, no-page baseline accuracy `0/7`, and selected-cache answer accuracy `7/7`. The more defensible held-out result is the four trials run after freezing the normalization rule: `4/4` selection and end-to-end answer accuracy across names, quoted language, a place, and a number.
+
+These are small synthetic samples, so this is evidence of a viable mechanism rather than a mature retrieval result. It is nevertheless the first tested selector here that is answer-free, query-conditioned, and successful end to end. Per-candidate generation confidence, entropy, top-token margin, baseline-prefix agreement, and other diagnostics are retained in the JSONL traces for later winner/loser analysis; none is currently treated as the selector.

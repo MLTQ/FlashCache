@@ -1,0 +1,25 @@
+{
+  "seed": 41,
+  "model": "Qwen/Qwen3-1.7B",
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "torch_version": "2.11.0+cu130",
+  "task_family": "history_person",
+  "task_variant": 3,
+  "target_key": "Orchard Gate Convention of 1889",
+  "answer": "Jonas Pell",
+  "block_count": 12,
+  "relevant_block_id": 7,
+  "position_policy": "hot_slot",
+  "prompt_format": "chat",
+  "provenance_horizon": 32,
+  "matching_candidate_ids": [
+    7
+  ],
+  "selected_candidate_id": 7,
+  "selected_ground_truth_relevant": true,
+  "baseline_answer": "The closing address at the Orchard Gate Convention of 1889 was delivered by **Eleanor Hartwell**, who was a prominent figure in the local community and a vocal advocate for education and public",
+  "baseline_answer_correct": false,
+  "selected_answer": "The closing address at the Orchard Gate Convention of 1889 was delivered by Jonas Pell.  \n**Event Title:** Orchard Gate Convention of 1889  \n**Year:** 1",
+  "selected_answer_correct": true,
+  "probe_latency_ms": 8678.061933023855
+}

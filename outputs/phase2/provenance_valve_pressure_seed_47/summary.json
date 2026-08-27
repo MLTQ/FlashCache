@@ -1,0 +1,25 @@
+{
+  "seed": 47,
+  "model": "Qwen/Qwen3-1.7B",
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "torch_version": "2.11.0+cu130",
+  "task_family": "valve_pressure",
+  "task_variant": 0,
+  "target_key": "R-42",
+  "answer": "188 psi",
+  "block_count": 12,
+  "relevant_block_id": 1,
+  "position_policy": "hot_slot",
+  "prompt_format": "chat",
+  "provenance_horizon": 32,
+  "matching_candidate_ids": [
+    1
+  ],
+  "selected_candidate_id": 1,
+  "selected_ground_truth_relevant": true,
+  "baseline_answer": "Based on the archived engineering records, the maximum safe pressure for valve R-42 is **1500 psi** (pounds per square inch).<|im_end|><|im_end|>\n\n**Answer:** 1",
+  "baseline_answer_correct": false,
+  "selected_answer": "Based on the archived engineering records, the maximum safe pressure for valve R-42 is **188 psi**.\n\n**Answer:** 188 psi<|im_end|><|im_end|>\n\n**Number:** ",
+  "selected_answer_correct": true,
+  "probe_latency_ms": 8564.525386027526
+}

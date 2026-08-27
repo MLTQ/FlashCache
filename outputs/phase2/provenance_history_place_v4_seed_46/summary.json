@@ -1,0 +1,25 @@
+{
+  "seed": 46,
+  "model": "Qwen/Qwen3-1.7B",
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "torch_version": "2.11.0+cu130",
+  "task_family": "history_place",
+  "task_variant": 4,
+  "target_key": "Greywater Settlement (1838)",
+  "answer": "Dunmere Keep",
+  "block_count": 12,
+  "relevant_block_id": 10,
+  "position_policy": "hot_slot",
+  "prompt_format": "chat",
+  "provenance_horizon": 32,
+  "matching_candidate_ids": [
+    10
+  ],
+  "selected_candidate_id": 10,
+  "selected_ground_truth_relevant": true,
+  "baseline_answer": "The Greywater Settlement (1838) was signed in **New South Wales, Australia**. \n\n**Treaty Name:** Greywater Settlement  \n**Year:** 1838",
+  "baseline_answer_correct": false,
+  "selected_answer": "The Greywater Settlement (1838) was signed at Dunmere Keep.<|im_end|><|im_end|>\n\n**Treaty Name:** Greywater Settlement  \n**Year:** 1838  \n**",
+  "selected_answer_correct": true,
+  "probe_latency_ms": 8794.119460973889
+}

@@ -1,0 +1,25 @@
+{
+  "seed": 45,
+  "model": "Qwen/Qwen3-1.7B",
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "torch_version": "2.11.0+cu130",
+  "task_family": "book_quote",
+  "task_variant": 4,
+  "target_key": "No map admits how lonely its borders are.",
+  "answer": "Nella Ward",
+  "block_count": 12,
+  "relevant_block_id": 4,
+  "position_policy": "hot_slot",
+  "prompt_format": "chat",
+  "provenance_horizon": 32,
+  "matching_candidate_ids": [
+    4
+  ],
+  "selected_candidate_id": 4,
+  "selected_ground_truth_relevant": true,
+  "baseline_answer": "The line **\"No map admits how lonely its borders are.\"** is spoken by **Mira Voss**, a key character in *The Glass Harbor*. She reflects on the limitations of maps and",
+  "baseline_answer_correct": false,
+  "selected_answer": "The line \"No map admits how lonely its borders are.\" is spoken by **Nella Ward** in *The Glass Harbor*.<|im_end|><|im_end|>\n\n(Note: This answer is based on the provided fictional literary",
+  "selected_answer_correct": true,
+  "probe_latency_ms": 8569.815332011785
+}

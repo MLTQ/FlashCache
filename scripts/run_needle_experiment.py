@@ -11,8 +11,14 @@ import matplotlib.pyplot as plt
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
+from flash_cache.candidate_diagnostics import greedy_behavior_metrics
 from flash_cache.metrics import trajectory_influence
 from flash_cache.probing import flash_candidate, prepare_probe_caches, rollout, tokenize_task
+from flash_cache.semantic_probe import (
+    binary_token_set_metrics,
+    make_relevance_probe_task,
+    single_token_variant_ids,
+)
 from flash_cache.synthetic import contains_answer_text
 from flash_cache.task_families import TASK_FAMILIES, make_experiment_task
 
@@ -28,6 +34,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--target-pressure", type=int, default=413)
     parser.add_argument("--horizon", type=int, default=4)
     parser.add_argument("--generation-horizon", type=int, default=20)
+    parser.add_argument("--behavior-horizon", type=int, default=16)
+    parser.add_argument(
+        "--semantic-probe",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+    )
     parser.add_argument("--position-policy", choices=("original", "hot_slot"), default="original")
     parser.add_argument("--prompt-format", choices=("raw", "chat"), default="raw")
     parser.add_argument("--output-dir", type=Path, default=Path("outputs/phase1/seed_7"))
@@ -71,6 +83,8 @@ def main() -> None:
         target_identifier=args.target_identifier,
         target_pressure=args.target_pressure,
     )
+    if args.behavior_horizon < 1 or args.behavior_horizon > args.generation_horizon:
+        raise ValueError("Behavior horizon must be between one and the generation horizon")
     tokenized = tokenize_task(tokenizer, task, torch.device("cuda:0"), prompt_format=args.prompt_format)
     prepared = prepare_probe_caches(model, tokenized, position_policy=args.position_policy)
     baseline = rollout(
@@ -101,6 +115,45 @@ def main() -> None:
     )
     baseline_generated_text = tokenizer.decode(baseline_generation.tokens.tolist())
 
+    semantic_tokenized = None
+    semantic_prepared = None
+    semantic_yes_ids: tuple[int, ...] = ()
+    semantic_no_ids: tuple[int, ...] = ()
+    baseline_semantic_metrics: dict[str, float] = {}
+    if args.semantic_probe:
+        semantic_task = make_relevance_probe_task(task)
+        semantic_tokenized = tokenize_task(
+            tokenizer,
+            semantic_task,
+            torch.device("cuda:0"),
+            prompt_format=args.prompt_format,
+        )
+        semantic_prepared = prepare_probe_caches(
+            model,
+            semantic_tokenized,
+            position_policy=args.position_policy,
+        )
+        semantic_yes_ids = single_token_variant_ids(
+            tokenizer,
+            ("YES", "Yes", "yes", " YES", " Yes", " yes"),
+        )
+        semantic_no_ids = single_token_variant_ids(
+            tokenizer,
+            ("NO", "No", "no", " NO", " No", " no"),
+        )
+        baseline_semantic = rollout(
+            model,
+            semantic_prepared.baseline_cache,
+            semantic_tokenized.probe_token,
+            semantic_tokenized.probe_position,
+            1,
+        )
+        baseline_semantic_metrics = binary_token_set_metrics(
+            baseline_semantic.logits[0],
+            semantic_yes_ids,
+            semantic_no_ids,
+        )
+
     rows: list[dict[str, object]] = []
     for block_id, candidate_cache in enumerate(prepared.cold_blocks):
         active_cache = flash_candidate(prepared.baseline_cache, candidate_cache, pinned_length)
@@ -129,6 +182,44 @@ def main() -> None:
             tokenized.probe_position,
             args.generation_horizon,
         )
+        behavior_tokens = candidate_generation.tokens[: args.behavior_horizon]
+        baseline_on_candidate = rollout(
+            model,
+            prepared.baseline_cache,
+            tokenized.probe_token,
+            tokenized.probe_position,
+            args.behavior_horizon,
+            forced_tokens=behavior_tokens,
+        )
+        behavior_metrics = greedy_behavior_metrics(
+            candidate_generation.logits[: args.behavior_horizon],
+            behavior_tokens,
+            baseline_on_candidate.logits,
+            baseline_generation.tokens[: args.behavior_horizon],
+        )
+        semantic_metrics: dict[str, float] = {}
+        semantic_top_tokens: list[dict[str, object]] = []
+        if args.semantic_probe:
+            assert semantic_tokenized is not None
+            assert semantic_prepared is not None
+            semantic_active_cache = flash_candidate(
+                semantic_prepared.baseline_cache,
+                semantic_prepared.cold_blocks[block_id],
+                int(semantic_tokenized.pinned_ids.shape[-1]),
+            )
+            semantic_rollout = rollout(
+                model,
+                semantic_active_cache,
+                semantic_tokenized.probe_token,
+                semantic_tokenized.probe_position,
+                1,
+            )
+            semantic_metrics = binary_token_set_metrics(
+                semantic_rollout.logits[0],
+                semantic_yes_ids,
+                semantic_no_ids,
+            )
+            semantic_top_tokens = decoded_top_tokens(tokenizer, semantic_rollout.logits[0])
         generated_text = tokenizer.decode(candidate_generation.tokens.tolist())
         torch.cuda.synchronize()
         latency_ms = (time.perf_counter() - started) * 1000.0
@@ -152,12 +243,15 @@ def main() -> None:
                 "ground_truth_relevant": block_id == task.relevant_block_id,
                 "latency_ms": latency_ms,
                 "candidate_first_top_tokens": decoded_top_tokens(tokenizer, candidate.logits[0]),
+                "semantic_probe_first_top_tokens": semantic_top_tokens,
                 "generated_continuation": generated_text,
                 "answer_correct": contains_answer_text(generated_text, task.answer_match),
                 "answer_sequence_log_prob_baseline": answer_metrics["baseline_sequence_log_prob"],
                 "answer_sequence_log_prob_candidate": answer_metrics["candidate_sequence_log_prob"],
                 "answer_sequence_log_prob_delta": answer_metrics["sequence_log_prob_delta"],
                 "one_minus_js_mean": one_minus_js_mean,
+                **behavior_metrics,
+                **semantic_metrics,
                 **metrics,
             }
         )
@@ -173,6 +267,13 @@ def main() -> None:
     ranked_by_answer = sorted(rows, key=lambda row: float(row["answer_sequence_log_prob_delta"]), reverse=True)
     for rank, row in enumerate(ranked_by_answer, start=1):
         row["rank_by_answer_log_prob_delta"] = rank
+    ranked_by_semantic = (
+        sorted(rows, key=lambda row: float(row["semantic_yes_no_log_odds"]), reverse=True)
+        if args.semantic_probe
+        else []
+    )
+    for rank, row in enumerate(ranked_by_semantic, start=1):
+        row["rank_by_semantic_yes_no_log_odds"] = rank
     relevant_rank = next(int(row["rank_by_js_mean"]) for row in ranked if row["ground_truth_relevant"])
     relevant_inverse_js_rank = next(
         int(row["rank_by_one_minus_js_mean"])
@@ -182,7 +283,17 @@ def main() -> None:
     relevant_answer_rank = next(
         int(row["rank_by_answer_log_prob_delta"]) for row in ranked_by_answer if row["ground_truth_relevant"]
     )
+    relevant_semantic_rank = (
+        next(
+            int(row["rank_by_semantic_yes_no_log_odds"])
+            for row in ranked_by_semantic
+            if row["ground_truth_relevant"]
+        )
+        if args.semantic_probe
+        else None
+    )
     relevant_row = next(row for row in rows if row["ground_truth_relevant"])
+    semantic_selected_row = ranked_by_semantic[0] if ranked_by_semantic else None
 
     args.output_dir.mkdir(parents=True, exist_ok=True)
     with (args.output_dir / "candidates.jsonl").open("w") as output:
@@ -202,12 +313,26 @@ def main() -> None:
         "block_count": args.blocks,
         "speculative_horizon": args.horizon,
         "generation_horizon": args.generation_horizon,
+        "behavior_horizon": args.behavior_horizon,
         "position_policy": args.position_policy,
         "prompt_format": args.prompt_format,
         "relevant_block_id": task.relevant_block_id,
         "relevant_rank_by_js_mean": relevant_rank,
         "relevant_rank_by_one_minus_js_mean": relevant_inverse_js_rank,
         "relevant_rank_by_answer_log_prob_delta": relevant_answer_rank,
+        "semantic_probe_enabled": args.semantic_probe,
+        "relevant_rank_by_semantic_yes_no_log_odds": relevant_semantic_rank,
+        "semantic_probe_selected_candidate_id": (
+            int(semantic_selected_row["candidate_block_id"])
+            if semantic_selected_row is not None
+            else None
+        ),
+        "semantic_probe_selected_answer_correct": (
+            bool(semantic_selected_row["answer_correct"])
+            if semantic_selected_row is not None
+            else None
+        ),
+        "baseline_semantic_probe": baseline_semantic_metrics,
         "relevant_answer_log_prob_delta": relevant_row["answer_sequence_log_prob_delta"],
         "reciprocal_rank": 1.0 / relevant_rank,
         "one_minus_js_reciprocal_rank": 1.0 / relevant_inverse_js_rank,
@@ -228,6 +353,9 @@ def main() -> None:
             int(row["candidate_block_id"]) for row in ranked_by_one_minus_js
         ],
         "answer_delta_ranking": [int(row["candidate_block_id"]) for row in ranked_by_answer],
+        "semantic_probe_ranking": [
+            int(row["candidate_block_id"]) for row in ranked_by_semantic
+        ],
     }
     (args.output_dir / "summary.json").write_text(json.dumps(summary, indent=2) + "\n")
 

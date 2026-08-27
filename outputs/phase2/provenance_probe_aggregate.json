@@ -1,0 +1,120 @@
+{
+  "model": "Qwen/Qwen3-1.7B",
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "candidate_blocks_per_trial": 12,
+  "selector": "Generate each flashed page's own provenance key, normalize punctuation and case, then match it against the query key outside the model.",
+  "answer_leakage_into_probe": false,
+  "normalization_frozen_after": "history_place variant 3",
+  "exploratory_trials": {
+    "count": 3,
+    "unique_correct_selection": 3,
+    "baseline_answer_correct": 0,
+    "selected_answer_correct": 3
+  },
+  "post_freeze_trials": {
+    "count": 4,
+    "unique_correct_selection": 4,
+    "baseline_answer_correct": 0,
+    "selected_answer_correct": 4
+  },
+  "all_normalized_trials": {
+    "count": 7,
+    "unique_correct_selection": 7,
+    "baseline_answer_correct": 0,
+    "selected_answer_correct": 7
+  },
+  "trials": [
+    {
+      "phase": "exploratory",
+      "task_family": "history_person",
+      "task_variant": 3,
+      "seed": 41,
+      "target_key": "Orchard Gate Convention of 1889",
+      "answer": "Jonas Pell",
+      "relevant_block_id": 7,
+      "matching_candidate_ids": [7],
+      "baseline_answer_correct": false,
+      "selected_answer_correct": true,
+      "result_dir": "provenance_history_person_v3_seed_41"
+    },
+    {
+      "phase": "exploratory",
+      "task_family": "book_quote",
+      "task_variant": 3,
+      "seed": 42,
+      "target_key": "We counted the bells, but forgot to count the echoes.",
+      "answer": "Tomas Grey",
+      "relevant_block_id": 0,
+      "matching_candidate_ids": [0],
+      "baseline_answer_correct": false,
+      "selected_answer_correct": true,
+      "result_dir": "provenance_book_quote_v3_seed_42"
+    },
+    {
+      "phase": "exploratory",
+      "task_family": "history_place",
+      "task_variant": 3,
+      "seed": 43,
+      "target_key": "Red Orchard Pact (1901)",
+      "answer": "Vale Abbey",
+      "relevant_block_id": 9,
+      "matching_candidate_ids": [9],
+      "baseline_answer_correct": false,
+      "selected_answer_correct": true,
+      "result_dir": "provenance_history_place_v3_seed_43_normalized",
+      "note": "The initial exact-substring matcher missed the correct generated key because the model added quotation marks; this trial motivated punctuation-insensitive matching."
+    },
+    {
+      "phase": "post_freeze",
+      "task_family": "history_person",
+      "task_variant": 4,
+      "seed": 44,
+      "target_key": "Ashcombe Summit of 1831",
+      "answer": "Nila Hart",
+      "relevant_block_id": 1,
+      "matching_candidate_ids": [1],
+      "baseline_answer_correct": false,
+      "selected_answer_correct": true,
+      "result_dir": "provenance_history_person_v4_seed_44"
+    },
+    {
+      "phase": "post_freeze",
+      "task_family": "book_quote",
+      "task_variant": 4,
+      "seed": 45,
+      "target_key": "No map admits how lonely its borders are.",
+      "answer": "Nella Ward",
+      "relevant_block_id": 4,
+      "matching_candidate_ids": [4],
+      "baseline_answer_correct": false,
+      "selected_answer_correct": true,
+      "result_dir": "provenance_book_quote_v4_seed_45"
+    },
+    {
+      "phase": "post_freeze",
+      "task_family": "history_place",
+      "task_variant": 4,
+      "seed": 46,
+      "target_key": "Greywater Settlement (1838)",
+      "answer": "Dunmere Keep",
+      "relevant_block_id": 10,
+      "matching_candidate_ids": [10],
+      "baseline_answer_correct": false,
+      "selected_answer_correct": true,
+      "result_dir": "provenance_history_place_v4_seed_46"
+    },
+    {
+      "phase": "post_freeze",
+      "task_family": "valve_pressure",
+      "task_variant": 0,
+      "seed": 47,
+      "target_key": "R-42",
+      "answer": "188 psi",
+      "relevant_block_id": 1,
+      "matching_candidate_ids": [1],
+      "baseline_answer_correct": false,
+      "selected_answer_correct": true,
+      "result_dir": "provenance_valve_pressure_seed_47"
+    }
+  ]
+}

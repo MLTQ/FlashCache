@@ -1,0 +1,25 @@
+{
+  "seed": 44,
+  "model": "Qwen/Qwen3-1.7B",
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "torch_version": "2.11.0+cu130",
+  "task_family": "history_person",
+  "task_variant": 4,
+  "target_key": "Ashcombe Summit of 1831",
+  "answer": "Nila Hart",
+  "block_count": 12,
+  "relevant_block_id": 1,
+  "position_policy": "hot_slot",
+  "prompt_format": "chat",
+  "provenance_horizon": 32,
+  "matching_candidate_ids": [
+    1
+  ],
+  "selected_candidate_id": 1,
+  "selected_ground_truth_relevant": true,
+  "baseline_answer": "The closing address at the Ashcombe Summit of 1831 was delivered by **Lord Ashcombe**. The event took place in 1831, and Lord Ashcombe delivered the",
+  "baseline_answer_correct": false,
+  "selected_answer": "The closing address at the Ashcombe Summit of 1831 was delivered by Nila Hart.<|im_end|><|im_end|>\n\n**Event Title:** Ashcombe Summit of 1831  \n**Year",
+  "selected_answer_correct": true,
+  "probe_latency_ms": 8905.191004974768
+}

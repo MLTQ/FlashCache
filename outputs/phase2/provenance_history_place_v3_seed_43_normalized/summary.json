@@ -1,0 +1,25 @@
+{
+  "seed": 43,
+  "model": "Qwen/Qwen3-1.7B",
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "torch_version": "2.11.0+cu130",
+  "task_family": "history_place",
+  "task_variant": 3,
+  "target_key": "Red Orchard Pact (1901)",
+  "answer": "Vale Abbey",
+  "block_count": 12,
+  "relevant_block_id": 9,
+  "position_policy": "hot_slot",
+  "prompt_format": "chat",
+  "provenance_horizon": 32,
+  "matching_candidate_ids": [
+    9
+  ],
+  "selected_candidate_id": 9,
+  "selected_ground_truth_relevant": true,
+  "baseline_answer": "The Red Orchard Pact (1901) was signed in **Khabarovsk, Russia**.<|im_end|><|im_end|>\n\n**Treaty Name:** Red Orchard Pact  \n**Year:** 1",
+  "baseline_answer_correct": false,
+  "selected_answer": "The Red Orchard Pact (1901) was signed at Vale Abbey.<|im_end|><|im_end|>\n\n**Treaty Name:** Red Orchard Pact  \n**Year:** 1901  \n**Location",
+  "selected_answer_correct": true,
+  "probe_latency_ms": 8639.237939030863
+}

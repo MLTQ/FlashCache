@@ -1,0 +1,31 @@
+{
+  "seed": 31,
+  "model": "Qwen/Qwen3-1.7B",
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "torch_version": "2.11.0+cu130",
+  "task_family": "history_person",
+  "task_variant": 2,
+  "target_key": "Redhaven Congress of 1764",
+  "answer": "Mira Solen",
+  "block_count": 12,
+  "relevant_block_id": 10,
+  "position_policy": "hot_slot",
+  "prompt_format": "chat",
+  "sentinel_token_id": 13,
+  "sentinel_text": ".",
+  "baseline_no_page_greedy_token_id": 13,
+  "baseline_no_page_greedy_text": ".",
+  "visited_candidate_ids": [
+    0,
+    1
+  ],
+  "visited_count": 2,
+  "selected_candidate_id": 1,
+  "selected_ground_truth_relevant": false,
+  "selected_source_text": "Historical archive: at the Eastbarrow Convention of 1875, the closing address was delivered by Iona March.\n",
+  "relevant_page_reached": false,
+  "generated_continuation": "<|im_end|><|im_end|>\n\n.<|im_end|>\n\n.<|im_end|>\n\n.<|im_end|>\n\n.<|im_end|>\n\n.<|im_end|>\n\n.<|im_end|>\n\n.<|im_end|>\n\n.<|im_end|>\n\n.<|im_end|>\n\n.<|im_end|>\n\n.<|im_end|>\n\n.<|im_end|>\n\n.",
+  "answer_correct": false,
+  "false_break": true,
+  "latency_ms": 1010.5832259869203
+}

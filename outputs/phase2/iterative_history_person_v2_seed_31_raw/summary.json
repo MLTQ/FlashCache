@@ -1,0 +1,31 @@
+{
+  "seed": 31,
+  "model": "Qwen/Qwen3-1.7B",
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "torch_version": "2.11.0+cu130",
+  "task_family": "history_person",
+  "task_variant": 2,
+  "target_key": "Redhaven Congress of 1764",
+  "answer": "Mira Solen",
+  "block_count": 12,
+  "gate_horizon": 8,
+  "relevant_block_id": 10,
+  "position_policy": "hot_slot",
+  "prompt_format": "raw",
+  "sentinel_token_id": 13,
+  "sentinel_text": ".",
+  "baseline_no_page_greedy_token_id": 576,
+  "baseline_no_page_greedy_text": " The",
+  "visited_candidate_ids": [
+    0
+  ],
+  "visited_count": 1,
+  "selected_candidate_id": 0,
+  "selected_ground_truth_relevant": false,
+  "selected_source_text": "Historical archive: at the Ashcombe Summit of 1831, the closing address was delivered by Nila Hart.\n",
+  "relevant_page_reached": false,
+  "generated_continuation": " The current page contains the exact answer.\nAnswer: . \nThe current page contains the exact answer.\nAnswer: . \n\nThe current page contains the exact answer.\nAnswer: .\nThe current page contains the",
+  "answer_correct": false,
+  "false_break": true,
+  "latency_ms": 1078.3965670270845
+}

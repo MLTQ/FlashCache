@@ -34,6 +34,14 @@ class Rollout:
 
 
 @dataclass(frozen=True)
+class CacheStep:
+    """One-token forward result with the advanced private cache branch."""
+
+    cache: Any
+    logits: torch.Tensor
+
+
+@dataclass(frozen=True)
 class PreparedProbeCaches:
     """Baseline, cold blocks, and the positions actually used to encode each block."""
 
@@ -162,6 +170,32 @@ def flash_candidate(baseline_cache: Any, candidate_cache: Any, pinned_length: in
     pinned = slice_cache(baseline_cache, 0, pinned_length)
     recent = slice_cache(baseline_cache, pinned_length, baseline_length)
     return concatenate_caches((pinned, candidate_cache, recent))
+
+
+def advance_cache(
+    model: Any,
+    cache: Any,
+    input_token: torch.Tensor,
+    position: int,
+) -> CacheStep:
+    """Process one token on an isolated branch and return its logits and advanced cache."""
+    if input_token.shape != (1, 1):
+        raise ValueError("Input token must have shape [1, 1]")
+    branch = clone_cache(cache)
+    attention_mask = torch.ones(
+        (1, cache_length(branch) + 1), dtype=torch.long, device=input_token.device
+    )
+    position_ids = torch.tensor([[position]], dtype=torch.long, device=input_token.device)
+    with torch.inference_mode():
+        outputs = model(
+            input_ids=input_token,
+            attention_mask=attention_mask,
+            position_ids=position_ids,
+            past_key_values=branch,
+            use_cache=True,
+            return_dict=True,
+        )
+    return CacheStep(cache=outputs.past_key_values, logits=outputs.logits[0, -1, :])
 
 
 def rollout(
