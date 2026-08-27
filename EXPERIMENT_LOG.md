@@ -215,3 +215,52 @@ During active flashing, the answer-bearing page could still make speculative tex
 The current placeholder-token carrier is a real latent perturbation but not a useful memory channel for Qwen3-1.7B. A cached period token does not preserve even a single explicit fact strongly enough for later generation, so it cannot support unknown-depth chaining as implemented. Repeating pages, widening the carrier, and preserving original positions did not change that outcome.
 
 This negative result does not rule out streaming integration through a richer state update—for example, retaining model-generated semantic tokens, merging page-conditioned branches, or training dedicated memory tokens. It does rule out treating untrained period-token KV residue as sufficient merely because its tensors differ from the clean cache.
+
+## 2026-08-27 — model-generated semantic carrier
+
+The placeholder period was replaced with a fixed-width factual scratchpad fragment generated while each page was flashed. Every page was visited in physical order; relevance labels, answer strings, and hop depth were unavailable to the runtime. Correctness was scored only on the final answer.
+
+The causal control is stricter than the earlier clean carrier: after the page-conditioned run generated its notes, the control re-encoded the exact same visible token IDs at the exact same positions without ever inserting a page. Both paths then received the same final cue and answer horizon. This separates useful visible compression from additional information in page-conditioned token KV.
+
+### Sequential note selection
+
+The first version allowed all earlier retained notes and the current flashed page to jointly choose the next note tokens. It solved the direct Shirly/tacos calibration, but failed both four-page, two-hop tasks. The generated stream entered content attractors:
+
+- With a Dario/lemon-cake distractor first, every later page repeated Dario/lemon cake, including the Shirly relationship and food pages.
+- With Rowan/saffron-rice first, later distractors progressively rewrote the stream to lemon cake.
+
+Poisoned and exact-replay accuracy were both `1/3` across the direct calibration and two two-hop trials. This is direct evidence that unconstrained cross-page semantic poisoning is strongly order-sensitive in Qwen3-1.7B.
+
+### Isolated note selection
+
+The next variant used the same model and generic prompt to propose each note from that page alone. The proposed tokens were then forced through the accumulating cache with the page present, retaining page-conditioned KV as before. This does not select pages or consult evaluation metadata; it only prevents earlier notes from changing what the current page writes.
+
+An exploratory width sweep exposed a narrow small-model tradeoff. Sixteen tokens let a relationship-only page invent `Favorite Food: Unknown`; ten tokens truncated `saffron rice` to `saff`; twelve tokens retained the answer while cutting off the unsupported field. Width 12 was then used for subsequent trials.
+
+| Hops | Pages | Answer | No pages | Full prefill | All independent pages | Page-conditioned carrier | Exact clean replay |
+|---:|---:|---|---:|---:|---:|---:|---:|
+| 2 | 4 | tacos | No | Yes | No | Yes | Yes |
+| 2 | 4 | saffron rice | No | Yes | Yes | Yes | Yes |
+| 3 | 6 | dumplings | No | Yes | No | No | Yes |
+| 3 | 6 | lentil stew | No | Yes | No | Yes | Yes |
+| 2 | 12 | mushroom pie | No | Yes | No | Yes | Yes |
+| 3 | 12 | sesame noodles | No | Yes | No | No | No |
+
+Aggregate accuracy on these six isolated-selection trials:
+
+- ordinary no-page control: `0/6`;
+- semantic no-page control: `0/6`;
+- normal full prefill: `6/6`;
+- simultaneous insertion of all independently cached pages: `1/6`;
+- page-conditioned semantic carrier: `4/6`;
+- exact clean replay: `5/6`.
+
+The retained page-conditioned state was materially different from the clean encoding: maximum per-trial page-span deltas were roughly `87` to `135` in the six-page cases. It was nevertheless never uniquely beneficial. On the Maren/Ivo/dumplings three-hop task, exact replay correctly answered `dumplings` while the page-conditioned path answered the distractor `lemon cake`. Thus hidden page residue was uniquely harmful in one primary trial and neutral in the other five.
+
+### Interpretation
+
+This richer carrier demonstrates a useful training-free mechanism, but it is semantic externalization rather than latent KV memory. The model can compress every page into a short visible transcript and later combine facts across pages; this solved a 12-page two-needle haystack that no-page and simultaneous independent-cache controls failed. The exact replay proves that the visible note tokens fully explain the improvement.
+
+The hoped-for net benefit from uncontrolled cross-page poisoning was not observed. Letting earlier poisoned state choose later tokens caused attractors, and retaining page-conditioned state after isolated token selection matched or underperformed clean replay. At the current boundary, twelve isolated tokens per page solve two required facts among twelve pages, while three required facts among twelve pages still collapse to a distractor even though full prefill succeeds.
+
+These trials remain exploratory: the note width was tuned on one task, the task family is fictional personal preferences, and exact-answer substring scoring can credit the right food despite imperfect supporting prose. The complete per-page token traces and control outputs are stored under `outputs/phase4`, with the selected counts in `semantic_carrier_aggregate.json`.

@@ -1,0 +1,55 @@
+{
+  "seed": 64,
+  "model": "Qwen/Qwen3-1.7B",
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "torch_version": "2.11.0+cu130",
+  "task_family": "multi_hop_preference",
+  "task_variant": 2,
+  "hop_depth": 3,
+  "question": "What is my wife's closest friend's favorite food?",
+  "answer": "dumplings",
+  "block_count": 6,
+  "relevant_block_ids_logical_order": [
+    3,
+    4,
+    0
+  ],
+  "passes": 1,
+  "note_tokens": 12,
+  "note_selection_mode": "isolated",
+  "page_order": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "position_policy": "original",
+  "prompt_format": "chat",
+  "no_page_answer": "Based on the information provided in the archived records, there is no direct mention of a wife's closest friend or their favorite food. The records do not include any details about personal relationships, preferences, or specific individual preferences such as favorite foods.",
+  "no_page_answer_correct": false,
+  "semantic_no_page_answer": " Your wife's closest friend's favorite food is pasta.\n\n**Factual note:**  \nPage 1: \"Your wife's closest friend's favorite food is pasta.\"\n\n**Final answer:** Your wife's closest friend",
+  "semantic_no_page_answer_correct": false,
+  "semantic_no_page_latency_ms": 1316.7418810189702,
+  "full_prefill_answer": "Based on the provided information:\n\n1. Your wife is **Maren**.\n2. Maren's closest friend is **Ivo**.\n3. Ivo's favorite food is **dumplings**.\n\nTherefore, your wife's",
+  "full_prefill_answer_correct": true,
+  "all_flash_answer": "Based on the information provided, there is no direct mention of a favorite food for Ivo, the closest friend of Maren. However, it is noted that Maren's favorite food is lemon cake. Since Ivo is Maren's",
+  "all_flash_answer_correct": false,
+  "carrier_visible_text": "\n\nFacts note: Ivo's favorite food is dumplings\nPage note:Name: Iona  \nFavorite Food: Bean stew  \nRelationship\nPage note:Name: Dario  \nFavorite Food: Lemon Cake  \nRelationship\nPage note:Name: Maren  \nRelationship: Wife  \nRelationship note:\nPage note:Name: Maren  \nRelationship to Ivo: Maren\nPage note:Name: Calder  \nRelationship to user: Spouse  \nRelationship",
+  "poisoned": {
+    "generated_answer": " Dario's favorite food is lemon cake.\n\nFinal answer: Dario's favorite food is lemon cake.\n\nFinal answer: Dario's favorite food is lemon cake.\n\nFinal answer: Dario's",
+    "answer_correct": false,
+    "latency_ms": 8411.139458999969,
+    "page_count": 6,
+    "relevant_page_flashes_seen": 3,
+    "max_page_conditioned_token_delta": 86.6875,
+    "mean_page_conditioned_token_delta": 0.6554607355476317
+  },
+  "exact_clean_replay": {
+    "generated_answer": " Ivo's favorite food is dumplings.\n\nFinal answer: Ivo's favorite food is dumplings.\n\nFinal answer: Ivo's favorite food is dumplings.\n\nFinal answer: Ivo's",
+    "answer_correct": true,
+    "latency_ms": 3561.7499030195177,
+    "token_ids_exactly_match": true
+  }
+}

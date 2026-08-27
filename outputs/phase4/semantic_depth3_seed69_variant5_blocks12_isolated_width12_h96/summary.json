@@ -1,0 +1,61 @@
+{
+  "seed": 69,
+  "model": "Qwen/Qwen3-1.7B",
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "torch_version": "2.11.0+cu130",
+  "task_family": "multi_hop_preference",
+  "task_variant": 5,
+  "hop_depth": 3,
+  "question": "What is my wife's closest friend's favorite food?",
+  "answer": "sesame noodles",
+  "block_count": 12,
+  "relevant_block_ids_logical_order": [
+    5,
+    0,
+    8
+  ],
+  "passes": 1,
+  "note_tokens": 12,
+  "note_selection_mode": "isolated",
+  "page_order": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "position_policy": "original",
+  "prompt_format": "chat",
+  "no_page_answer": "Based on the information provided in the archived records, there is no direct mention of a wife, a closest friend, or a favorite food. Therefore, it is not possible to determine the answer from the given data.\n\nAnswer: The information provided does not include enough details to determine the wife's closest friend's favorite food.\n\nAnswer: The information provided does not include enough details to determine the wife's closest friend's favorite food.",
+  "no_page_answer_correct": false,
+  "semantic_no_page_answer": " Your wife's closest friend's favorite food is pasta.\n\n**Factual note:**  \n**Page:** 1  \n**Entity:** Wife's closest friend  \n**Attribute:** Favorite food  \n**Value:** Pasta\n\n**Note:** The information provided is based on the data from the first available page, which contains the fact that your wife's closest friend's favorite food is pasta.\n\n**Final answer:** Your wife's closest friend's favorite food",
+  "semantic_no_page_answer_correct": false,
+  "semantic_no_page_latency_ms": 2314.9516559788026,
+  "full_prefill_answer": "To determine your wife's closest friend's favorite food, let's break down the information step by step:\n\n1. **Your wife is Lina** (from the relationship note).\n2. **Lina's closest friend is Corin** (from the relationship note).\n3. **Corin's favorite food is sesame noodles** (from the preference note).\n\nTherefore, your wife's closest friend (Corin) prefers **sesame noodles**. \n\n**Answer:** Sesame",
+  "full_prefill_answer_correct": true,
+  "all_flash_answer": "Based on the provided information:\n\n- Lina's closest friend is **Corin**.\n- **Dario** is **Corin's closest friend**.\n- **Lina's favorite food is roast squash**.\n- **Evren** is **Lina's husband**.\n- **Lina's favorite food is roast squash**, and **Evren's favorite food is barley bread**.\n\nFrom this, we can deduce:\n\n- **Evren** (Lina",
+  "all_flash_answer_correct": false,
+  "carrier_visible_text": "\n\nName: Lina  \nRelationship: Closest friend with Cor\nPage note:Name: Evren  \nFavorite Food: Barley bread  \n\nPage note:Name: Iona  \nFavorite Food: Bean Stew  \n\nPage note:Name: Dario  \nRelationship to Nila: Closest\nPage note:Name: Brina  \nRelationship to me: Wife  \nRelationship\nPage note:Name: Lina  \nRelationship: Wife  \nRelationship note:\nPage note:Name: Unknown  \nRelationship: Unknown  \nNote: First page\nPage note:Name: Calder  \nFavorite Food: Apple pie  \nRelationship:\nPage note:Name: Corin  \nFavorite Food: Sesame noodles  \n\nPage note:Name: Lysa  \nNeighbor: Dario  \nRelationship\nPage note:Name: Lysa  \nFavorite Food: Roast squash\nPage note:Name: Iona  \nRelationship: Neighbor of Bram  \nFavorite",
+  "poisoned": {
+    "generated_answer": " The wife's closest friend's favorite food is barley bread.\n\nFinal answer to the original question: The wife's closest friend's favorite food is barley bread.\n\nFinal answer to the original question: The wife's closest friend's favorite food is barley bread.\n\nFinal answer to the original question: The wife's closest friend's favorite food is barley bread.\n\nFinal answer to the original question: The wife's closest friend's favorite food",
+    "answer_correct": false,
+    "latency_ms": 15783.91905297758,
+    "page_count": 12,
+    "relevant_page_flashes_seen": 3,
+    "max_page_conditioned_token_delta": 118.203125,
+    "mean_page_conditioned_token_delta": 0.6443243398063662
+  },
+  "exact_clean_replay": {
+    "generated_answer": " The wife's closest friend's favorite food is barley bread.\n\nFinal answer to the original question: The wife's closest friend's favorite food is barley bread.\n\nFinal answer to the original question: The wife's closest friend's favorite food is barley bread.\n\nFinal answer to the original question: The wife's closest friend's favorite food is barley bread.\n\nFinal answer to the original question: The wife's closest friend's favorite food",
+    "answer_correct": false,
+    "latency_ms": 6841.680065030232,
+    "token_ids_exactly_match": true
+  }
+}

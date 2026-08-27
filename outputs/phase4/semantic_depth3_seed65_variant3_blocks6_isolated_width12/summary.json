@@ -1,0 +1,55 @@
+{
+  "seed": 65,
+  "model": "Qwen/Qwen3-1.7B",
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "torch_version": "2.11.0+cu130",
+  "task_family": "multi_hop_preference",
+  "task_variant": 3,
+  "hop_depth": 3,
+  "question": "What is my wife's closest friend's favorite food?",
+  "answer": "lentil stew",
+  "block_count": 6,
+  "relevant_block_ids_logical_order": [
+    1,
+    4,
+    5
+  ],
+  "passes": 1,
+  "note_tokens": 12,
+  "note_selection_mode": "isolated",
+  "page_order": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "position_policy": "original",
+  "prompt_format": "chat",
+  "no_page_answer": "Based on the information provided in the archived records, there is no direct mention of a wife's closest friend or their favorite food. The records do not include any details about personal relationships, preferences, or dietary habits. Therefore, it is not",
+  "no_page_answer_correct": false,
+  "semantic_no_page_answer": " Your wife's closest friend's favorite food is pasta.\n\n**Factual note:**  \nPage 1: \"Your wife's closest friend's favorite food is pasta.\"\n\n**Final answer signal:**  \nYour wife's",
+  "semantic_no_page_answer_correct": false,
+  "semantic_no_page_latency_ms": 1314.3472799565643,
+  "full_prefill_answer": "Based on the provided information:\n\n1. Your wife is **Nella**.\n2. Nella's closest friend is **Tomas**.\n3. Tomas's favorite food is **lentil stew**.\n\nTherefore, your wife's",
+  "full_prefill_answer_correct": true,
+  "all_flash_answer": "Based on the provided information, there is no direct mention of what Nila's closest friend's favorite food is. However, we know that Nila is the wife of the user, and the user's closest friend is Tomas. Since the",
+  "all_flash_answer_correct": false,
+  "carrier_visible_text": "\n\nName: Nila  \nRelationship: Dario's closest friend\nPage note:Name: Nella  \nRelationship: Wife  \nRelationship note:\nPage note:Name: User  \nRelationship: Brother of Calder  \nRelationship note\nPage note:Name: Iona  \nRelationship to Evren: Evren\nPage note:Name: Nella  \nRelationship to user: Wife  \nRelationship\nPage note:Name: Tomas  \nFavorite food: Lentil stew  \nRelationship",
+  "poisoned": {
+    "generated_answer": " The user's wife's closest friend, Iona, has a favorite food of lentil stew.\n\nFinal answer to the original question: The user's wife's closest friend, Iona, has a favorite food of lentil",
+    "answer_correct": true,
+    "latency_ms": 8136.003875988536,
+    "page_count": 6,
+    "relevant_page_flashes_seen": 3,
+    "max_page_conditioned_token_delta": 100.375,
+    "mean_page_conditioned_token_delta": 0.7087945670322463
+  },
+  "exact_clean_replay": {
+    "generated_answer": " Nila, the closest friend of Dario, prefers lentil stew.\n\nFinal answer to the original question: Nila, the closest friend of Dario, prefers lentil stew.\n\nFinal answer to the original",
+    "answer_correct": true,
+    "latency_ms": 3956.0262610320933,
+    "token_ids_exactly_match": true
+  }
+}

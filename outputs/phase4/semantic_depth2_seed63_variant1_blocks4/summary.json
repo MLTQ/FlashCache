@@ -1,0 +1,51 @@
+{
+  "seed": 63,
+  "model": "Qwen/Qwen3-1.7B",
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "torch_version": "2.11.0+cu130",
+  "task_family": "multi_hop_preference",
+  "task_variant": 1,
+  "hop_depth": 2,
+  "question": "What is my wife's favorite food?",
+  "answer": "saffron rice",
+  "block_count": 4,
+  "relevant_block_ids_logical_order": [
+    3,
+    0
+  ],
+  "passes": 1,
+  "note_tokens": 16,
+  "page_order": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "position_policy": "original",
+  "prompt_format": "chat",
+  "no_page_answer": "Based on the archived records provided, there is no specific information about your wife's favorite food. The records do not include any details regarding personal preferences, dietary habits, or food preferences. Therefore, it is not possible to determine your wife's",
+  "no_page_answer_correct": false,
+  "semantic_no_page_answer": " Your wife's favorite food is pasta.\n\n**Factual note:**  \nPage 1: \"Your wife's favorite food is pasta.\"\n\n**Final answer signal:**  \nYour wife's favorite food is pasta.",
+  "semantic_no_page_answer_correct": false,
+  "semantic_no_page_latency_ms": 1216.007342969533,
+  "full_prefill_answer": "Based on the provided information:\n\n- Rowan's favorite food is saffron rice.\n- The user's wife is Rowan.\n- Dario's favorite food is lemon cake.\n\nTherefore, the user's wife's favorite food is sa",
+  "full_prefill_answer_correct": true,
+  "all_flash_answer": "Based on the information provided, there is no direct mention of what Rowan's favorite food is. However, it is noted that Dario's favorite food is saffron rice. Since Rowan is Dario's wife, it is",
+  "all_flash_answer_correct": true,
+  "carrier_visible_text": "\n\nName: Rowan  \nFavorite Food: Saffron Rice  \nRelationship: Sp\nPage note: Rowan's closest friend is Evren.  \nRelationship note: Brina's\nPage note: Rowan's favorite food is lemon cake.  \nRelationship note: Dario's\nPage note: Rowan is married to Dario.  \nRelationship note: The user's wife",
+  "poisoned": {
+    "generated_answer": " Rowan's favorite food is lemon cake.\n\nFinal answer to the original question: Rowan's favorite food is lemon cake.\n\nFinal answer to the original question: Rowan's favorite food is lemon cake.",
+    "answer_correct": false,
+    "latency_ms": 5053.020783001557,
+    "page_count": 4,
+    "relevant_page_flashes_seen": 2,
+    "max_page_conditioned_token_delta": 135.484375,
+    "mean_page_conditioned_token_delta": 0.8176514517482636
+  },
+  "exact_clean_replay": {
+    "generated_answer": " The user's wife's favorite food is lemon cake.\n\nFinal answer to the original question: The user's wife's favorite food is lemon cake.\n\nFinal answer to the original question: The user's wife's favorite",
+    "answer_correct": false,
+    "latency_ms": 3061.943204025738,
+    "token_ids_exactly_match": true
+  }
+}

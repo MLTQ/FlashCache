@@ -1,0 +1,158 @@
+{
+  "experiment": "page_conditioned_semantic_carrier",
+  "date": "2026-08-27",
+  "model": "Qwen/Qwen3-1.7B",
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "gpu_uuid": "GPU-4e207c93-ed93-c35e-f0f2-e37c8df2b047",
+  "runtime_selection_uses_answer_or_relevance": false,
+  "exact_replay_contract": "identical visible input token IDs, positions, final cue, and answer horizon; no flashed pages",
+  "sequential_selection_trials": {
+    "trial_count": 3,
+    "direct_trial_count": 1,
+    "two_hop_trial_count": 2,
+    "poisoned_correct": 1,
+    "exact_clean_replay_correct": 1,
+    "trials": [
+      {
+        "path": "semantic_depth1_seed61_blocks4",
+        "hop_depth": 1,
+        "blocks": 4,
+        "note_tokens": 16,
+        "poisoned_correct": true,
+        "exact_clean_replay_correct": true
+      },
+      {
+        "path": "semantic_depth2_seed62_blocks4",
+        "hop_depth": 2,
+        "blocks": 4,
+        "note_tokens": 16,
+        "poisoned_correct": false,
+        "exact_clean_replay_correct": false
+      },
+      {
+        "path": "semantic_depth2_seed63_variant1_blocks4",
+        "hop_depth": 2,
+        "blocks": 4,
+        "note_tokens": 16,
+        "poisoned_correct": false,
+        "exact_clean_replay_correct": false
+      }
+    ]
+  },
+  "isolated_selection_primary_trials": {
+    "trial_count": 6,
+    "no_page_correct": 0,
+    "semantic_no_page_correct": 0,
+    "full_prefill_correct": 6,
+    "simultaneous_independent_pages_correct": 1,
+    "poisoned_correct": 4,
+    "exact_clean_replay_correct": 5,
+    "poisoned_better_than_exact_replay": 0,
+    "poisoned_worse_than_exact_replay": 1,
+    "trials": [
+      {
+        "path": "semantic_depth2_seed62_blocks4_isolated",
+        "hop_depth": 2,
+        "blocks": 4,
+        "note_tokens": 16,
+        "answer": "tacos",
+        "no_page_correct": false,
+        "full_prefill_correct": true,
+        "simultaneous_independent_pages_correct": false,
+        "poisoned_correct": true,
+        "exact_clean_replay_correct": true
+      },
+      {
+        "path": "semantic_depth2_seed63_variant1_blocks4_isolated_width12",
+        "hop_depth": 2,
+        "blocks": 4,
+        "note_tokens": 12,
+        "answer": "saffron rice",
+        "no_page_correct": false,
+        "full_prefill_correct": true,
+        "simultaneous_independent_pages_correct": true,
+        "poisoned_correct": true,
+        "exact_clean_replay_correct": true,
+        "exploratory_width_tuned_on_this_task": true
+      },
+      {
+        "path": "semantic_depth3_seed64_variant2_blocks6_isolated_width12",
+        "hop_depth": 3,
+        "blocks": 6,
+        "note_tokens": 12,
+        "answer": "dumplings",
+        "no_page_correct": false,
+        "full_prefill_correct": true,
+        "simultaneous_independent_pages_correct": false,
+        "poisoned_correct": false,
+        "exact_clean_replay_correct": true
+      },
+      {
+        "path": "semantic_depth3_seed65_variant3_blocks6_isolated_width12",
+        "hop_depth": 3,
+        "blocks": 6,
+        "note_tokens": 12,
+        "answer": "lentil stew",
+        "no_page_correct": false,
+        "full_prefill_correct": true,
+        "simultaneous_independent_pages_correct": false,
+        "poisoned_correct": true,
+        "exact_clean_replay_correct": true
+      },
+      {
+        "path": "semantic_depth2_seed68_variant4_blocks12_isolated_width12",
+        "hop_depth": 2,
+        "blocks": 12,
+        "note_tokens": 12,
+        "answer": "mushroom pie",
+        "no_page_correct": false,
+        "full_prefill_correct": true,
+        "simultaneous_independent_pages_correct": false,
+        "poisoned_correct": true,
+        "exact_clean_replay_correct": true
+      },
+      {
+        "path": "semantic_depth3_seed69_variant5_blocks12_isolated_width12_h96",
+        "hop_depth": 3,
+        "blocks": 12,
+        "note_tokens": 12,
+        "answer": "sesame noodles",
+        "no_page_correct": false,
+        "full_prefill_correct": true,
+        "simultaneous_independent_pages_correct": false,
+        "poisoned_correct": false,
+        "exact_clean_replay_correct": false,
+        "continuation_horizon": 96
+      }
+    ]
+  },
+  "exploratory_width_sweep": [
+    {
+      "path": "semantic_depth2_seed63_variant1_blocks4_isolated",
+      "note_tokens": 16,
+      "poisoned_correct": false,
+      "exact_clean_replay_correct": false,
+      "failure": "relationship-only note added an unsupported Favorite Food: Unknown field"
+    },
+    {
+      "path": "semantic_depth2_seed63_variant1_blocks4_isolated_width10",
+      "note_tokens": 10,
+      "poisoned_correct": false,
+      "exact_clean_replay_correct": false,
+      "failure": "answer note truncated saffron rice to saff"
+    },
+    {
+      "path": "semantic_depth2_seed63_variant1_blocks4_isolated_width12",
+      "note_tokens": 12,
+      "poisoned_correct": true,
+      "exact_clean_replay_correct": true
+    }
+  ],
+  "conclusions": [
+    "Sequential note selection is dominated by prior note attractors on both tested two-hop tasks.",
+    "Isolated per-page note selection can externalize enough information to solve two- and three-fact questions without selecting relevant pages.",
+    "Exact clean replay matched or exceeded the page-conditioned path on every primary isolated trial.",
+    "The retained hidden page-conditioned KV was never uniquely beneficial and was uniquely harmful on one six-page three-hop task.",
+    "The current boundary is a successful 12-page two-hop task and a failed 12-page three-hop task despite a successful full-prefill control."
+  ]
+}

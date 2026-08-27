@@ -1,0 +1,60 @@
+{
+  "seed": 68,
+  "model": "Qwen/Qwen3-1.7B",
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "torch_version": "2.11.0+cu130",
+  "task_family": "multi_hop_preference",
+  "task_variant": 4,
+  "hop_depth": 2,
+  "question": "What is my wife's favorite food?",
+  "answer": "mushroom pie",
+  "block_count": 12,
+  "relevant_block_ids_logical_order": [
+    8,
+    9
+  ],
+  "passes": 1,
+  "note_tokens": 12,
+  "note_selection_mode": "isolated",
+  "page_order": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "position_policy": "original",
+  "prompt_format": "chat",
+  "no_page_answer": "Based on the archived records provided, there is no direct information about your wife's favorite food. The records do not include any details regarding personal preferences, dietary habits, or food preferences. Therefore, it is not possible to determine your wife's",
+  "no_page_answer_correct": false,
+  "semantic_no_page_answer": " Your wife's favorite food is pasta.\n\n**Factual note:**  \n**Page:** 1  \n**Entity:** Wife  \n**Attribute:** Favorite food  \n**Value:** Pasta\n\n**Final answer signal:**  \nYour",
+  "semantic_no_page_answer_correct": false,
+  "semantic_no_page_latency_ms": 1250.4999249940738,
+  "full_prefill_answer": "Based on the provided information, your wife's favorite food is **mushroom pie**. This is directly stated in the preference note: \"Vera's favorite food is mushroom pie.\"",
+  "full_prefill_answer_correct": true,
+  "all_flash_answer": "Based on the provided information:\n\n- Dario's closest friend is Lysa.\n- Lysa's neighbor is Iona.\n- Iona is not directly mentioned in relation to Dario or Lysa.\n- Vera is the",
+  "all_flash_answer_correct": false,
+  "carrier_visible_text": "\n\nName: Dario  \nRelationship: Closest friend with N\nPage note:Name: Iona  \nFavorite Food: Bean Stew  \n\nPage note:Name: Iona  \nRelationship: Neighbor of Bram  \nFavorite\nPage note:Name: Lysa  \nRelationship: Neighbor of Dario\nPage note:Name: Evren  \nRelationship: Neighbor of Iona  \n\nPage note:Name: Lysa  \nFavorite Food: Roast squash\nPage note:Name: Brina  \nRelationship: Wife of Evren  \n\nPage note:Name: Calder  \nRelationship: Closest friend  \nName:\nPage note:Name: Vera  \nRelationship: Wife  \nFavorite Food: Unknown\nPage note:Name: Vera  \nFavorite Food: Mushroom pie  \nPreference:\nPage note:Name: Dario  \nFavorite Food: Lemon Cake  \nRelationship\nPage note:Name: Wife  \nRelationship: Spouse  \nFavorite Food:",
+  "poisoned": {
+    "generated_answer": " Your wife's favorite food is mushroom pie.\n\nFinal answer to the original question: Your wife's favorite food is mushroom pie.\n\nFinal answer to the original question: Your wife's favorite food is mushroom pie.",
+    "answer_correct": true,
+    "latency_ms": 14702.689708967227,
+    "page_count": 12,
+    "relevant_page_flashes_seen": 2,
+    "max_page_conditioned_token_delta": 121.875,
+    "mean_page_conditioned_token_delta": 0.60504644767124
+  },
+  "exact_clean_replay": {
+    "generated_answer": " My wife's favorite food is mushroom pie.\n\nFinal answer to the original question: My wife's favorite food is mushroom pie.\n\nFinal answer to the original question: My wife's favorite food is mushroom pie.",
+    "answer_correct": true,
+    "latency_ms": 5798.336735984776,
+    "token_ids_exactly_match": true
+  }
+}

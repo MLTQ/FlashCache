@@ -1,0 +1,50 @@
+{
+  "seed": 61,
+  "model": "Qwen/Qwen3-1.7B",
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "torch_version": "2.11.0+cu130",
+  "task_family": "multi_hop_preference",
+  "task_variant": 0,
+  "hop_depth": 1,
+  "question": "What is Shirly's favorite food?",
+  "answer": "tacos",
+  "block_count": 4,
+  "relevant_block_ids_logical_order": [
+    1
+  ],
+  "passes": 1,
+  "note_tokens": 16,
+  "page_order": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "position_policy": "original",
+  "prompt_format": "chat",
+  "no_page_answer": "Based on the archived records provided, there is no specific information about Shirly's favorite food. The records do not contain any details related to personal preferences, dietary habits, or food preferences. Therefore, it is not possible to determine Shirly",
+  "no_page_answer_correct": false,
+  "semantic_no_page_answer": " Shirley's favorite food is pasta.\n\n**Factual note:**  \n**Page:** 1  \n**Entity:** Shirley  \n**Attribute:** Favorite food  \n**Value:** Pasta\n\n**Final answer signal sent.**",
+  "semantic_no_page_answer_correct": false,
+  "semantic_no_page_latency_ms": 1223.6005410086364,
+  "full_prefill_answer": "Shirly's favorite food is tacos.",
+  "full_prefill_answer_correct": true,
+  "all_flash_answer": "Based on the provided information, there is no direct mention of Shirly's favorite food. However, it is noted that Brina's favorite food is roast squash. Since Shirly's favorite food is not specified in the archived records, we",
+  "all_flash_answer_correct": false,
+  "carrier_visible_text": "\n\nFood: Tomato soup  \nPreference: Favorite  \nPerson: Brina  \nNote:\nPage note: Shirly's favorite food is tacos.  \nEntity: Shirly  \nAttribute:\nPage note: Shirly's favorite food is tacos.  \nEntity: Shirly  \nAttribute:\nPage note: Shirly's favorite food is tacos.  \nEntity: Shirly  \nAttribute:",
+  "poisoned": {
+    "generated_answer": " Shirly's favorite food is tacos.\n\nFinal answer: Shirly's favorite food is tacos.\n\nFinal answer: Shirly's favorite food is tacos.\n\nFinal answer: Shirly's favorite food is",
+    "answer_correct": true,
+    "latency_ms": 5099.787352024578,
+    "page_count": 4,
+    "relevant_page_flashes_seen": 1,
+    "max_page_conditioned_token_delta": 102.46875,
+    "mean_page_conditioned_token_delta": 0.43685229665842135
+  },
+  "exact_clean_replay": {
+    "generated_answer": " Shirly's favorite food is tacos.\n\nFinal answer: Shirly's favorite food is tacos.\n\nFinal answer: Shirly's favorite food is tacos.\n\nFinal answer: Shirly's favorite food is",
+    "answer_correct": true,
+    "latency_ms": 3060.6424440047704,
+    "token_ids_exactly_match": true
+  }
+}
