@@ -1,0 +1,66 @@
+{
+  "seed": 54,
+  "model": "Qwen/Qwen3-1.7B",
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "torch_version": "2.11.0+cu130",
+  "task_family": "multi_hop_preference",
+  "task_variant": 1,
+  "hop_depth": 2,
+  "question": "What is my wife's favorite food?",
+  "answer": "saffron rice",
+  "block_count": 4,
+  "relevant_block_ids_logical_order": [
+    3,
+    2
+  ],
+  "passes": 2,
+  "carrier_tokens_per_page": 8,
+  "stream_mode": "warmup_then_break",
+  "page_order": [
+    0,
+    1,
+    2,
+    3,
+    0,
+    1,
+    2,
+    3
+  ],
+  "position_policy": "hot_slot",
+  "prompt_format": "chat",
+  "sentinel_token_id": 13,
+  "baseline_answer": "Based on the archived records provided, there is no specific information about your wife's favorite food. The records do not include any details regarding personal preferences, dietary habits, or food preferences. Therefore, it is not possible to determine your wife's",
+  "baseline_answer_correct": false,
+  "full_prefill_answer": "Based on the provided information:\n\n- The user's wife is Rowan.\n- Rowan's favorite food is saffron rice.\n\nTherefore, the user's wife's favorite food is saffron rice.<|im_end|>",
+  "full_prefill_answer_correct": true,
+  "all_flash_answer": "Based on the information provided, there is no direct mention of what Rowan's favorite food is. However, it is noted that the user's wife is named Rowan, and Rowan's favorite food is saffron rice. Therefore",
+  "all_flash_answer_correct": true,
+  "poisoned": {
+    "steps_completed": 5,
+    "break_page_id": 0,
+    "break_page_relevant": false,
+    "generated_answer": "  \nBased on the information provided, there is no direct mention of the user's wife's favorite food in the archived records. The only relationship noted is that the user's brother is named Calder. Without additional details about the user's wife's",
+    "answer_correct": false,
+    "answer_source": "stream_break",
+    "relevant_page_flashes_seen": 2,
+    "logical_relevant_steps_seen": [
+      0,
+      1
+    ],
+    "latency_ms": 2176.082920981571
+  },
+  "clean": {
+    "steps_completed": 8,
+    "break_page_id": null,
+    "break_page_relevant": null,
+    "generated_answer": " The wife's favorite food is pasta.<|im_end|>\n\n**Final Answer**\nThe wife's favorite food is pasta.<|im_end|><|im_end|>\n\n**Final Answer**\nThe wife's favorite food is pasta.<|im_end|><|im_end|>\n\n**Final Answer**\nThe wife's favorite",
+    "answer_correct": false,
+    "answer_source": "end_of_budget",
+    "relevant_page_flashes_seen": 4,
+    "logical_relevant_steps_seen": [
+      0,
+      1
+    ],
+    "latency_ms": 7918.205629044678
+  }
+}

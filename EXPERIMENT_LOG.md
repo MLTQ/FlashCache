@@ -168,3 +168,50 @@ The first three trials were exploratory. The third revealed that exact string ma
 Aggregate normalized result: unique correct-page selection `7/7`, no-page baseline accuracy `0/7`, and selected-cache answer accuracy `7/7`. The more defensible held-out result is the four trials run after freezing the normalization rule: `4/4` selection and end-to-end answer accuracy across names, quoted language, a place, and a number.
 
 These are small synthetic samples, so this is evidence of a viable mechanism rather than a mature retrieval result. It is nevertheless the first tested selector here that is answer-free, query-conditioned, and successful end to end. Per-candidate generation confidence, entropy, top-token margin, baseline-prefix agreement, and other diagnostics are retained in the JSONL traces for later winner/loser analysis; none is currently treated as the selector.
+
+## 2026-08-27 — page-conditioned carrier-state streaming
+
+The iterative proposal was reimplemented after clarifying that cross-page “poisoning” is the intended mechanism. On every wait step, the current response token is now processed with the flashed page present. Only the page span is then removed; the newly appended, page-conditioned token KV remains in the persistent response cache. The clean control observes the same page-conditioned speculative output but recomputes its committed placeholder state without the page.
+
+No relevance labels, known answers, extracted page keys, or known hop counts control the stream. Every physical page is visited in shuffled order. Evaluation labels are used only in the saved telemetry and correctness scoring.
+
+### Tasks and controls
+
+The synthetic personal archive includes:
+
+- direct one-page calibration questions such as “What is Rowan's favorite food?”;
+- two-page questions such as “What is my wife's favorite food?”, requiring `wife -> Rowan` and `Rowan -> saffron rice` records;
+- same-domain relationship and food distractors.
+
+Each canonical task was tested under four conditions:
+
+1. no archived pages;
+2. ordinary full prefill of every shuffled page, with no relevance filtering;
+3. simultaneous insertion of every independently cached page;
+4. page-by-page poisoned carrier state versus a clean carrier control.
+
+Configuration checks also varied one versus eight carrier tokens per page, hot-slot versus original page positions, one to three corpus passes, four versus twelve pages, a literal sentinel, a forced sweep, and one full relevance-blind warmup pass before answer attempts.
+
+### Results
+
+Across four unique canonical tasks—two direct and two two-page chains:
+
+| Condition | Correct |
+|---|---:|
+| No pages | `0/4` |
+| Normal full prefill of all pages | `4/4` |
+| All independently cached pages inserted together | `1/4` |
+| Poisoned carrier | `0/4` |
+| Clean carrier | `0/4` |
+
+No tested carrier variation produced a correct answer or an accuracy improvement over its clean control. The favorable Rowan/saffron-rice two-hop task was solvable both by normal full prefill and by simultaneous all-page cache insertion, yet an eight-token carrier answered incorrectly after one pass and again after a full warmup plus a second pass.
+
+The cache surgery itself is working. On the fresh direct Rowan/saffron-rice calibration, the answer-bearing page changed the retained token KV relative to the no-page token by max absolute `6.27734` and mean absolute `0.13014`. Despite this material hidden-state difference, poisoned and clean conditions produced the same incorrect final response. Width eight and original logical positions also failed to retain the easier direct fact after its page was removed.
+
+During active flashing, the answer-bearing page could still make speculative text mention the correct food. This occurred in both poisoned and clean conditions because both had the page currently available; neither condition reliably connected that food to the earlier relationship after removal. It is therefore not evidence for persistent multi-hop accumulation.
+
+### Interpretation
+
+The current placeholder-token carrier is a real latent perturbation but not a useful memory channel for Qwen3-1.7B. A cached period token does not preserve even a single explicit fact strongly enough for later generation, so it cannot support unknown-depth chaining as implemented. Repeating pages, widening the carrier, and preserving original positions did not change that outcome.
+
+This negative result does not rule out streaming integration through a richer state update—for example, retaining model-generated semantic tokens, merging page-conditioned branches, or training dedicated memory tokens. It does rule out treating untrained period-token KV residue as sufficient merely because its tensors differ from the clean cache.

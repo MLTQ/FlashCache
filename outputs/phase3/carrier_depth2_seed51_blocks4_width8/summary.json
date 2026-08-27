@@ -1,0 +1,62 @@
+{
+  "seed": 51,
+  "model": "Qwen/Qwen3-1.7B",
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "torch_version": "2.11.0+cu130",
+  "task_family": "multi_hop_preference",
+  "task_variant": 0,
+  "hop_depth": 2,
+  "question": "What is my wife's favorite food?",
+  "answer": "tacos",
+  "block_count": 4,
+  "relevant_block_ids_logical_order": [
+    0,
+    2
+  ],
+  "passes": 1,
+  "carrier_tokens_per_page": 8,
+  "stream_mode": "forced_sweep",
+  "page_order": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "position_policy": "hot_slot",
+  "prompt_format": "chat",
+  "sentinel_token_id": 13,
+  "baseline_answer": "Based on the archived records provided, there is no specific information about your wife's favorite food. The records do not include any details regarding personal preferences, dietary habits, or food preferences. Therefore, it is not possible to determine your wife's",
+  "baseline_answer_correct": false,
+  "full_prefill_answer": "Based on the provided information, the user's wife's favorite food is **tacos**. This is directly stated in the relationship note: \"Shirly's favorite food is tacos.\"<|im_end|>",
+  "full_prefill_answer_correct": true,
+  "all_flash_answer": "Based on the information provided, there is no direct mention of what Shirley's favorite food is. The only relationship note provided is that the user's wife is Shirley, and the user's brother is Calder. There is no additional information about Shirley",
+  "all_flash_answer_correct": false,
+  "poisoned": {
+    "steps_completed": 4,
+    "break_page_id": null,
+    "break_page_relevant": null,
+    "generated_answer": " The information about your wife's favorite food is not available in the archived records.<|im_end|><|im_end|>\n\nThe information about your wife's favorite food is not available in the archived records.<|im_end|><|im_end|>\n\nThe information",
+    "answer_correct": false,
+    "answer_source": "end_of_budget",
+    "relevant_page_flashes_seen": 2,
+    "logical_relevant_steps_seen": [
+      0,
+      1
+    ],
+    "latency_ms": 3125.874417950399
+  },
+  "clean": {
+    "steps_completed": 4,
+    "break_page_id": null,
+    "break_page_relevant": null,
+    "generated_answer": " Based on the archived records, there is no specific information provided about your wife's favorite food. The records do not contain any details regarding personal preferences or dietary likes.<|im_end|><|im_end|>\n\nAnswer: Based on",
+    "answer_correct": false,
+    "answer_source": "end_of_budget",
+    "relevant_page_flashes_seen": 2,
+    "logical_relevant_steps_seen": [
+      0,
+      1
+    ],
+    "latency_ms": 3931.6004239954054
+  }
+}

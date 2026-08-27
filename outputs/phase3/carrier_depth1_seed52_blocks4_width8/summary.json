@@ -1,0 +1,59 @@
+{
+  "seed": 52,
+  "model": "Qwen/Qwen3-1.7B",
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "torch_version": "2.11.0+cu130",
+  "task_family": "multi_hop_preference",
+  "task_variant": 0,
+  "hop_depth": 1,
+  "question": "What is Shirly's favorite food?",
+  "answer": "tacos",
+  "block_count": 4,
+  "relevant_block_ids_logical_order": [
+    3
+  ],
+  "passes": 1,
+  "carrier_tokens_per_page": 8,
+  "stream_mode": "forced_sweep",
+  "page_order": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "position_policy": "hot_slot",
+  "prompt_format": "chat",
+  "sentinel_token_id": 13,
+  "baseline_answer": "Based on the archived records provided, there is no specific information about Shirly's favorite food. The records do not contain any details related to personal preferences, dietary habits, or food preferences. Therefore, it is not possible to determine Shirly",
+  "baseline_answer_correct": false,
+  "full_prefill_answer": "Shirly's favorite food is tacos.<|im_end|>",
+  "full_prefill_answer_correct": true,
+  "all_flash_answer": "Based on the provided information, there is no direct mention of Shirly's favorite food. However, it is noted that Lysa's favorite food is roast squash. Since there is no explicit connection between Lysa and Shirly in",
+  "all_flash_answer_correct": false,
+  "poisoned": {
+    "steps_completed": 4,
+    "break_page_id": null,
+    "break_page_relevant": null,
+    "generated_answer": " Shirly's favorite food is pasta.<|im_end|>\n\n**Final Answer**\nShirly's favorite food is pasta.<|im_end|><|im_end|>\n\n**Final Answer**\n\\boxed{pasta}<|im_end|>\n\n**Final",
+    "answer_correct": false,
+    "answer_source": "end_of_budget",
+    "relevant_page_flashes_seen": 1,
+    "logical_relevant_steps_seen": [
+      0
+    ],
+    "latency_ms": 2221.7597760027274
+  },
+  "clean": {
+    "steps_completed": 4,
+    "break_page_id": null,
+    "break_page_relevant": null,
+    "generated_answer": " Shirly's favorite food is pasta.<|im_end|>\n\n**Final Answer**\nShirly's favorite food is pasta.<|im_end|><|im_end|>\n\n**Final Answer**\n\\boxed{pasta}<|im_end|>\n\n**Final",
+    "answer_correct": false,
+    "answer_source": "end_of_budget",
+    "relevant_page_flashes_seen": 1,
+    "logical_relevant_steps_seen": [
+      0
+    ],
+    "latency_ms": 2350.258701015264
+  }
+}

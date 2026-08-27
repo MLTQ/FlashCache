@@ -71,7 +71,7 @@ def tokenize_task(
                 {"role": "system", "content": task.system_message},
                 {
                     "role": "user",
-                    "content": f"Archived engineering records:\n{placeholder}\n{task.query_message}",
+                    "content": f"Archived records:\n{placeholder}\n{task.query_message}",
                 },
             ],
             tokenize=False,

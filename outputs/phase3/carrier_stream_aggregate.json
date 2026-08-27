@@ -1,0 +1,103 @@
+{
+  "model": "Qwen/Qwen3-1.7B",
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "mechanism": "Process placeholder response tokens with one flashed page present, remove only that page span, and retain the appended page-conditioned token KV for later pages.",
+  "selection_or_oracle_used_by_stream": false,
+  "canonical_unique_tasks": {
+    "count": 4,
+    "no_page_correct": 0,
+    "normal_full_prefill_correct": 4,
+    "all_independent_flash_correct": 1,
+    "poisoned_carrier_correct": 0,
+    "clean_carrier_correct": 0
+  },
+  "configuration_checks": {
+    "carrier_widths": [1, 8],
+    "position_policies": ["hot_slot", "original"],
+    "corpus_block_counts": [4, 12],
+    "corpus_passes": [1, 2, 3],
+    "stream_modes": ["sentinel", "forced_sweep", "warmup_then_break"],
+    "any_poisoned_answer_correct": false,
+    "any_poisoned_improvement_over_clean": false
+  },
+  "state_surgery_check": {
+    "trial": "carrier_depth1_seed53_variant1_width8",
+    "answer_bearing_page": "Preference note: Rowan's favorite food is saffron rice.",
+    "page_conditioned_token_delta_max_abs": 6.27734375,
+    "page_conditioned_token_delta_mean_abs": 0.13014295296826667,
+    "interpretation": "The retained KV materially differs from a no-page token KV, but the difference did not produce a correct final answer."
+  },
+  "canonical_trials": [
+    {
+      "task": "direct preference: Shirly -> tacos",
+      "hop_depth": 1,
+      "seed": 52,
+      "carrier_width": 8,
+      "position_policy": "hot_slot",
+      "normal_full_prefill_correct": true,
+      "all_independent_flash_correct": false,
+      "poisoned_carrier_correct": false,
+      "clean_carrier_correct": false,
+      "result_dir": "carrier_depth1_seed52_blocks4_width8"
+    },
+    {
+      "task": "direct preference: Rowan -> saffron rice",
+      "hop_depth": 1,
+      "seed": 53,
+      "carrier_width": 8,
+      "position_policy": "hot_slot",
+      "normal_full_prefill_correct": true,
+      "all_independent_flash_correct": false,
+      "poisoned_carrier_correct": false,
+      "clean_carrier_correct": false,
+      "result_dir": "carrier_depth1_seed53_variant1_width8"
+    },
+    {
+      "task": "wife -> Shirly -> tacos",
+      "hop_depth": 2,
+      "seed": 51,
+      "carrier_width": 8,
+      "position_policy": "hot_slot",
+      "normal_full_prefill_correct": true,
+      "all_independent_flash_correct": false,
+      "poisoned_carrier_correct": false,
+      "clean_carrier_correct": false,
+      "result_dir": "carrier_depth2_seed51_blocks4_width8"
+    },
+    {
+      "task": "wife -> Rowan -> saffron rice",
+      "hop_depth": 2,
+      "seed": 54,
+      "carrier_width": 8,
+      "position_policy": "hot_slot",
+      "normal_full_prefill_correct": true,
+      "all_independent_flash_correct": true,
+      "poisoned_carrier_correct": false,
+      "clean_carrier_correct": false,
+      "result_dir": "carrier_depth2_seed54_variant1_width8"
+    }
+  ],
+  "additional_valid_controls": [
+    {
+      "change": "literal one-token carrier",
+      "outcome": "wrong",
+      "result_dir": "carrier_depth1_seed52_blocks4_width1"
+    },
+    {
+      "change": "eight-token carrier with original positions",
+      "outcome": "wrong",
+      "result_dir": "carrier_depth1_seed52_blocks4_width8_original"
+    },
+    {
+      "change": "one full warmup pass before answer attempts",
+      "outcome": "poisoned and clean both answered pasta",
+      "result_dir": "carrier_depth2_seed54_variant1_width8_warmup_v2"
+    },
+    {
+      "change": "twelve pages, three passes, format-normalized sentinel",
+      "outcome": "neither stream broke the sentinel; fixed final probe was wrong in both conditions",
+      "result_dir": "carrier_depth2_seed51_final_probe"
+    }
+  ],
+  "conclusion": "The tested placeholder-token KV carrier changes hidden state but does not retain even a direct fact strongly enough to affect later answer generation. This implementation therefore does not support multi-hop corpus integration."
+}

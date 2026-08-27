@@ -20,6 +20,7 @@ Implements the first late-insertion Flash Cache probe for an all-attention model
 
 ### `tokenize_task`
 - **Does**: Tokenizes raw sections or Qwen's non-thinking chat serialization and assigns full-history positions.
+- **Rationale**: The chat wrapper labels inputs generically as archived records so non-engineering task families are not contaminated by an irrelevant domain cue.
 
 ### `prepare_probe_caches`
 - **Does**: Builds pinned+recent baseline KV and candidate blocks conditioned only on pinned context, using original positions or a shared hot slot.
