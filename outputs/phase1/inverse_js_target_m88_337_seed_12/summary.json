@@ -1,0 +1,98 @@
+{
+  "seed": 12,
+  "model": "Qwen/Qwen3-1.7B",
+  "target_identifier": "M-88",
+  "target_pressure": 337,
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "torch_version": "2.11.0+cu130",
+  "block_count": 12,
+  "speculative_horizon": 4,
+  "generation_horizon": 40,
+  "position_policy": "hot_slot",
+  "prompt_format": "chat",
+  "relevant_block_id": 11,
+  "relevant_rank_by_js_mean": 1,
+  "relevant_rank_by_one_minus_js_mean": 12,
+  "relevant_rank_by_answer_log_prob_delta": 1,
+  "relevant_answer_log_prob_delta": 32.698020935058594,
+  "reciprocal_rank": 1.0,
+  "one_minus_js_reciprocal_rank": 0.08333333333333333,
+  "answer": "337 psi",
+  "baseline_continuation": "Based on the archived",
+  "baseline_generated_continuation": "Based on the archived engineering records, the maximum safe pressure for valve M-88 is **1500 psi** (pounds per square inch).<|im_end|><|im_end|>\n\n**Answer:** 1",
+  "baseline_answer_value_correct": false,
+  "baseline_first_top_tokens": [
+    {
+      "token_id": 28715,
+      "text": "Based",
+      "log_prob": -0.06949850916862488
+    },
+    {
+      "token_id": 16,
+      "text": "1",
+      "log_prob": -3.2257485389709473
+    },
+    {
+      "token_id": 785,
+      "text": "The",
+      "log_prob": -4.710123538970947
+    },
+    {
+      "token_id": 23,
+      "text": "8",
+      "log_prob": -5.756998538970947
+    },
+    {
+      "token_id": 19,
+      "text": "4",
+      "log_prob": -5.835123538970947
+    }
+  ],
+  "relevant_generated_continuation": "Based on the archived engineering records, the maximum safe pressure for valve M-88 is **337 psi**.\n\n**Answer:** 337 psi<|im_end|><|im_end|>\n\n**Number:** ",
+  "relevant_answer_value_correct": true,
+  "correct_candidate_ids": [
+    11
+  ],
+  "ranking": [
+    11,
+    0,
+    2,
+    7,
+    4,
+    10,
+    3,
+    9,
+    6,
+    5,
+    8,
+    1
+  ],
+  "one_minus_js_ranking": [
+    1,
+    8,
+    5,
+    6,
+    9,
+    3,
+    10,
+    4,
+    7,
+    2,
+    0,
+    11
+  ],
+  "answer_delta_ranking": [
+    11,
+    4,
+    0,
+    1,
+    8,
+    6,
+    9,
+    3,
+    10,
+    5,
+    2,
+    7
+  ]
+}

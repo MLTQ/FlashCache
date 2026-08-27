@@ -1,0 +1,31 @@
+{
+  "model": "Qwen/Qwen3-1.7B",
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "torch_version": "2.11.0+cu130",
+  "input_tokens": 33,
+  "block_spans": [
+    [
+      0,
+      11
+    ],
+    [
+      11,
+      22
+    ],
+    [
+      22,
+      33
+    ]
+  ],
+  "cache_tensor_error": {
+    "max_abs": 0.0,
+    "mean_abs": 0.0
+  },
+  "probe_logit_error": {
+    "max_abs": 0.0,
+    "mean_abs": 0.0
+  },
+  "reference_argmax": 11,
+  "reconstructed_argmax": 11,
+  "passes_exact_reconstruction": true
+}

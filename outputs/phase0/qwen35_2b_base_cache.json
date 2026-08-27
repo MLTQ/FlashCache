@@ -1,0 +1,717 @@
+{
+  "cache_class": "Qwen3_5DynamicCache",
+  "sequence_length": 13,
+  "layer_count": 24,
+  "token_addressable_layer_count": 6,
+  "recurrent_layer_count": 18,
+  "supports_arbitrary_block_concatenation": false,
+  "total_bytes": 19918848,
+  "layers": [
+    {
+      "index": 0,
+      "class": "linear_attention",
+      "token_addressable": false,
+      "recurrent": true,
+      "keys": null,
+      "values": null,
+      "conv_states": {
+        "shape": [
+          1,
+          6144,
+          4
+        ],
+        "dtype": "torch.float16",
+        "device": "cuda:0",
+        "bytes": 49152
+      },
+      "recurrent_states": {
+        "shape": [
+          1,
+          16,
+          128,
+          128
+        ],
+        "dtype": "torch.float32",
+        "device": "cuda:0",
+        "bytes": 1048576
+      }
+    },
+    {
+      "index": 1,
+      "class": "linear_attention",
+      "token_addressable": false,
+      "recurrent": true,
+      "keys": null,
+      "values": null,
+      "conv_states": {
+        "shape": [
+          1,
+          6144,
+          4
+        ],
+        "dtype": "torch.float16",
+        "device": "cuda:0",
+        "bytes": 49152
+      },
+      "recurrent_states": {
+        "shape": [
+          1,
+          16,
+          128,
+          128
+        ],
+        "dtype": "torch.float32",
+        "device": "cuda:0",
+        "bytes": 1048576
+      }
+    },
+    {
+      "index": 2,
+      "class": "linear_attention",
+      "token_addressable": false,
+      "recurrent": true,
+      "keys": null,
+      "values": null,
+      "conv_states": {
+        "shape": [
+          1,
+          6144,
+          4
+        ],
+        "dtype": "torch.float16",
+        "device": "cuda:0",
+        "bytes": 49152
+      },
+      "recurrent_states": {
+        "shape": [
+          1,
+          16,
+          128,
+          128
+        ],
+        "dtype": "torch.float32",
+        "device": "cuda:0",
+        "bytes": 1048576
+      }
+    },
+    {
+      "index": 3,
+      "class": "full_attention",
+      "token_addressable": true,
+      "recurrent": false,
+      "keys": {
+        "shape": [
+          1,
+          2,
+          13,
+          256
+        ],
+        "dtype": "torch.float16",
+        "device": "cuda:0",
+        "bytes": 13312
+      },
+      "values": {
+        "shape": [
+          1,
+          2,
+          13,
+          256
+        ],
+        "dtype": "torch.float16",
+        "device": "cuda:0",
+        "bytes": 13312
+      },
+      "conv_states": null,
+      "recurrent_states": null
+    },
+    {
+      "index": 4,
+      "class": "linear_attention",
+      "token_addressable": false,
+      "recurrent": true,
+      "keys": null,
+      "values": null,
+      "conv_states": {
+        "shape": [
+          1,
+          6144,
+          4
+        ],
+        "dtype": "torch.float16",
+        "device": "cuda:0",
+        "bytes": 49152
+      },
+      "recurrent_states": {
+        "shape": [
+          1,
+          16,
+          128,
+          128
+        ],
+        "dtype": "torch.float32",
+        "device": "cuda:0",
+        "bytes": 1048576
+      }
+    },
+    {
+      "index": 5,
+      "class": "linear_attention",
+      "token_addressable": false,
+      "recurrent": true,
+      "keys": null,
+      "values": null,
+      "conv_states": {
+        "shape": [
+          1,
+          6144,
+          4
+        ],
+        "dtype": "torch.float16",
+        "device": "cuda:0",
+        "bytes": 49152
+      },
+      "recurrent_states": {
+        "shape": [
+          1,
+          16,
+          128,
+          128
+        ],
+        "dtype": "torch.float32",
+        "device": "cuda:0",
+        "bytes": 1048576
+      }
+    },
+    {
+      "index": 6,
+      "class": "linear_attention",
+      "token_addressable": false,
+      "recurrent": true,
+      "keys": null,
+      "values": null,
+      "conv_states": {
+        "shape": [
+          1,
+          6144,
+          4
+        ],
+        "dtype": "torch.float16",
+        "device": "cuda:0",
+        "bytes": 49152
+      },
+      "recurrent_states": {
+        "shape": [
+          1,
+          16,
+          128,
+          128
+        ],
+        "dtype": "torch.float32",
+        "device": "cuda:0",
+        "bytes": 1048576
+      }
+    },
+    {
+      "index": 7,
+      "class": "full_attention",
+      "token_addressable": true,
+      "recurrent": false,
+      "keys": {
+        "shape": [
+          1,
+          2,
+          13,
+          256
+        ],
+        "dtype": "torch.float16",
+        "device": "cuda:0",
+        "bytes": 13312
+      },
+      "values": {
+        "shape": [
+          1,
+          2,
+          13,
+          256
+        ],
+        "dtype": "torch.float16",
+        "device": "cuda:0",
+        "bytes": 13312
+      },
+      "conv_states": null,
+      "recurrent_states": null
+    },
+    {
+      "index": 8,
+      "class": "linear_attention",
+      "token_addressable": false,
+      "recurrent": true,
+      "keys": null,
+      "values": null,
+      "conv_states": {
+        "shape": [
+          1,
+          6144,
+          4
+        ],
+        "dtype": "torch.float16",
+        "device": "cuda:0",
+        "bytes": 49152
+      },
+      "recurrent_states": {
+        "shape": [
+          1,
+          16,
+          128,
+          128
+        ],
+        "dtype": "torch.float32",
+        "device": "cuda:0",
+        "bytes": 1048576
+      }
+    },
+    {
+      "index": 9,
+      "class": "linear_attention",
+      "token_addressable": false,
+      "recurrent": true,
+      "keys": null,
+      "values": null,
+      "conv_states": {
+        "shape": [
+          1,
+          6144,
+          4
+        ],
+        "dtype": "torch.float16",
+        "device": "cuda:0",
+        "bytes": 49152
+      },
+      "recurrent_states": {
+        "shape": [
+          1,
+          16,
+          128,
+          128
+        ],
+        "dtype": "torch.float32",
+        "device": "cuda:0",
+        "bytes": 1048576
+      }
+    },
+    {
+      "index": 10,
+      "class": "linear_attention",
+      "token_addressable": false,
+      "recurrent": true,
+      "keys": null,
+      "values": null,
+      "conv_states": {
+        "shape": [
+          1,
+          6144,
+          4
+        ],
+        "dtype": "torch.float16",
+        "device": "cuda:0",
+        "bytes": 49152
+      },
+      "recurrent_states": {
+        "shape": [
+          1,
+          16,
+          128,
+          128
+        ],
+        "dtype": "torch.float32",
+        "device": "cuda:0",
+        "bytes": 1048576
+      }
+    },
+    {
+      "index": 11,
+      "class": "full_attention",
+      "token_addressable": true,
+      "recurrent": false,
+      "keys": {
+        "shape": [
+          1,
+          2,
+          13,
+          256
+        ],
+        "dtype": "torch.float16",
+        "device": "cuda:0",
+        "bytes": 13312
+      },
+      "values": {
+        "shape": [
+          1,
+          2,
+          13,
+          256
+        ],
+        "dtype": "torch.float16",
+        "device": "cuda:0",
+        "bytes": 13312
+      },
+      "conv_states": null,
+      "recurrent_states": null
+    },
+    {
+      "index": 12,
+      "class": "linear_attention",
+      "token_addressable": false,
+      "recurrent": true,
+      "keys": null,
+      "values": null,
+      "conv_states": {
+        "shape": [
+          1,
+          6144,
+          4
+        ],
+        "dtype": "torch.float16",
+        "device": "cuda:0",
+        "bytes": 49152
+      },
+      "recurrent_states": {
+        "shape": [
+          1,
+          16,
+          128,
+          128
+        ],
+        "dtype": "torch.float32",
+        "device": "cuda:0",
+        "bytes": 1048576
+      }
+    },
+    {
+      "index": 13,
+      "class": "linear_attention",
+      "token_addressable": false,
+      "recurrent": true,
+      "keys": null,
+      "values": null,
+      "conv_states": {
+        "shape": [
+          1,
+          6144,
+          4
+        ],
+        "dtype": "torch.float16",
+        "device": "cuda:0",
+        "bytes": 49152
+      },
+      "recurrent_states": {
+        "shape": [
+          1,
+          16,
+          128,
+          128
+        ],
+        "dtype": "torch.float32",
+        "device": "cuda:0",
+        "bytes": 1048576
+      }
+    },
+    {
+      "index": 14,
+      "class": "linear_attention",
+      "token_addressable": false,
+      "recurrent": true,
+      "keys": null,
+      "values": null,
+      "conv_states": {
+        "shape": [
+          1,
+          6144,
+          4
+        ],
+        "dtype": "torch.float16",
+        "device": "cuda:0",
+        "bytes": 49152
+      },
+      "recurrent_states": {
+        "shape": [
+          1,
+          16,
+          128,
+          128
+        ],
+        "dtype": "torch.float32",
+        "device": "cuda:0",
+        "bytes": 1048576
+      }
+    },
+    {
+      "index": 15,
+      "class": "full_attention",
+      "token_addressable": true,
+      "recurrent": false,
+      "keys": {
+        "shape": [
+          1,
+          2,
+          13,
+          256
+        ],
+        "dtype": "torch.float16",
+        "device": "cuda:0",
+        "bytes": 13312
+      },
+      "values": {
+        "shape": [
+          1,
+          2,
+          13,
+          256
+        ],
+        "dtype": "torch.float16",
+        "device": "cuda:0",
+        "bytes": 13312
+      },
+      "conv_states": null,
+      "recurrent_states": null
+    },
+    {
+      "index": 16,
+      "class": "linear_attention",
+      "token_addressable": false,
+      "recurrent": true,
+      "keys": null,
+      "values": null,
+      "conv_states": {
+        "shape": [
+          1,
+          6144,
+          4
+        ],
+        "dtype": "torch.float16",
+        "device": "cuda:0",
+        "bytes": 49152
+      },
+      "recurrent_states": {
+        "shape": [
+          1,
+          16,
+          128,
+          128
+        ],
+        "dtype": "torch.float32",
+        "device": "cuda:0",
+        "bytes": 1048576
+      }
+    },
+    {
+      "index": 17,
+      "class": "linear_attention",
+      "token_addressable": false,
+      "recurrent": true,
+      "keys": null,
+      "values": null,
+      "conv_states": {
+        "shape": [
+          1,
+          6144,
+          4
+        ],
+        "dtype": "torch.float16",
+        "device": "cuda:0",
+        "bytes": 49152
+      },
+      "recurrent_states": {
+        "shape": [
+          1,
+          16,
+          128,
+          128
+        ],
+        "dtype": "torch.float32",
+        "device": "cuda:0",
+        "bytes": 1048576
+      }
+    },
+    {
+      "index": 18,
+      "class": "linear_attention",
+      "token_addressable": false,
+      "recurrent": true,
+      "keys": null,
+      "values": null,
+      "conv_states": {
+        "shape": [
+          1,
+          6144,
+          4
+        ],
+        "dtype": "torch.float16",
+        "device": "cuda:0",
+        "bytes": 49152
+      },
+      "recurrent_states": {
+        "shape": [
+          1,
+          16,
+          128,
+          128
+        ],
+        "dtype": "torch.float32",
+        "device": "cuda:0",
+        "bytes": 1048576
+      }
+    },
+    {
+      "index": 19,
+      "class": "full_attention",
+      "token_addressable": true,
+      "recurrent": false,
+      "keys": {
+        "shape": [
+          1,
+          2,
+          13,
+          256
+        ],
+        "dtype": "torch.float16",
+        "device": "cuda:0",
+        "bytes": 13312
+      },
+      "values": {
+        "shape": [
+          1,
+          2,
+          13,
+          256
+        ],
+        "dtype": "torch.float16",
+        "device": "cuda:0",
+        "bytes": 13312
+      },
+      "conv_states": null,
+      "recurrent_states": null
+    },
+    {
+      "index": 20,
+      "class": "linear_attention",
+      "token_addressable": false,
+      "recurrent": true,
+      "keys": null,
+      "values": null,
+      "conv_states": {
+        "shape": [
+          1,
+          6144,
+          4
+        ],
+        "dtype": "torch.float16",
+        "device": "cuda:0",
+        "bytes": 49152
+      },
+      "recurrent_states": {
+        "shape": [
+          1,
+          16,
+          128,
+          128
+        ],
+        "dtype": "torch.float32",
+        "device": "cuda:0",
+        "bytes": 1048576
+      }
+    },
+    {
+      "index": 21,
+      "class": "linear_attention",
+      "token_addressable": false,
+      "recurrent": true,
+      "keys": null,
+      "values": null,
+      "conv_states": {
+        "shape": [
+          1,
+          6144,
+          4
+        ],
+        "dtype": "torch.float16",
+        "device": "cuda:0",
+        "bytes": 49152
+      },
+      "recurrent_states": {
+        "shape": [
+          1,
+          16,
+          128,
+          128
+        ],
+        "dtype": "torch.float32",
+        "device": "cuda:0",
+        "bytes": 1048576
+      }
+    },
+    {
+      "index": 22,
+      "class": "linear_attention",
+      "token_addressable": false,
+      "recurrent": true,
+      "keys": null,
+      "values": null,
+      "conv_states": {
+        "shape": [
+          1,
+          6144,
+          4
+        ],
+        "dtype": "torch.float16",
+        "device": "cuda:0",
+        "bytes": 49152
+      },
+      "recurrent_states": {
+        "shape": [
+          1,
+          16,
+          128,
+          128
+        ],
+        "dtype": "torch.float32",
+        "device": "cuda:0",
+        "bytes": 1048576
+      }
+    },
+    {
+      "index": 23,
+      "class": "full_attention",
+      "token_addressable": true,
+      "recurrent": false,
+      "keys": {
+        "shape": [
+          1,
+          2,
+          13,
+          256
+        ],
+        "dtype": "torch.float16",
+        "device": "cuda:0",
+        "bytes": 13312
+      },
+      "values": {
+        "shape": [
+          1,
+          2,
+          13,
+          256
+        ],
+        "dtype": "torch.float16",
+        "device": "cuda:0",
+        "bytes": 13312
+      },
+      "conv_states": null,
+      "recurrent_states": null
+    }
+  ],
+  "model": "Qwen/Qwen3.5-2B-Base",
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "input_tokens": 13,
+  "torch_version": "2.11.0+cu130"
+}

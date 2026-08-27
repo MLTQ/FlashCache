@@ -1,0 +1,37 @@
+{
+  "trial_count": 6,
+  "task_family_count": 3,
+  "configuration": {
+    "model": "Qwen/Qwen3-1.7B",
+    "block_count": 12,
+    "speculative_horizon": 24,
+    "generation_horizon": 40,
+    "position_policy": "hot_slot",
+    "prompt_format": "chat"
+  },
+  "trials": [
+    {"family": "history_person", "variant": 0, "seed": 21, "answer": "Elara Voss", "raw_js_rank": 8, "inverse_js_rank": 5},
+    {"family": "history_person", "variant": 1, "seed": 24, "answer": "Tomas Vale", "raw_js_rank": 10, "inverse_js_rank": 3},
+    {"family": "book_quote", "variant": 0, "seed": 22, "answer": "Mara Venn", "raw_js_rank": 4, "inverse_js_rank": 9},
+    {"family": "book_quote", "variant": 1, "seed": 25, "answer": "Ilan Roake", "raw_js_rank": 8, "inverse_js_rank": 5},
+    {"family": "history_place", "variant": 0, "seed": 23, "answer": "Stonebridge Hall", "raw_js_rank": 8, "inverse_js_rank": 5},
+    {"family": "history_place", "variant": 1, "seed": 26, "answer": "Marrow Bay", "raw_js_rank": 1, "inverse_js_rank": 12}
+  ],
+  "metrics": {
+    "baseline_accuracy": 0.0,
+    "relevant_flash_accuracy": 1.0,
+    "random_single_flash_accuracy": 0.08333333333333333,
+    "raw_js_top1_recall": 0.16666666666666666,
+    "inverse_js_top1_recall": 0.0,
+    "two_tail_depth2_recall": 0.16666666666666666,
+    "raw_js_mrr": 0.28750000000000003,
+    "inverse_js_mrr": 0.18796296296296292,
+    "ground_truth_answer_log_prob_rank1_recall": 1.0
+  },
+  "notes": [
+    "All historical and literary records are fictional to prevent pretrained factual recall.",
+    "Every trial has exactly one correct flashed candidate and an incorrect no-block baseline.",
+    "The ground-truth answer log-probability metric is an evaluation oracle, not a deployable selector.",
+    "Six trials are enough to falsify the JS-tail hypothesis on these tasks, but not enough for a final accuracy estimate."
+  ]
+}

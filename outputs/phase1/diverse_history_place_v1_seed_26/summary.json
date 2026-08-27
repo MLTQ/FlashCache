@@ -1,0 +1,101 @@
+{
+  "seed": 26,
+  "model": "Qwen/Qwen3-1.7B",
+  "task_family": "history_place",
+  "task_variant": 1,
+  "target_key": "Ashen Coast Compact (1872)",
+  "target_identifier": null,
+  "target_pressure": null,
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "torch_version": "2.11.0+cu130",
+  "block_count": 12,
+  "speculative_horizon": 24,
+  "generation_horizon": 40,
+  "position_policy": "hot_slot",
+  "prompt_format": "chat",
+  "relevant_block_id": 3,
+  "relevant_rank_by_js_mean": 1,
+  "relevant_rank_by_one_minus_js_mean": 12,
+  "relevant_rank_by_answer_log_prob_delta": 1,
+  "relevant_answer_log_prob_delta": 11.960636138916016,
+  "reciprocal_rank": 1.0,
+  "one_minus_js_reciprocal_rank": 0.08333333333333333,
+  "answer": "Marrow Bay",
+  "baseline_continuation": "The Ashen Coast Compact (1872) was signed in **Ashen Province, Terran Dominion**.",
+  "baseline_generated_continuation": "The Ashen Coast Compact (1872) was signed in **Ashen Province, Terran Dominion**.<|im_end|><|im_end|>\n\n**Treaty Name:** Ashen Coast Compact  \n**Year",
+  "baseline_answer_correct": false,
+  "baseline_first_top_tokens": [
+    {
+      "token_id": 785,
+      "text": "The",
+      "log_prob": -1.1920922133867862e-06
+    },
+    {
+      "token_id": 334,
+      "text": "**",
+      "log_prob": -13.640625953674316
+    },
+    {
+      "token_id": 52756,
+      "text": "Ash",
+      "log_prob": -19.390626907348633
+    },
+    {
+      "token_id": 10022,
+      "text": "\"The",
+      "log_prob": -19.781251907348633
+    },
+    {
+      "token_id": 65006,
+      "text": "-The",
+      "log_prob": -20.765626907348633
+    }
+  ],
+  "relevant_generated_continuation": "The Ashen Coast Compact (1872) was signed at Marrow Bay.<|im_end|><|im_end|>\n\n**Treaty Name:** Ashen Coast Compact  \n**Year:** 1872",
+  "relevant_answer_correct": true,
+  "correct_candidate_ids": [
+    3
+  ],
+  "ranking": [
+    3,
+    7,
+    2,
+    10,
+    8,
+    11,
+    6,
+    9,
+    4,
+    5,
+    0,
+    1
+  ],
+  "one_minus_js_ranking": [
+    1,
+    0,
+    5,
+    4,
+    9,
+    6,
+    11,
+    8,
+    10,
+    2,
+    7,
+    3
+  ],
+  "answer_delta_ranking": [
+    3,
+    7,
+    11,
+    0,
+    10,
+    4,
+    8,
+    6,
+    9,
+    5,
+    1,
+    2
+  ]
+}

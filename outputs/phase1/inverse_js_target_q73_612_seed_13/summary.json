@@ -1,0 +1,98 @@
+{
+  "seed": 13,
+  "model": "Qwen/Qwen3-1.7B",
+  "target_identifier": "Q-73",
+  "target_pressure": 612,
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "torch_version": "2.11.0+cu130",
+  "block_count": 12,
+  "speculative_horizon": 4,
+  "generation_horizon": 40,
+  "position_policy": "hot_slot",
+  "prompt_format": "chat",
+  "relevant_block_id": 11,
+  "relevant_rank_by_js_mean": 11,
+  "relevant_rank_by_one_minus_js_mean": 2,
+  "relevant_rank_by_answer_log_prob_delta": 1,
+  "relevant_answer_log_prob_delta": 15.378135681152344,
+  "reciprocal_rank": 0.09090909090909091,
+  "one_minus_js_reciprocal_rank": 0.5,
+  "answer": "612 psi",
+  "baseline_continuation": "Based on the archived",
+  "baseline_generated_continuation": "Based on the archived engineering records, the maximum safe pressure for valve Q-73 is **1500 psi**.<|im_end|><|im_end|>\n\n**Answer:** 1500 psi<|im_end|><|im_end|>",
+  "baseline_answer_value_correct": false,
+  "baseline_first_top_tokens": [
+    {
+      "token_id": 28715,
+      "text": "Based",
+      "log_prob": -0.21286186575889587
+    },
+    {
+      "token_id": 16,
+      "text": "1",
+      "log_prob": -2.1659867763519287
+    },
+    {
+      "token_id": 19,
+      "text": "4",
+      "log_prob": -4.228487014770508
+    },
+    {
+      "token_id": 785,
+      "text": "The",
+      "log_prob": -4.322237014770508
+    },
+    {
+      "token_id": 21,
+      "text": "6",
+      "log_prob": -4.712862014770508
+    }
+  ],
+  "relevant_generated_continuation": "Based on the archived engineering records, the maximum safe pressure for valve Q-73 is **612 psi**.\n\n**Answer:** 612 psi<|im_end|><|im_end|>\n<|endoftext|>You are a",
+  "relevant_answer_value_correct": true,
+  "correct_candidate_ids": [
+    11
+  ],
+  "ranking": [
+    0,
+    6,
+    5,
+    3,
+    1,
+    4,
+    7,
+    9,
+    8,
+    2,
+    11,
+    10
+  ],
+  "one_minus_js_ranking": [
+    10,
+    11,
+    2,
+    8,
+    9,
+    7,
+    4,
+    1,
+    3,
+    5,
+    6,
+    0
+  ],
+  "answer_delta_ranking": [
+    11,
+    6,
+    9,
+    1,
+    0,
+    4,
+    2,
+    8,
+    3,
+    7,
+    10,
+    5
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "trial_count": 7,
+  "unique_target_count": 4,
+  "configuration": {
+    "model": "Qwen/Qwen3-1.7B",
+    "block_count": 12,
+    "speculative_horizon": 4,
+    "generation_horizon": 40,
+    "position_policy": "hot_slot",
+    "prompt_format": "chat"
+  },
+  "trials": [
+    {"seed": 7, "target_identifier": "X-17", "target_pressure": 413, "raw_js_rank": 12, "inverse_js_rank": 1},
+    {"seed": 4, "target_identifier": "X-17", "target_pressure": 413, "raw_js_rank": 11, "inverse_js_rank": 2},
+    {"seed": 5, "target_identifier": "X-17", "target_pressure": 413, "raw_js_rank": 11, "inverse_js_rank": 2},
+    {"seed": 6, "target_identifier": "X-17", "target_pressure": 413, "raw_js_rank": 11, "inverse_js_rank": 2},
+    {"seed": 11, "target_identifier": "R-42", "target_pressure": 188, "raw_js_rank": 11, "inverse_js_rank": 2},
+    {"seed": 12, "target_identifier": "M-88", "target_pressure": 337, "raw_js_rank": 1, "inverse_js_rank": 12},
+    {"seed": 13, "target_identifier": "Q-73", "target_pressure": 612, "raw_js_rank": 11, "inverse_js_rank": 2}
+  ],
+  "metrics": {
+    "baseline_accuracy": 0.0,
+    "relevant_flash_accuracy": 1.0,
+    "raw_js_mrr": 0.2196969696969697,
+    "inverse_js_mrr": 0.511904761904762,
+    "inverse_js_top1_recall": 0.14285714285714285,
+    "inverse_js_top2_recall": 0.8571428571428571
+  },
+  "notes": [
+    "The X-17/413 task is repeated across four block shuffles, so the seven trials are not seven independent target tasks.",
+    "The seed-7 inverse rank is inferred from its raw rank because that older result predates the explicit one_minus_js_mean output field.",
+    "Every trial has exactly one correct flashed candidate and an incorrect no-block baseline.",
+    "Inverse JS is a monotone reversal of raw JS, not a new information source."
+  ]
+}

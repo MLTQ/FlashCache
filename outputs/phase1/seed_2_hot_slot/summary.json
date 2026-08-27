@@ -1,0 +1,71 @@
+{
+  "seed": 2,
+  "model": "Qwen/Qwen3-1.7B",
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "torch_version": "2.11.0+cu130",
+  "block_count": 12,
+  "speculative_horizon": 4,
+  "position_policy": "hot_slot",
+  "relevant_block_id": 6,
+  "relevant_rank_by_js_mean": 12,
+  "relevant_rank_by_answer_log_prob_delta": 1,
+  "relevant_answer_log_prob_delta": 22.029382705688477,
+  "reciprocal_rank": 0.08333333333333333,
+  "answer": "413 psi",
+  "baseline_continuation": " The archived engineering records",
+  "baseline_first_top_tokens": [
+    {
+      "token_id": 576,
+      "text": " The",
+      "log_prob": -0.21239270269870758
+    },
+    {
+      "token_id": 510,
+      "text": ":\n",
+      "log_prob": -3.509267807006836
+    },
+    {
+      "token_id": 320,
+      "text": " (",
+      "log_prob": -3.509267807006836
+    },
+    {
+      "token_id": 5542,
+      "text": " From",
+      "log_prob": -4.782705307006836
+    },
+    {
+      "token_id": 508,
+      "text": " [",
+      "log_prob": -4.806142807006836
+    }
+  ],
+  "ranking": [
+    5,
+    11,
+    3,
+    8,
+    2,
+    10,
+    0,
+    4,
+    7,
+    9,
+    1,
+    6
+  ],
+  "answer_delta_ranking": [
+    6,
+    7,
+    5,
+    10,
+    3,
+    1,
+    0,
+    4,
+    2,
+    9,
+    11,
+    8
+  ]
+}

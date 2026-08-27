@@ -1,0 +1,25 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "flash-cache"
+version = "0.1.0"
+description = "Experimental harness for model-driven cold-cache probing"
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+    "accelerate>=1.10,<2",
+    "matplotlib>=3.9,<4",
+    "numpy>=2,<3",
+    "pytest>=8,<10",
+    "torch>=2.7,<2.12",
+    "transformers>=5.3,<5.4",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["flash_cache"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+

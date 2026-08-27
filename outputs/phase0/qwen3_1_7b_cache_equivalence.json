@@ -1,0 +1,27 @@
+{
+  "input_tokens": 13,
+  "full_vs_cached": {
+    "max_abs": 0.02734375,
+    "mean_abs": 0.004326354246586561
+  },
+  "restored_branch_a_vs_b": {
+    "max_abs": 0.0,
+    "mean_abs": 0.0
+  },
+  "full_argmax": 220,
+  "cached_argmax": 220,
+  "argmax_matches": true,
+  "model": "Qwen/Qwen3-1.7B",
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "torch_version": "2.11.0+cu130",
+  "cache_class": "DynamicCache",
+  "cache_layer_summary": {
+    "layers": 28,
+    "token_addressable": 28,
+    "recurrent": 0
+  },
+  "arbitrary_token_block_surgery": {
+    "supported": true,
+    "reason": null
+  }
+}
