@@ -264,3 +264,51 @@ This richer carrier demonstrates a useful training-free mechanism, but it is sem
 The hoped-for net benefit from uncontrolled cross-page poisoning was not observed. Letting earlier poisoned state choose later tokens caused attractors, and retaining page-conditioned state after isolated token selection matched or underperformed clean replay. At the current boundary, twelve isolated tokens per page solve two required facts among twelve pages, while three required facts among twelve pages still collapse to a distractor even though full prefill succeeds.
 
 These trials remain exploratory: the note width was tuned on one task, the task family is fictional personal preferences, and exact-answer substring scoring can credit the right food despite imperfect supporting prose. The complete per-page token traces and control outputs are stored under `outputs/phase4`, with the selected counts in `semantic_carrier_aggregate.json`.
+
+## 2026-08-27 — uninterrupted rotating-page free decode
+
+The original proposal was then tested without the page-summarization detour. The model produced one uninterrupted response while cold pages rotated beneath it on a fixed physical schedule. There were no page notes, visible page markers, resets, gates, relevance decisions, answer oracle, or known-hop control flow.
+
+At each autoregressive step, the scheduled page was inserted, the current response token was processed, and the next token was chosen greedily. The page was then removed while the processed token's page-conditioned KV remained. The chosen token became the next input under the next scheduled page. After a fixed token budget, the final chosen token was committed and both conditions received the same final-answer cue.
+
+The exact clean replay processed the same original probe and every generated token ID at the same positions without inserting pages. It therefore distinguishes effects already externalized in token choices from additional effects in the retained page-conditioned KV.
+
+### Prompt control
+
+An initial carrier-specific prompt described the continuous stream and asked the model to wait for a final signal. As in the earlier sentinel experiment, that behavioral instruction suppressed useful answering. Removing only the waiting rule did not fix it. Seven such exploratory trials all failed and were excluded from the primary comparison.
+
+The final mechanism uses the ordinary unmodified question prompt. The model is not told to summarize, introspect, wait, or follow a carrier format; pages simply rotate while it writes its normal answer.
+
+### Window and order results
+
+Literal per-token rotation on a direct Vera/mushroom-pie task failed. It reacted to both the answer page and distractors but blended `mushroom pie` with `plum tart` into the unsupported answer `plum pudding`.
+
+Eight-token windows allowed a complete short phrase to form:
+
+- When the direct Vera/mushroom-pie page was first, the visible stream immediately produced the correct answer and retained it through later rotations. Poisoned and exact-replay answers were both correct.
+- When the direct Shirly/tacos page was last, the response first committed to a distractor trajectory and later misbound `bean stew` to Shirly. Poisoned and replay answers were both wrong.
+- A two-hop task with relevant pages in windows two and four failed.
+- A favorable two-hop task with `wife = Vera` and `Vera = mushroom pie` in the first two adjacent windows also failed.
+- A three-hop task with relevant pages interleaved at physical positions zero, two, and four failed.
+
+A complete one-pass 16-token-window control also failed the two-hop task, so the eight-token failures are not explained solely by truncating the individual source records.
+
+Primary ordinary-prompt, eight-token-window results:
+
+| Condition | Correct |
+|---|---:|
+| No pages | `0/5` |
+| Normal full prefill | `5/5` |
+| All independently cached pages inserted simultaneously | `2/5` |
+| Uninterrupted page-conditioned decode | `1/5` |
+| Exact clean replay | `1/5` |
+
+The sole success was the direct relevant-first ordering. Multi-hop accuracy was `0/3`, including adjacent relevant pages. Hidden page-conditioned state changed final wording in several failures, and the retained one-token KV differed materially from its clean counterpart (maximum deltas `70.1875` to `95.0547` across primary trials), but it never changed an incorrect exact replay into a correct poisoned answer.
+
+### Interpretation
+
+The requested mechanism is now implemented and tested directly. It can preserve a correct answer once that answer-bearing page controls the beginning of a sufficiently wide response window, but it does not reliably redirect an established trajectory and did not combine multiple needles in these trials. Literal per-token rotation is especially destructive because entity and value phrases are assembled under different pages.
+
+The current evidence therefore does not support uncontrolled free decode as an unknown-depth integration mechanism for Qwen3-1.7B. Its failure mode is not absence of page influence—the visible response and KV tensors both change substantially—but unstable binding and strong autoregressive commitment to early distractors. Exact clean replay matching every correctness outcome also provides no evidence that hidden residue adds useful memory beyond the token choices it helped produce.
+
+Complete traces are under `outputs/phase5`; `continuous_carrier_aggregate.json` separates the final ordinary-prompt trials from the discarded carrier-instruction experiments.
