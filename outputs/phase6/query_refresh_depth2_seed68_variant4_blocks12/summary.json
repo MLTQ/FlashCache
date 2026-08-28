@@ -1,0 +1,45 @@
+{
+  "seed": 68,
+  "model": "Qwen/Qwen3-1.7B",
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "torch_version": "2.11.0+cu130",
+  "task_family": "multi_hop_preference",
+  "task_variant": 4,
+  "hop_depth": 2,
+  "question": "What is my wife's favorite food?",
+  "answer": "mushroom pie",
+  "block_count": 12,
+  "relevant_block_ids_logical_order": [
+    8,
+    9
+  ],
+  "continuation_horizon": 48,
+  "prompt_format": "chat",
+  "pinned_token_count": 38,
+  "cold_page_token_count": 137,
+  "recent_query_prefix_token_count": 17,
+  "cold_prepare_latency_ms": 850.3206759924069,
+  "no_page": {
+    "generated_answer": "Based on the archived records provided, there is no direct information about your wife's favorite food. The records do not include any details regarding personal preferences, dietary habits, or food preferences. Therefore, it is not possible to determine your wife's",
+    "answer_correct": false,
+    "online_latency_ms": 1411.3197620026767
+  },
+  "stale_query_all_pages": {
+    "generated_answer": "Based on the provided information:\n\n- Dario's closest friend is Lysa.\n- Lysa's neighbor is Iona.\n- Iona is not directly mentioned in relation to Dario or Lysa.\n- Vera is the",
+    "answer_correct": false,
+    "online_latency_ms": 1272.3168450174853
+  },
+  "query_refresh": {
+    "generated_answer": "Based on the provided information, your wife's favorite food is not directly stated. However, we do know that **Lysa's favorite food is roast squash**, and **Dario's closest friend is Iona**. Additionally, **",
+    "answer_correct": false,
+    "online_latency_ms": 1272.5279110018164,
+    "cold_archive_token_count": 175,
+    "refreshed_query_token_count": 17,
+    "final_cache_token_count": 192
+  },
+  "full_prefill": {
+    "generated_answer": "Based on the provided information, your wife's favorite food is **mushroom pie**. This is directly stated in the preference note: \"Vera's favorite food is mushroom pie.\"",
+    "answer_correct": true,
+    "online_latency_ms": 1185.6027249596082
+  }
+}

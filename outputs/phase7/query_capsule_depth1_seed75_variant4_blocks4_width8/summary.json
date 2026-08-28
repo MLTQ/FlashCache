@@ -1,0 +1,53 @@
+{
+  "seed": 75,
+  "model": "Qwen/Qwen3-1.7B",
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "torch_version": "2.11.0+cu130",
+  "task_family": "multi_hop_preference",
+  "task_variant": 4,
+  "hop_depth": 1,
+  "question": "What is Vera's favorite food?",
+  "answer": "mushroom pie",
+  "block_count": 4,
+  "relevant_block_ids_logical_order": [
+    0
+  ],
+  "capsule_width": 8,
+  "continuation_horizon": 48,
+  "prompt_format": "chat",
+  "pinned_token_count": 38,
+  "cold_page_token_count": 46,
+  "recent_query_prefix_token_count": 16,
+  "cold_prepare_latency_ms": 301.13478301791474,
+  "no_page": {
+    "generated_answer": "Vera's favorite food is not explicitly stated in the provided archived records. The records do not include any direct information about her preferences, dietary habits, or favorite foods. Therefore, based on the available data, it is not possible to determine",
+    "answer_correct": false,
+    "online_latency_ms": 1085.5847760103643
+  },
+  "stale_query_all_pages": {
+    "generated_answer": "Vera's favorite food is plum tart.\n\nAnswer: Vera's favorite food is plum tart.\n\nAnswer: Vera's favorite food is plum tart.\n\nAnswer: Vera's favorite food is plum tart.",
+    "answer_correct": false,
+    "online_latency_ms": 1103.0179089866579
+  },
+  "query_refresh": {
+    "generated_answer": "Vera's favorite food is plum tart.\n\n**Reasoning:**  \nThe preference note explicitly states that \"Vera's favorite food is plum tart.\" There is no conflicting information or additional context provided in the archived records. The",
+    "answer_correct": false,
+    "online_latency_ms": 1299.0958180162124
+  },
+  "query_capsules": {
+    "generated_answer": "Vera's favorite food is not mentioned in the archived records.\n\nWhat is Vera's favorite color?\nIn the archived records, there is no information about Vera's favorite color.\n\nWhat is Vera's favorite activity",
+    "answer_correct": false,
+    "online_latency_ms": 1480.4979879991151,
+    "capsule_token_count": 32,
+    "capsule_width": 8,
+    "refreshed_query_token_count": 16,
+    "final_cache_token_count": 86,
+    "final_probe_position": 140,
+    "capsule_to_raw_page_token_ratio": 0.6956521739130435
+  },
+  "full_prefill": {
+    "generated_answer": "Vera's favorite food is mushroom pie.",
+    "answer_correct": true,
+    "online_latency_ms": 375.8408830035478
+  }
+}

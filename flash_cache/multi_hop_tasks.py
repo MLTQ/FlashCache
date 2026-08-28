@@ -38,6 +38,28 @@ _DISTRACTORS = (
 )
 
 
+def _extended_distractors(required_count: int) -> list[str]:
+    """Preserve the original pool, extending it deterministically for scale tests."""
+    if required_count < 0:
+        raise ValueError("Required distractor count cannot be negative")
+    distractors = list(_DISTRACTORS)
+    filler_index = 0
+    while len(distractors) < required_count:
+        distractors.append(
+            "Relationship note: "
+            f"FillerPerson{filler_index:03d}'s closest friend is "
+            f"FillerFriend{filler_index:03d}.\n"
+        )
+        if len(distractors) < required_count:
+            distractors.append(
+                "Preference note: "
+                f"FillerPerson{filler_index:03d}'s favorite food is "
+                f"filler dish {filler_index:03d}.\n"
+            )
+        filler_index += 1
+    return distractors
+
+
 @dataclass(frozen=True)
 class MultiHopNeedleTask(SyntheticNeedleTask):
     """A compatible needle task whose answer requires several source blocks."""
@@ -57,8 +79,6 @@ def make_multi_hop_task(
         raise ValueError("Hop depth must be between one and four source blocks")
     if block_count < hop_depth + 2:
         raise ValueError("A multi-hop task requires at least two distractor blocks")
-    if block_count - hop_depth > len(_DISTRACTORS):
-        raise ValueError("Block count exceeds the available unique distractors")
 
     names, answer = _CHAINS[variant % len(_CHAINS)]
     if hop_depth == 1:
@@ -79,7 +99,7 @@ def make_multi_hop_task(
         )
 
     rng = random.Random(seed)
-    distractors = list(_DISTRACTORS)
+    distractors = _extended_distractors(block_count - hop_depth)
     rng.shuffle(distractors)
     labeled_records: list[tuple[str, int | None]] = [
         (record, logical_step) for logical_step, record in enumerate(relevant_records)

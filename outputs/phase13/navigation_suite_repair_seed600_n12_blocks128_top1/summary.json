@@ -1,0 +1,151 @@
+{
+  "model": "Qwen/Qwen3-1.7B",
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "torch_version": "2.11.0+cu130",
+  "seed_base": 600,
+  "trial_count": 12,
+  "blocks": 128,
+  "hop_depths": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "variant_count": 6,
+  "retrieval_k": 1,
+  "max_navigation_steps": 5,
+  "all_trials": {
+    "iterative": {
+      "trial_count": 12,
+      "asserted_answer_correct_count": 12,
+      "asserted_answer_accuracy": 1.0,
+      "phrase_present_count": 12,
+      "phrase_present_rate": 1.0,
+      "mean_online_latency_ms": 651.7857841681689
+    },
+    "no_page": {
+      "trial_count": 12,
+      "asserted_answer_correct_count": 0,
+      "asserted_answer_accuracy": 0.0,
+      "phrase_present_count": 0,
+      "phrase_present_rate": 0.0,
+      "mean_online_latency_ms": 1330.4793262553478
+    },
+    "full_prefill": {
+      "trial_count": 12,
+      "asserted_answer_correct_count": 4,
+      "asserted_answer_accuracy": 0.3333333333333333,
+      "phrase_present_count": 5,
+      "phrase_present_rate": 0.4166666666666667,
+      "mean_online_latency_ms": 1972.049799320909
+    }
+  },
+  "by_depth": {
+    "1": {
+      "iterative": {
+        "trial_count": 3,
+        "asserted_answer_correct_count": 3,
+        "asserted_answer_accuracy": 1.0,
+        "phrase_present_count": 3,
+        "phrase_present_rate": 1.0,
+        "mean_online_latency_ms": 148.2452626611727
+      },
+      "no_page": {
+        "trial_count": 3,
+        "asserted_answer_correct_count": 0,
+        "asserted_answer_accuracy": 0.0,
+        "phrase_present_count": 0,
+        "phrase_present_rate": 0.0,
+        "mean_online_latency_ms": 1347.684943000786
+      },
+      "full_prefill": {
+        "trial_count": 3,
+        "asserted_answer_correct_count": 3,
+        "asserted_answer_accuracy": 1.0,
+        "phrase_present_count": 3,
+        "phrase_present_rate": 1.0,
+        "mean_online_latency_ms": 2005.5289596590835
+      }
+    },
+    "2": {
+      "iterative": {
+        "trial_count": 3,
+        "asserted_answer_correct_count": 3,
+        "asserted_answer_accuracy": 1.0,
+        "phrase_present_count": 3,
+        "phrase_present_rate": 1.0,
+        "mean_online_latency_ms": 476.4717093397242
+      },
+      "no_page": {
+        "trial_count": 3,
+        "asserted_answer_correct_count": 0,
+        "asserted_answer_accuracy": 0.0,
+        "phrase_present_count": 0,
+        "phrase_present_rate": 0.0,
+        "mean_online_latency_ms": 1331.6287929968287
+      },
+      "full_prefill": {
+        "trial_count": 3,
+        "asserted_answer_correct_count": 1,
+        "asserted_answer_accuracy": 0.3333333333333333,
+        "phrase_present_count": 1,
+        "phrase_present_rate": 0.3333333333333333,
+        "mean_online_latency_ms": 1941.6331076451268
+      }
+    },
+    "3": {
+      "iterative": {
+        "trial_count": 3,
+        "asserted_answer_correct_count": 3,
+        "asserted_answer_accuracy": 1.0,
+        "phrase_present_count": 3,
+        "phrase_present_rate": 1.0,
+        "mean_online_latency_ms": 798.9496680287024
+      },
+      "no_page": {
+        "trial_count": 3,
+        "asserted_answer_correct_count": 0,
+        "asserted_answer_accuracy": 0.0,
+        "phrase_present_count": 0,
+        "phrase_present_rate": 0.0,
+        "mean_online_latency_ms": 1311.848681672321
+      },
+      "full_prefill": {
+        "trial_count": 3,
+        "asserted_answer_correct_count": 0,
+        "asserted_answer_accuracy": 0.0,
+        "phrase_present_count": 1,
+        "phrase_present_rate": 0.3333333333333333,
+        "mean_online_latency_ms": 1987.8899343311787
+      }
+    },
+    "4": {
+      "iterative": {
+        "trial_count": 3,
+        "asserted_answer_correct_count": 3,
+        "asserted_answer_accuracy": 1.0,
+        "phrase_present_count": 3,
+        "phrase_present_rate": 1.0,
+        "mean_online_latency_ms": 1183.4764966430764
+      },
+      "no_page": {
+        "trial_count": 3,
+        "asserted_answer_correct_count": 0,
+        "asserted_answer_accuracy": 0.0,
+        "phrase_present_count": 0,
+        "phrase_present_rate": 0.0,
+        "mean_online_latency_ms": 1330.7548873514559
+      },
+      "full_prefill": {
+        "trial_count": 3,
+        "asserted_answer_correct_count": 0,
+        "asserted_answer_accuracy": 0.0,
+        "phrase_present_count": 0,
+        "phrase_present_rate": 0.0,
+        "mean_online_latency_ms": 1953.1471956482467
+      }
+    }
+  },
+  "model_answer_stop_count": 12,
+  "all_selected_steps_ground_truth_relevant_count": 12
+}

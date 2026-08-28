@@ -1,0 +1,410 @@
+{
+  "model": "Qwen/Qwen3-1.7B",
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "torch_version": "2.11.0+cu130",
+  "seed_base": 100,
+  "trial_count": 24,
+  "development_trial_count": 12,
+  "holdout_trial_count": 12,
+  "blocks": 12,
+  "hop_depths": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "variant_count": 6,
+  "top_k": 4,
+  "prompt_format": "chat",
+  "globally_selected_metric": "all_query_density",
+  "selection_rule": "maximize development all-relevant top-K rate, then mean recall, then reciprocal worst-relevant rank; declared metric order breaks exact ties",
+  "selected_metric_development": {
+    "all_trials": {
+      "trial_count": 12,
+      "all_relevant_top_k_rate": 0.5833333333333334,
+      "mean_relevant_page_recall": 0.8055555555555555,
+      "mean_reciprocal_worst_relevant_rank": 0.36491402116402116
+    },
+    "full_prefill_correct_trials": {
+      "trial_count": 5,
+      "all_relevant_top_k_rate": 1.0,
+      "mean_relevant_page_recall": 1.0,
+      "mean_reciprocal_worst_relevant_rank": 0.5
+    }
+  },
+  "selected_metric_holdout": {
+    "all_trials": {
+      "trial_count": 12,
+      "all_relevant_top_k_rate": 0.0,
+      "mean_relevant_page_recall": 0.4791666666666667,
+      "mean_reciprocal_worst_relevant_rank": 0.11769781144781145
+    },
+    "full_prefill_correct_trials": {
+      "trial_count": 5,
+      "all_relevant_top_k_rate": 0.0,
+      "mean_relevant_page_recall": 0.5,
+      "mean_reciprocal_worst_relevant_rank": 0.11595959595959596
+    }
+  },
+  "metric_aggregates": {
+    "all_query_mass": {
+      "development": {
+        "all_trials": {
+          "trial_count": 12,
+          "all_relevant_top_k_rate": 0.5,
+          "mean_relevant_page_recall": 0.75,
+          "mean_reciprocal_worst_relevant_rank": 0.3204695767195767
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 5,
+          "all_relevant_top_k_rate": 1.0,
+          "mean_relevant_page_recall": 1.0,
+          "mean_reciprocal_worst_relevant_rank": 0.5
+        }
+      },
+      "holdout": {
+        "all_trials": {
+          "trial_count": 12,
+          "all_relevant_top_k_rate": 0.08333333333333333,
+          "mean_relevant_page_recall": 0.4791666666666667,
+          "mean_reciprocal_worst_relevant_rank": 0.15208633958633958
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 5,
+          "all_relevant_top_k_rate": 0.2,
+          "mean_relevant_page_recall": 0.6,
+          "mean_reciprocal_worst_relevant_rank": 0.19190476190476188
+        }
+      },
+      "all": {
+        "all_trials": {
+          "trial_count": 24,
+          "all_relevant_top_k_rate": 0.2916666666666667,
+          "mean_relevant_page_recall": 0.6145833333333334,
+          "mean_reciprocal_worst_relevant_rank": 0.23627795815295827
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 10,
+          "all_relevant_top_k_rate": 0.6,
+          "mean_relevant_page_recall": 0.8,
+          "mean_reciprocal_worst_relevant_rank": 0.34595238095238096
+        }
+      }
+    },
+    "tail_query_mass": {
+      "development": {
+        "all_trials": {
+          "trial_count": 12,
+          "all_relevant_top_k_rate": 0.0,
+          "mean_relevant_page_recall": 0.08333333333333333,
+          "mean_reciprocal_worst_relevant_rank": 0.11042568542568543
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 5,
+          "all_relevant_top_k_rate": 0.0,
+          "mean_relevant_page_recall": 0.0,
+          "mean_reciprocal_worst_relevant_rank": 0.13532467532467532
+        }
+      },
+      "holdout": {
+        "all_trials": {
+          "trial_count": 12,
+          "all_relevant_top_k_rate": 0.0,
+          "mean_relevant_page_recall": 0.3333333333333333,
+          "mean_reciprocal_worst_relevant_rank": 0.10102513227513227
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 5,
+          "all_relevant_top_k_rate": 0.0,
+          "mean_relevant_page_recall": 0.2,
+          "mean_reciprocal_worst_relevant_rank": 0.09166666666666666
+        }
+      },
+      "all": {
+        "all_trials": {
+          "trial_count": 24,
+          "all_relevant_top_k_rate": 0.0,
+          "mean_relevant_page_recall": 0.2083333333333333,
+          "mean_reciprocal_worst_relevant_rank": 0.10572540885040886
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 10,
+          "all_relevant_top_k_rate": 0.0,
+          "mean_relevant_page_recall": 0.1,
+          "mean_reciprocal_worst_relevant_rank": 0.11349567099567101
+        }
+      }
+    },
+    "last_query_mass": {
+      "development": {
+        "all_trials": {
+          "trial_count": 12,
+          "all_relevant_top_k_rate": 0.08333333333333333,
+          "mean_relevant_page_recall": 0.19444444444444442,
+          "mean_reciprocal_worst_relevant_rank": 0.11555134680134681
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 5,
+          "all_relevant_top_k_rate": 0.2,
+          "mean_relevant_page_recall": 0.2,
+          "mean_reciprocal_worst_relevant_rank": 0.15055555555555555
+        }
+      },
+      "holdout": {
+        "all_trials": {
+          "trial_count": 12,
+          "all_relevant_top_k_rate": 0.08333333333333333,
+          "mean_relevant_page_recall": 0.375,
+          "mean_reciprocal_worst_relevant_rank": 0.12342171717171717
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 5,
+          "all_relevant_top_k_rate": 0.2,
+          "mean_relevant_page_recall": 0.3,
+          "mean_reciprocal_worst_relevant_rank": 0.12984848484848485
+        }
+      },
+      "all": {
+        "all_trials": {
+          "trial_count": 24,
+          "all_relevant_top_k_rate": 0.08333333333333333,
+          "mean_relevant_page_recall": 0.28472222222222215,
+          "mean_reciprocal_worst_relevant_rank": 0.11948653198653196
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 10,
+          "all_relevant_top_k_rate": 0.2,
+          "mean_relevant_page_recall": 0.25,
+          "mean_reciprocal_worst_relevant_rank": 0.1402020202020202
+        }
+      }
+    },
+    "max_query_mass": {
+      "development": {
+        "all_trials": {
+          "trial_count": 12,
+          "all_relevant_top_k_rate": 0.4166666666666667,
+          "mean_relevant_page_recall": 0.611111111111111,
+          "mean_reciprocal_worst_relevant_rank": 0.43935185185185177
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 5,
+          "all_relevant_top_k_rate": 0.8,
+          "mean_relevant_page_recall": 0.8,
+          "mean_reciprocal_worst_relevant_rank": 0.74
+        }
+      },
+      "holdout": {
+        "all_trials": {
+          "trial_count": 12,
+          "all_relevant_top_k_rate": 0.0,
+          "mean_relevant_page_recall": 0.22916666666666666,
+          "mean_reciprocal_worst_relevant_rank": 0.1004419191919192
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 5,
+          "all_relevant_top_k_rate": 0.0,
+          "mean_relevant_page_recall": 0.2,
+          "mean_reciprocal_worst_relevant_rank": 0.11318181818181819
+        }
+      },
+      "all": {
+        "all_trials": {
+          "trial_count": 24,
+          "all_relevant_top_k_rate": 0.20833333333333334,
+          "mean_relevant_page_recall": 0.4201388888888889,
+          "mean_reciprocal_worst_relevant_rank": 0.2698968855218854
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 10,
+          "all_relevant_top_k_rate": 0.4,
+          "mean_relevant_page_recall": 0.5,
+          "mean_reciprocal_worst_relevant_rank": 0.42659090909090913
+        }
+      }
+    },
+    "all_query_density": {
+      "development": {
+        "all_trials": {
+          "trial_count": 12,
+          "all_relevant_top_k_rate": 0.5833333333333334,
+          "mean_relevant_page_recall": 0.8055555555555555,
+          "mean_reciprocal_worst_relevant_rank": 0.36491402116402116
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 5,
+          "all_relevant_top_k_rate": 1.0,
+          "mean_relevant_page_recall": 1.0,
+          "mean_reciprocal_worst_relevant_rank": 0.5
+        }
+      },
+      "holdout": {
+        "all_trials": {
+          "trial_count": 12,
+          "all_relevant_top_k_rate": 0.0,
+          "mean_relevant_page_recall": 0.4791666666666667,
+          "mean_reciprocal_worst_relevant_rank": 0.11769781144781145
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 5,
+          "all_relevant_top_k_rate": 0.0,
+          "mean_relevant_page_recall": 0.5,
+          "mean_reciprocal_worst_relevant_rank": 0.11595959595959596
+        }
+      },
+      "all": {
+        "all_trials": {
+          "trial_count": 24,
+          "all_relevant_top_k_rate": 0.2916666666666667,
+          "mean_relevant_page_recall": 0.642361111111111,
+          "mean_reciprocal_worst_relevant_rank": 0.24130591630591636
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 10,
+          "all_relevant_top_k_rate": 0.5,
+          "mean_relevant_page_recall": 0.75,
+          "mean_reciprocal_worst_relevant_rank": 0.307979797979798
+        }
+      }
+    },
+    "tail_query_density": {
+      "development": {
+        "all_trials": {
+          "trial_count": 12,
+          "all_relevant_top_k_rate": 0.0,
+          "mean_relevant_page_recall": 0.08333333333333333,
+          "mean_reciprocal_worst_relevant_rank": 0.11280363155363154
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 5,
+          "all_relevant_top_k_rate": 0.0,
+          "mean_relevant_page_recall": 0.0,
+          "mean_reciprocal_worst_relevant_rank": 0.131991341991342
+        }
+      },
+      "holdout": {
+        "all_trials": {
+          "trial_count": 12,
+          "all_relevant_top_k_rate": 0.0,
+          "mean_relevant_page_recall": 0.25,
+          "mean_reciprocal_worst_relevant_rank": 0.10460257335257335
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 5,
+          "all_relevant_top_k_rate": 0.0,
+          "mean_relevant_page_recall": 0.1,
+          "mean_reciprocal_worst_relevant_rank": 0.09318181818181817
+        }
+      },
+      "all": {
+        "all_trials": {
+          "trial_count": 24,
+          "all_relevant_top_k_rate": 0.0,
+          "mean_relevant_page_recall": 0.16666666666666666,
+          "mean_reciprocal_worst_relevant_rank": 0.10870310245310244
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 10,
+          "all_relevant_top_k_rate": 0.0,
+          "mean_relevant_page_recall": 0.05,
+          "mean_reciprocal_worst_relevant_rank": 0.1125865800865801
+        }
+      }
+    },
+    "last_query_density": {
+      "development": {
+        "all_trials": {
+          "trial_count": 12,
+          "all_relevant_top_k_rate": 0.16666666666666666,
+          "mean_relevant_page_recall": 0.27777777777777773,
+          "mean_reciprocal_worst_relevant_rank": 0.1380050505050505
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 5,
+          "all_relevant_top_k_rate": 0.4,
+          "mean_relevant_page_recall": 0.4,
+          "mean_reciprocal_worst_relevant_rank": 0.19984848484848486
+        }
+      },
+      "holdout": {
+        "all_trials": {
+          "trial_count": 12,
+          "all_relevant_top_k_rate": 0.08333333333333333,
+          "mean_relevant_page_recall": 0.3958333333333333,
+          "mean_reciprocal_worst_relevant_rank": 0.13343855218855222
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 5,
+          "all_relevant_top_k_rate": 0.2,
+          "mean_relevant_page_recall": 0.4,
+          "mean_reciprocal_worst_relevant_rank": 0.1615151515151515
+        }
+      },
+      "all": {
+        "all_trials": {
+          "trial_count": 24,
+          "all_relevant_top_k_rate": 0.125,
+          "mean_relevant_page_recall": 0.3368055555555555,
+          "mean_reciprocal_worst_relevant_rank": 0.13572180134680134
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 10,
+          "all_relevant_top_k_rate": 0.3,
+          "mean_relevant_page_recall": 0.4,
+          "mean_reciprocal_worst_relevant_rank": 0.1806818181818182
+        }
+      }
+    },
+    "max_query_density": {
+      "development": {
+        "all_trials": {
+          "trial_count": 12,
+          "all_relevant_top_k_rate": 0.5,
+          "mean_relevant_page_recall": 0.6666666666666666,
+          "mean_reciprocal_worst_relevant_rank": 0.40836940836940844
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 5,
+          "all_relevant_top_k_rate": 1.0,
+          "mean_relevant_page_recall": 1.0,
+          "mean_reciprocal_worst_relevant_rank": 0.65
+        }
+      },
+      "holdout": {
+        "all_trials": {
+          "trial_count": 12,
+          "all_relevant_top_k_rate": 0.0,
+          "mean_relevant_page_recall": 0.20833333333333334,
+          "mean_reciprocal_worst_relevant_rank": 0.1002044252044252
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 5,
+          "all_relevant_top_k_rate": 0.0,
+          "mean_relevant_page_recall": 0.2,
+          "mean_reciprocal_worst_relevant_rank": 0.11190476190476191
+        }
+      },
+      "all": {
+        "all_trials": {
+          "trial_count": 24,
+          "all_relevant_top_k_rate": 0.25,
+          "mean_relevant_page_recall": 0.4375,
+          "mean_reciprocal_worst_relevant_rank": 0.25428691678691673
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 10,
+          "all_relevant_top_k_rate": 0.5,
+          "mean_relevant_page_recall": 0.6,
+          "mean_reciprocal_worst_relevant_rank": 0.380952380952381
+        }
+      }
+    }
+  },
+  "full_prefill_correct_count": 10,
+  "fixed_prefix_all_relevant_top_k_rate": 0.20833333333333334,
+  "attention_scan_latency_ms": {
+    "mean": 35.08949716827677,
+    "min": 32.64550800668076,
+    "max": 47.683949989732355
+  }
+}

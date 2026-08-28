@@ -312,3 +312,159 @@ The requested mechanism is now implemented and tested directly. It can preserve 
 The current evidence therefore does not support uncontrolled free decode as an unknown-depth integration mechanism for Qwen3-1.7B. Its failure mode is not absence of page influence—the visible response and KV tensors both change substantially—but unstable binding and strong autoregressive commitment to early distractors. Exact clean replay matching every correctness outcome also provides no evidence that hidden residue adds useful memory beyond the token choices it helped produce.
 
 Complete traces are under `outputs/phase5`; `continuous_carrier_aggregate.json` separates the final ordinary-prompt trials from the discarded carrier-instruction experiments.
+
+## 2026-08-28 — query refresh and latent-capsule controls
+
+Two inference-only attempts tested whether cold pages could update a short hidden query state without exposing page text in the final prompt.
+
+### Query refresh
+
+Each independently cached page was combined with the current question and then removed after recomputing the question KV. The refreshed question cache was retained for answer generation. Four representative tasks covered one-, two-, and three-page chains plus a 12-page haystack.
+
+| Condition | Correct |
+|---|---:|
+| No page | `0/4` |
+| Stale simultaneous independent KV | `0/4` |
+| Page-conditioned query refresh | `0/4` |
+| Ordinary full prefill | `4/4` |
+
+The page did materially alter the refreshed hidden state, but the update did not preserve a usable binding after the page was removed.
+
+### Query-conditioned latent capsules
+
+A second variant generated fixed-width hidden continuation tokens while each page and the question were active, then removed the page and retained only those token KVs. Widths 4, 8, and 16 all failed the two-hop calibration. A decisive direct one-page control also failed at width 8: full prefill answered `mushroom pie`, while the capsule response said the information was absent.
+
+These negative results narrow the hidden-state route. Neither recomputed question KV nor untrained latent continuation KV was a reliable stand-alone memory carrier for Qwen3-1.7B.
+
+Artifacts: `outputs/phase6` and `outputs/phase7`.
+
+## 2026-08-28 — query-attention shortlisting and exact replay
+
+The next experiments separated two questions:
+
+1. Can the live query identify useful cold pages without an answer oracle?
+2. If it can, does independently composed KV work, or must the selected source be replayed exactly?
+
+Every cold page remained independently cached. A query-only forward pass attended over the temporarily assembled pages, and several predeclared page-attention summaries were recorded. The globally selected development metric was total query-to-page attention mass, `all_query_mass`.
+
+On a stratified 24-trial, 12-page ranking suite, the fixed metric placed every required page in top 4 on `5/12` holdout tasks. More importantly, on the six holdout tasks that ordinary full prefill solved within the answer horizon, coverage was `5/6`. The scan averaged `35.16 ms`.
+
+A separate end-to-end holdout suite produced:
+
+| Condition | Strict correct |
+|---|---:|
+| No page | `0/12` |
+| Top-4 independent KV composition | `1/12` |
+| Top-4 exact source replay | `4/12` |
+| Arbitrary first-4 exact replay | `0/12` |
+| Full prefill | `6/12` |
+
+Among the six full-prefill-capable tasks, attention selection covered all required pages on five and exact replay answered four. This is a real answer-free retrieval signal at 12 pages. It also gives another strong causal control: selecting the right independently cached KVs is usually insufficient, while replaying their exact source tokens works.
+
+Teacher-forced answer-choice likelihood was retained as evaluation telemetry but rejected as a controller. Qwen sometimes preferred explanatory text before the canonical answer even when free generation was correct, making the restricted ranking prompt-dependent.
+
+Artifacts: `outputs/phase8`.
+
+## 2026-08-28 — packed KV similarity, hybrid retrieval, and scaling
+
+The query-attention scan rereads all cold pages and therefore scales with archive size. A cheaper proposal index was built from normalized cold-page value vectors. The packed all-layer max-cosine implementation reproduced the slower reference top-K set on `24/24` trials and, after warmup, scanned 12 pages in roughly `6.2 ms`.
+
+Its semantic recall was weaker than query attention. On the 24-trial packed suite, the fixed metric covered all required top-4 pages on `3/12` holdout trials. A hybrid controller used packed similarity to choose eight pages and query attention to rerank four. At 12 pages:
+
+| Selector / condition | All-page coverage or strict answer |
+|---|---:|
+| Packed top-4 coverage | `3/12` |
+| Hybrid top-4 coverage | `6/12` |
+| Full-attention top-4 coverage | `5/12` |
+| Hybrid exact-replay answer | `5/12` |
+| Full-attention exact-replay answer | `5/12` |
+| Full prefill answer | `6/12` |
+
+The hybrid scan was slower at 12 pages because it requires a second model forward, but it crossed over as the archive grew:
+
+| Pages | Packed median | Hybrid median | Full attention median |
+|---:|---:|---:|---:|
+| 12 | `5.96 ms` | `39.82 ms` | `33.60 ms` |
+| 32 | `5.90 ms` | `39.46 ms` | `36.27 ms` |
+| 64 | `5.97 ms` | `40.32 ms` | `45.07 ms` |
+| 128 | `6.30 ms` | `42.05 ms` | `65.11 ms` |
+
+At 128 pages the cold KV occupied about `276 MB`; the packed value index occupied `138 MB`. The packed scan stayed nearly constant because model dimensions and launch overhead dominated this small scale.
+
+However, one-shot coverage collapsed at 32–128 pages. The first query in a multi-hop task does not name the second-hop entity, so no one-shot semantic or KV ranking can reliably retrieve every required page. Full attention also developed late-position and filler-template biases at scale. This motivated an iterative query carrier instead of a single shortlist.
+
+Artifacts: `outputs/phase9`, `outputs/phase10`, and `outputs/phase11`.
+
+## 2026-08-28 — iterative rare-token navigation over 128 pages
+
+### Mechanism
+
+The successful controller uses a deliberately conventional sidecar over the cold pages' retained token IDs:
+
+1. Offline, build an IDF-weighted inverted index from immutable page token IDs.
+2. Online, retrieve top 1 for the current question.
+3. Replay that one exact source note to Qwen3-1.7B.
+4. Ask the model to either return the final value or rewrite the same who/where/what question with one resolved value substituted.
+5. Repeat until the model answers or the fixed five-step safety budget is exhausted.
+
+The controller receives no expected answer, relevant page ID, or hop count. A single bounded repair is allowed after an exact repeated lookup or an obvious surface-type mismatch such as a quotation returned to a who-question. The repair sees only the question, selected note, and its prior response. One-edit entity spelling correction is grounded solely in values from the selected source note.
+
+This is not hidden-KV composition. It is model-directed symbolic navigation with exact selected-token replay: the selected note is ordinarily prefilled into a short navigation prompt. The token sidecar can live beside disk/host-memory source pages (and optional KV pages used by other selectors), and only one small source page needs to enter active attention per hop. The final suite runner therefore skips unused cold-page KV encoding entirely.
+
+### Preference-chain regression
+
+The final frozen controller was rerun on 12 shuffled personal-archive tasks spanning one through four source pages, with 128 pages in every archive:
+
+| Condition | Strict correct | Mean online latency |
+|---|---:|---:|
+| Iterative top-1 navigation | `12/12` | `622.08 ms` |
+| No page | `0/12` | `1327.46 ms` |
+| Full prefill, 64-token horizon | `4/12` | `1978.53 ms` |
+
+All 30 retrieval steps selected the exact next logical page in order. Accuracy was `3/3` at each depth from one through four. The token index took `2.24 ms` to build offline and `0.136 ms` per online retrieval. No repair was needed.
+
+The low full-prefill strict score is partly a horizon artifact: Qwen often spent the 64-token budget explaining the chain. Phrase presence was `5/12`, so this experiment must not be read as proving that the model could never solve the full prompt with a longer decode. The iterative result does show that navigation reaches concise correct answers sooner under this fixed runtime contract.
+
+### Diverse development and held-out suites
+
+New fictional tasks changed both wording and answer space:
+
+- historical event → closing-address speaker;
+- quoted line → literary speaker;
+- treaty → signing location.
+
+Each family included one- through four-page chains and template-matched distractors. During development, an audit caught and corrected an earlier compact-filler shortcut: final relation wording now occurs in most distractors, and the evaluator requires selecting each logical page in exact order.
+
+After freezing the controller, a disjoint four-variant-per-family content pool was tested with fresh shuffles:
+
+| Condition | Strict correct | Phrase present | Mean online latency |
+|---|---:|---:|---:|
+| Iterative top-1 navigation | `10/12` | `10/12` | `751.39 ms` |
+| No page | `0/12` | `0/12` | `1344.50 ms` |
+| Full prefill, 64-token horizon | `8/12` | `10/12` | `2117.75 ms` |
+
+By answer family, iterative accuracy was history names `4/4`, treaty locations `4/4`, and quotation speakers `2/4`. Ten trials followed every expected page in strict logical order. The two failures were both quotation-carrier failures: Qwen either answered with the intermediate quotation instead of its speaker or rewrote the quotation in a way that revisited the citation page.
+
+The sidecar took `2.29 ms` to build offline and `0.145 ms` per online retrieval. One answer-free repair fired. Overall navigation latency was lower than both controls because successful steps emit short carriers and stop early. At depth four it averaged `1441.66 ms`, slightly above the `1336.71 ms` no-page 64-token failure but below the `2085.31 ms` full-prefill control. These are end-to-end latencies, not a matched tokens-per-second benchmark; the transformer decode kernel itself is unchanged, but multi-hop questions require several short serial generations.
+
+### Interpretation
+
+The original pure hidden-state hypothesis remains unsupported:
+
+- independently composed selected KVs answered only `1/12` in the attention holdout;
+- query refresh, latent capsules, placeholder carriers, semantic carriers, and rotating free decode did not produce unique hidden-memory gains;
+- packed KV-value similarity was fast but not a robust rare-key retriever.
+
+The broader goal—large cold context with small active attention and meaningfully better answer probability—does have a plausible inference-time path. A tiny token-ID sidecar plus model-written query carriers improved strict held-out accuracy from `0/12` without pages to `10/12` over 128-page mixed-domain archives, while replaying one page at a time. It also matched the full-prefill answer phrase rate at substantially lower measured latency on the 2070S.
+
+The result is synthetic and lexical. It assumes that each next relation exposes a source key that can be carried into another lookup. It does not yet solve implicit semantic links, contradictory records, natural documents, or retrieval where the next page shares no lexical key. The quotation failures show that small carrier wording changes can still derail exact-token retrieval.
+
+The most valuable next tests are therefore:
+
+1. normalize or embed short model-written carriers without using answer labels;
+2. scale the token sidecar to thousands of pages while keeping only selected KV/token pages resident;
+3. replace synthetic notes with natural multi-document chains and adversarial same-key distractors;
+4. benchmark matched generated-token throughput, time to first correct answer, host-to-device page transfer, and page-cache residency separately;
+5. test whether training a tiny navigation adapter or memory-token module can recover the latent-KV benefits that inference-only residue did not.
+
+Artifacts: `outputs/phase12` through `outputs/phase15`. The post-freeze primary summaries are `outputs/phase15/navigation_preference_final_seed600_n12_df05/summary.json` and `outputs/phase15/navigation_diverse_postfreeze_seed900_newpool_n12_df1/summary.json`.

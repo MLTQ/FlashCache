@@ -123,6 +123,19 @@ def _prefill(model: Any, input_ids: torch.Tensor, position_ids: torch.Tensor) ->
         ).past_key_values
 
 
+def prepare_baseline_cache(model: Any, task: TokenizedNeedleTask) -> Any:
+    """Build pinned-plus-recent KV without encoding any cold page."""
+    device = task.pinned_ids.device
+    pinned_length = int(task.pinned_ids.shape[-1])
+    pinned_positions = torch.arange(pinned_length, device=device).unsqueeze(0)
+    baseline_ids = torch.cat((task.pinned_ids, task.recent_prefix_ids), dim=-1)
+    baseline_positions = torch.cat((pinned_positions, task.recent_prefix_positions), dim=-1)
+    baseline_prefill = _prefill(model, baseline_ids, baseline_positions)
+    pinned_cache = slice_cache(baseline_prefill, 0, pinned_length)
+    recent_cache = slice_cache(baseline_prefill, pinned_length, int(baseline_ids.shape[-1]))
+    return concatenate_caches((pinned_cache, recent_cache))
+
+
 def prepare_probe_caches(
     model: Any,
     task: TokenizedNeedleTask,
@@ -133,12 +146,7 @@ def prepare_probe_caches(
     pinned_length = int(task.pinned_ids.shape[-1])
     pinned_positions = torch.arange(pinned_length, device=device).unsqueeze(0)
 
-    baseline_ids = torch.cat((task.pinned_ids, task.recent_prefix_ids), dim=-1)
-    baseline_positions = torch.cat((pinned_positions, task.recent_prefix_positions), dim=-1)
-    baseline_prefill = _prefill(model, baseline_ids, baseline_positions)
-    pinned_cache = slice_cache(baseline_prefill, 0, pinned_length)
-    recent_cache = slice_cache(baseline_prefill, pinned_length, int(baseline_ids.shape[-1]))
-    baseline_cache = concatenate_caches((pinned_cache, recent_cache))
+    baseline_cache = prepare_baseline_cache(model, task)
 
     if position_policy == "original":
         effective_positions = task.block_positions

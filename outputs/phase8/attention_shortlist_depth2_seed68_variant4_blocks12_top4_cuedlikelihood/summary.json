@@ -1,0 +1,1428 @@
+{
+  "seed": 68,
+  "model": "Qwen/Qwen3-1.7B",
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "torch_version": "2.11.0+cu130",
+  "task_family": "multi_hop_preference",
+  "task_variant": 4,
+  "hop_depth": 2,
+  "question": "What is my wife's favorite food?",
+  "answer": "mushroom pie",
+  "block_count": 12,
+  "relevant_block_ids_logical_order": [
+    8,
+    9
+  ],
+  "top_k": 4,
+  "continuation_horizon": 48,
+  "prompt_format": "chat",
+  "pinned_token_count": 38,
+  "cold_page_token_count": 137,
+  "recent_query_prefix_token_count": 17,
+  "answer_choices": [
+    "mushroom pie",
+    "bean stew",
+    "lemon cake",
+    "roast squash"
+  ],
+  "cold_prepare_latency_ms": 498.0963849811815,
+  "attention_scan": {
+    "online_latency_ms": 44.25168700981885,
+    "archive_token_count": 175,
+    "query_token_count": 17,
+    "layer_count": 28,
+    "tail_layer_count": 4,
+    "tail_query_token_count": 4,
+    "page_scores": [
+      {
+        "page_id": 0,
+        "token_count": 12,
+        "all_query_mass": 0.0139488959684968,
+        "tail_query_mass": 0.0018525691702961922,
+        "last_query_mass": 0.0010509444400668144,
+        "max_query_mass": 0.026466211304068565,
+        "all_query_density": 0.0011624079973747332,
+        "tail_query_density": 0.00015438076419134936,
+        "last_query_density": 8.75787033389012e-05,
+        "max_query_density": 0.0022055176086723804
+      },
+      {
+        "page_id": 1,
+        "token_count": 12,
+        "all_query_mass": 0.018337968736886978,
+        "tail_query_mass": 0.0016490428242832422,
+        "last_query_mass": 0.001025194302201271,
+        "max_query_mass": 0.024222269654273987,
+        "all_query_density": 0.0015281640614072483,
+        "tail_query_density": 0.00013742023535693684,
+        "last_query_density": 8.543285851677258e-05,
+        "max_query_density": 0.002018522471189499
+      },
+      {
+        "page_id": 2,
+        "token_count": 10,
+        "all_query_mass": 0.012272538617253304,
+        "tail_query_mass": 0.0015280642546713352,
+        "last_query_mass": 0.0006817718967795372,
+        "max_query_mass": 0.022844098508358,
+        "all_query_density": 0.0012272538617253304,
+        "tail_query_density": 0.00015280642546713352,
+        "last_query_density": 6.817718967795372e-05,
+        "max_query_density": 0.0022844098508358
+      },
+      {
+        "page_id": 3,
+        "token_count": 12,
+        "all_query_mass": 0.012399119324982166,
+        "tail_query_mass": 0.002639884827658534,
+        "last_query_mass": 0.0009316392242908478,
+        "max_query_mass": 0.020422380417585373,
+        "all_query_density": 0.001033259943748514,
+        "tail_query_density": 0.00021999040230487785,
+        "last_query_density": 7.763660202423732e-05,
+        "max_query_density": 0.0017018650347987811
+      },
+      {
+        "page_id": 4,
+        "token_count": 11,
+        "all_query_mass": 0.012130001559853554,
+        "tail_query_mass": 0.002068682573735714,
+        "last_query_mass": 0.000894227996468544,
+        "max_query_mass": 0.023055505007505417,
+        "all_query_density": 0.0011027274145321412,
+        "tail_query_density": 0.00018806205215779218,
+        "last_query_density": 8.12934542244131e-05,
+        "max_query_density": 0.0020959550006823106
+      },
+      {
+        "page_id": 5,
+        "token_count": 13,
+        "all_query_mass": 0.019143059849739075,
+        "tail_query_mass": 0.002751219319179654,
+        "last_query_mass": 0.0010957689955830574,
+        "max_query_mass": 0.025880029425024986,
+        "all_query_density": 0.0014725430653645443,
+        "tail_query_density": 0.00021163225532151185,
+        "last_query_density": 8.428992273715827e-05,
+        "max_query_density": 0.0019907714942326914
+      },
+      {
+        "page_id": 6,
+        "token_count": 12,
+        "all_query_mass": 0.01465572603046894,
+        "tail_query_mass": 0.0027058194391429424,
+        "last_query_mass": 0.0011878972873091698,
+        "max_query_mass": 0.021166212856769562,
+        "all_query_density": 0.0012213105025390785,
+        "tail_query_density": 0.00022548495326191187,
+        "last_query_density": 9.899144060909748e-05,
+        "max_query_density": 0.0017638510713974636
+      },
+      {
+        "page_id": 7,
+        "token_count": 12,
+        "all_query_mass": 0.014800755307078362,
+        "tail_query_mass": 0.002631755778566003,
+        "last_query_mass": 0.0012003444135189056,
+        "max_query_mass": 0.026444679126143456,
+        "all_query_density": 0.0012333962755898635,
+        "tail_query_density": 0.0002193129815471669,
+        "last_query_density": 0.00010002870112657547,
+        "max_query_density": 0.0022037232605119548
+      },
+      {
+        "page_id": 8,
+        "token_count": 10,
+        "all_query_mass": 0.020495422184467316,
+        "tail_query_mass": 0.001780400751158595,
+        "last_query_mass": 0.0009074825793504715,
+        "max_query_mass": 0.023865561932325363,
+        "all_query_density": 0.0020495422184467317,
+        "tail_query_density": 0.00017804007511585952,
+        "last_query_density": 9.074825793504715e-05,
+        "max_query_density": 0.0023865561932325365
+      },
+      {
+        "page_id": 9,
+        "token_count": 11,
+        "all_query_mass": 0.021821042522788048,
+        "tail_query_mass": 0.0025725453160703182,
+        "last_query_mass": 0.0011090701445937157,
+        "max_query_mass": 0.031101945787668228,
+        "all_query_density": 0.001983731138435277,
+        "tail_query_density": 0.00023386775600639257,
+        "last_query_density": 0.0001008245585994287,
+        "max_query_density": 0.002827449617060748
+      },
+      {
+        "page_id": 10,
+        "token_count": 12,
+        "all_query_mass": 0.022214137017726898,
+        "tail_query_mass": 0.0030558493454009295,
+        "last_query_mass": 0.0011086482554674149,
+        "max_query_mass": 0.03113033063709736,
+        "all_query_density": 0.0018511780848105748,
+        "tail_query_density": 0.0002546541121167441,
+        "last_query_density": 9.238735462228458e-05,
+        "max_query_density": 0.0025941942197581134
+      },
+      {
+        "page_id": 11,
+        "token_count": 10,
+        "all_query_mass": 0.02871064282953739,
+        "tail_query_mass": 0.0025513307191431522,
+        "last_query_mass": 0.0010198252275586128,
+        "max_query_mass": 0.030741050839424133,
+        "all_query_density": 0.002871064282953739,
+        "tail_query_density": 0.0002551330719143152,
+        "last_query_density": 0.00010198252275586128,
+        "max_query_density": 0.0030741050839424135
+      }
+    ],
+    "metric_rankings": {
+      "all_query_mass": {
+        "ranking": [
+          11,
+          10,
+          9,
+          8,
+          5,
+          1,
+          7,
+          6,
+          0,
+          3,
+          2,
+          4
+        ],
+        "selected_page_ids": [
+          11,
+          10,
+          9,
+          8
+        ],
+        "selection_key": "8,9,10,11",
+        "relevant_pages_selected": 2,
+        "all_relevant_pages_selected": true,
+        "relevant_page_ranks": {
+          "8": 4,
+          "9": 3
+        }
+      },
+      "tail_query_mass": {
+        "ranking": [
+          10,
+          5,
+          6,
+          3,
+          7,
+          9,
+          11,
+          4,
+          0,
+          8,
+          1,
+          2
+        ],
+        "selected_page_ids": [
+          10,
+          5,
+          6,
+          3
+        ],
+        "selection_key": "3,5,6,10",
+        "relevant_pages_selected": 0,
+        "all_relevant_pages_selected": false,
+        "relevant_page_ranks": {
+          "8": 10,
+          "9": 6
+        }
+      },
+      "last_query_mass": {
+        "ranking": [
+          7,
+          6,
+          9,
+          10,
+          5,
+          0,
+          1,
+          11,
+          3,
+          8,
+          4,
+          2
+        ],
+        "selected_page_ids": [
+          7,
+          6,
+          9,
+          10
+        ],
+        "selection_key": "6,7,9,10",
+        "relevant_pages_selected": 1,
+        "all_relevant_pages_selected": false,
+        "relevant_page_ranks": {
+          "8": 10,
+          "9": 3
+        }
+      },
+      "max_query_mass": {
+        "ranking": [
+          10,
+          9,
+          11,
+          0,
+          7,
+          5,
+          1,
+          8,
+          4,
+          2,
+          6,
+          3
+        ],
+        "selected_page_ids": [
+          10,
+          9,
+          11,
+          0
+        ],
+        "selection_key": "0,9,10,11",
+        "relevant_pages_selected": 1,
+        "all_relevant_pages_selected": false,
+        "relevant_page_ranks": {
+          "8": 8,
+          "9": 2
+        }
+      },
+      "all_query_density": {
+        "ranking": [
+          11,
+          8,
+          9,
+          10,
+          1,
+          5,
+          7,
+          2,
+          6,
+          0,
+          4,
+          3
+        ],
+        "selected_page_ids": [
+          11,
+          8,
+          9,
+          10
+        ],
+        "selection_key": "8,9,10,11",
+        "relevant_pages_selected": 2,
+        "all_relevant_pages_selected": true,
+        "relevant_page_ranks": {
+          "8": 2,
+          "9": 3
+        }
+      },
+      "tail_query_density": {
+        "ranking": [
+          11,
+          10,
+          9,
+          6,
+          3,
+          7,
+          5,
+          4,
+          8,
+          0,
+          2,
+          1
+        ],
+        "selected_page_ids": [
+          11,
+          10,
+          9,
+          6
+        ],
+        "selection_key": "6,9,10,11",
+        "relevant_pages_selected": 1,
+        "all_relevant_pages_selected": false,
+        "relevant_page_ranks": {
+          "8": 9,
+          "9": 3
+        }
+      },
+      "last_query_density": {
+        "ranking": [
+          11,
+          9,
+          7,
+          6,
+          10,
+          8,
+          0,
+          1,
+          5,
+          4,
+          3,
+          2
+        ],
+        "selected_page_ids": [
+          11,
+          9,
+          7,
+          6
+        ],
+        "selection_key": "6,7,9,11",
+        "relevant_pages_selected": 1,
+        "all_relevant_pages_selected": false,
+        "relevant_page_ranks": {
+          "8": 6,
+          "9": 2
+        }
+      },
+      "max_query_density": {
+        "ranking": [
+          11,
+          9,
+          10,
+          8,
+          2,
+          0,
+          7,
+          4,
+          1,
+          5,
+          6,
+          3
+        ],
+        "selected_page_ids": [
+          11,
+          9,
+          10,
+          8
+        ],
+        "selection_key": "8,9,10,11",
+        "relevant_pages_selected": 2,
+        "all_relevant_pages_selected": true,
+        "relevant_page_ranks": {
+          "8": 4,
+          "9": 2
+        }
+      }
+    }
+  },
+  "no_page": {
+    "generated_answer": "Based on the archived records provided, there is no direct information about your wife's favorite food. The records do not include any details regarding personal preferences, dietary habits, or food preferences. Therefore, it is not possible to determine your wife's",
+    "answer_correct": false,
+    "online_latency_ms": 1071.5525500127114,
+    "answer_choice_scores": {
+      "expected_answer": "mushroom pie",
+      "expected_answer_rank": 4,
+      "choice_count": 4,
+      "expected_sequence_log_prob": -45.746002197265625,
+      "expected_mean_token_log_prob": -22.873001098632812,
+      "expected_margin_over_best_incorrect": -2.8578853607177734,
+      "expected_restricted_choice_probability": 0.030643184193551522,
+      "ranking": [
+        "lemon cake",
+        "bean stew",
+        "roast squash",
+        "mushroom pie"
+      ],
+      "choices": [
+        {
+          "answer": "mushroom pie",
+          "token_count": 2,
+          "sequence_log_prob": -45.746002197265625,
+          "mean_token_log_prob": -22.873001098632812
+        },
+        {
+          "answer": "bean stew",
+          "token_count": 2,
+          "sequence_log_prob": -40.66050720214844,
+          "mean_token_log_prob": -20.33025360107422
+        },
+        {
+          "answer": "lemon cake",
+          "token_count": 2,
+          "sequence_log_prob": -40.03023147583008,
+          "mean_token_log_prob": -20.01511573791504
+        },
+        {
+          "answer": "roast squash",
+          "token_count": 2,
+          "sequence_log_prob": -44.94243621826172,
+          "mean_token_log_prob": -22.47121810913086
+        }
+      ],
+      "answer_cue": "\nFinal answer:"
+    }
+  },
+  "all_page_query_refresh": {
+    "generated_answer": "Based on the provided information, your wife's favorite food is not directly stated. However, we do know that **Lysa's favorite food is roast squash**, and **Dario's closest friend is Iona**. Additionally, **",
+    "answer_correct": false,
+    "online_latency_ms": 1067.926271003671,
+    "answer_choice_scores": {
+      "expected_answer": "mushroom pie",
+      "expected_answer_rank": 4,
+      "choice_count": 4,
+      "expected_sequence_log_prob": -41.79325485229492,
+      "expected_mean_token_log_prob": -20.89662742614746,
+      "expected_margin_over_best_incorrect": -2.009521484375,
+      "expected_restricted_choice_probability": 0.04750069787357799,
+      "ranking": [
+        "roast squash",
+        "bean stew",
+        "lemon cake",
+        "mushroom pie"
+      ],
+      "choices": [
+        {
+          "answer": "mushroom pie",
+          "token_count": 2,
+          "sequence_log_prob": -41.79325485229492,
+          "mean_token_log_prob": -20.89662742614746
+        },
+        {
+          "answer": "bean stew",
+          "token_count": 2,
+          "sequence_log_prob": -37.91434860229492,
+          "mean_token_log_prob": -18.95717430114746
+        },
+        {
+          "answer": "lemon cake",
+          "token_count": 2,
+          "sequence_log_prob": -38.334327697753906,
+          "mean_token_log_prob": -19.167163848876953
+        },
+        {
+          "answer": "roast squash",
+          "token_count": 2,
+          "sequence_log_prob": -37.77421188354492,
+          "mean_token_log_prob": -18.88710594177246
+        }
+      ],
+      "answer_cue": "\nFinal answer:"
+    }
+  },
+  "controls": {
+    "fixed_prefix": "0,1,2,3",
+    "oracle_relevant_plus_fill": "0,1,8,9"
+  },
+  "selection_results": {
+    "8,9,10,11": {
+      "selected_page_ids": [
+        11,
+        9,
+        10,
+        8
+      ],
+      "relevant_pages_selected": 2,
+      "all_relevant_pages_selected": true,
+      "independent_kv_refresh": {
+        "generated_answer": "Based on the provided information, your wife's favorite food is not explicitly stated. However, there is a note that mentions Dario's favorite food is lemon cake. Since the user's wife is Vera, and there is no direct mention of",
+        "answer_correct": false,
+        "shortlist_latency_ms": 1094.8644519667141,
+        "total_with_attention_scan_latency_ms": 1139.116138976533,
+        "selected_page_token_count": 43,
+        "final_cache_token_count": 98,
+        "answer_choice_scores": {
+          "expected_answer": "mushroom pie",
+          "expected_answer_rank": 2,
+          "choice_count": 4,
+          "expected_sequence_log_prob": -43.50636291503906,
+          "expected_mean_token_log_prob": -21.75318145751953,
+          "expected_margin_over_best_incorrect": -1.8554649353027344,
+          "expected_restricted_choice_probability": 0.12859678419505582,
+          "ranking": [
+            "lemon cake",
+            "mushroom pie",
+            "bean stew",
+            "roast squash"
+          ],
+          "choices": [
+            {
+              "answer": "mushroom pie",
+              "token_count": 2,
+              "sequence_log_prob": -43.50636291503906,
+              "mean_token_log_prob": -21.75318145751953
+            },
+            {
+              "answer": "bean stew",
+              "token_count": 2,
+              "sequence_log_prob": -45.46662139892578,
+              "mean_token_log_prob": -22.73331069946289
+            },
+            {
+              "answer": "lemon cake",
+              "token_count": 2,
+              "sequence_log_prob": -39.795433044433594,
+              "mean_token_log_prob": -19.897716522216797
+            },
+            {
+              "answer": "roast squash",
+              "token_count": 2,
+              "sequence_log_prob": -53.637298583984375,
+              "mean_token_log_prob": -26.818649291992188
+            }
+          ],
+          "answer_cue": "\nFinal answer:"
+        }
+      },
+      "exact_text_replay": {
+        "generated_answer": "Your wife's favorite food is mushroom pie.\n\nThe answer is derived directly from the provided relationship note: \"Vera's favorite food is mushroom pie.\"\n\nNo additional facts or assumptions were needed to determine this.\n\n",
+        "answer_correct": true,
+        "shortlist_latency_ms": 1079.1340069845319,
+        "total_with_attention_scan_latency_ms": 1123.3856939943507,
+        "answer_choice_scores": {
+          "expected_answer": "mushroom pie",
+          "expected_answer_rank": 1,
+          "choice_count": 4,
+          "expected_sequence_log_prob": -32.97821807861328,
+          "expected_mean_token_log_prob": -16.48910903930664,
+          "expected_margin_over_best_incorrect": 2.9208984375,
+          "expected_restricted_choice_probability": 0.9422615194425646,
+          "ranking": [
+            "mushroom pie",
+            "lemon cake",
+            "bean stew",
+            "roast squash"
+          ],
+          "choices": [
+            {
+              "answer": "mushroom pie",
+              "token_count": 2,
+              "sequence_log_prob": -32.97821807861328,
+              "mean_token_log_prob": -16.48910903930664
+            },
+            {
+              "answer": "bean stew",
+              "token_count": 2,
+              "sequence_log_prob": -42.98599624633789,
+              "mean_token_log_prob": -21.492998123168945
+            },
+            {
+              "answer": "lemon cake",
+              "token_count": 2,
+              "sequence_log_prob": -38.82001495361328,
+              "mean_token_log_prob": -19.41000747680664
+            },
+            {
+              "answer": "roast squash",
+              "token_count": 2,
+              "sequence_log_prob": -47.56668472290039,
+              "mean_token_log_prob": -23.783342361450195
+            }
+          ],
+          "answer_cue": "\nFinal answer:"
+        }
+      }
+    },
+    "3,5,6,10": {
+      "selected_page_ids": [
+        10,
+        5,
+        6,
+        3
+      ],
+      "relevant_pages_selected": 0,
+      "all_relevant_pages_selected": false,
+      "independent_kv_refresh": {
+        "generated_answer": "Based on the provided information, there is no direct mention of your wife's favorite food. However, it is noted that Lysa's favorite food is roast squash. Since the question asks about your wife's favorite food and no specific relationship",
+        "answer_correct": false,
+        "shortlist_latency_ms": 1081.6178250242956,
+        "total_with_attention_scan_latency_ms": 1125.8695120341145,
+        "selected_page_token_count": 49,
+        "final_cache_token_count": 104,
+        "answer_choice_scores": {
+          "expected_answer": "mushroom pie",
+          "expected_answer_rank": 4,
+          "choice_count": 4,
+          "expected_sequence_log_prob": -56.19284439086914,
+          "expected_mean_token_log_prob": -28.09642219543457,
+          "expected_margin_over_best_incorrect": -9.381668090820312,
+          "expected_restricted_choice_probability": 6.412325486237934e-05,
+          "ranking": [
+            "roast squash",
+            "lemon cake",
+            "bean stew",
+            "mushroom pie"
+          ],
+          "choices": [
+            {
+              "answer": "mushroom pie",
+              "token_count": 2,
+              "sequence_log_prob": -56.19284439086914,
+              "mean_token_log_prob": -28.09642219543457
+            },
+            {
+              "answer": "bean stew",
+              "token_count": 2,
+              "sequence_log_prob": -51.172630310058594,
+              "mean_token_log_prob": -25.586315155029297
+            },
+            {
+              "answer": "lemon cake",
+              "token_count": 2,
+              "sequence_log_prob": -39.753726959228516,
+              "mean_token_log_prob": -19.876863479614258
+            },
+            {
+              "answer": "roast squash",
+              "token_count": 2,
+              "sequence_log_prob": -37.429508209228516,
+              "mean_token_log_prob": -18.714754104614258
+            }
+          ],
+          "answer_cue": "\nFinal answer:"
+        }
+      },
+      "exact_text_replay": {
+        "generated_answer": "Based on the information provided, there is no direct mention of \"my wife's favorite food\" in the archived records. The records mention:\n\n- Lysa's favorite food is roast squash.\n- Dario's favorite food is lemon cake",
+        "answer_correct": false,
+        "shortlist_latency_ms": 1067.1708880108781,
+        "total_with_attention_scan_latency_ms": 1111.422575020697,
+        "answer_choice_scores": {
+          "expected_answer": "mushroom pie",
+          "expected_answer_rank": 4,
+          "choice_count": 4,
+          "expected_sequence_log_prob": -46.27130126953125,
+          "expected_mean_token_log_prob": -23.135650634765625,
+          "expected_margin_over_best_incorrect": -12.870001792907715,
+          "expected_restricted_choice_probability": 2.5686932614348134e-06,
+          "ranking": [
+            "roast squash",
+            "lemon cake",
+            "bean stew",
+            "mushroom pie"
+          ],
+          "choices": [
+            {
+              "answer": "mushroom pie",
+              "token_count": 2,
+              "sequence_log_prob": -46.27130126953125,
+              "mean_token_log_prob": -23.135650634765625
+            },
+            {
+              "answer": "bean stew",
+              "token_count": 2,
+              "sequence_log_prob": -43.45913314819336,
+              "mean_token_log_prob": -21.72956657409668
+            },
+            {
+              "answer": "lemon cake",
+              "token_count": 2,
+              "sequence_log_prob": -32.86235427856445,
+              "mean_token_log_prob": -16.431177139282227
+            },
+            {
+              "answer": "roast squash",
+              "token_count": 2,
+              "sequence_log_prob": -20.53129768371582,
+              "mean_token_log_prob": -10.26564884185791
+            }
+          ],
+          "answer_cue": "\nFinal answer:"
+        }
+      }
+    },
+    "6,7,9,10": {
+      "selected_page_ids": [
+        7,
+        6,
+        9,
+        10
+      ],
+      "relevant_pages_selected": 1,
+      "all_relevant_pages_selected": false,
+      "independent_kv_refresh": {
+        "generated_answer": "Based on the information provided, there is no direct mention of your wife's favorite food. However, if we consider the note about Vera's favorite food being lemon cake, and assuming that \"your wife\" is referring to Vera, then Vera",
+        "answer_correct": false,
+        "shortlist_latency_ms": 1076.4490910223685,
+        "total_with_attention_scan_latency_ms": 1120.7007780321874,
+        "selected_page_token_count": 47,
+        "final_cache_token_count": 102,
+        "answer_choice_scores": {
+          "expected_answer": "mushroom pie",
+          "expected_answer_rank": 2,
+          "choice_count": 4,
+          "expected_sequence_log_prob": -42.95940399169922,
+          "expected_mean_token_log_prob": -21.47970199584961,
+          "expected_margin_over_best_incorrect": -2.322263717651367,
+          "expected_restricted_choice_probability": 0.08893246179886839,
+          "ranking": [
+            "lemon cake",
+            "mushroom pie",
+            "bean stew",
+            "roast squash"
+          ],
+          "choices": [
+            {
+              "answer": "mushroom pie",
+              "token_count": 2,
+              "sequence_log_prob": -42.95940399169922,
+              "mean_token_log_prob": -21.47970199584961
+            },
+            {
+              "answer": "bean stew",
+              "token_count": 2,
+              "sequence_log_prob": -49.264854431152344,
+              "mean_token_log_prob": -24.632427215576172
+            },
+            {
+              "answer": "lemon cake",
+              "token_count": 2,
+              "sequence_log_prob": -38.314876556396484,
+              "mean_token_log_prob": -19.157438278198242
+            },
+            {
+              "answer": "roast squash",
+              "token_count": 2,
+              "sequence_log_prob": -54.56622314453125,
+              "mean_token_log_prob": -27.283111572265625
+            }
+          ],
+          "answer_cue": "\nFinal answer:"
+        }
+      },
+      "exact_text_replay": {
+        "generated_answer": "Based on the information provided, there is no direct mention of \"my wife's\" favorite food. The available information pertains to:\n\n- Brina's closest friend: Evren  \n- Calder's closest friend: Lysa  \n-",
+        "answer_correct": false,
+        "shortlist_latency_ms": 1072.787765006069,
+        "total_with_attention_scan_latency_ms": 1117.039452015888,
+        "answer_choice_scores": {
+          "expected_answer": "mushroom pie",
+          "expected_answer_rank": 2,
+          "choice_count": 4,
+          "expected_sequence_log_prob": -33.59662628173828,
+          "expected_mean_token_log_prob": -16.79831314086914,
+          "expected_margin_over_best_incorrect": -0.44482421875,
+          "expected_restricted_choice_probability": 0.38964620038369474,
+          "ranking": [
+            "lemon cake",
+            "mushroom pie",
+            "bean stew",
+            "roast squash"
+          ],
+          "choices": [
+            {
+              "answer": "mushroom pie",
+              "token_count": 2,
+              "sequence_log_prob": -33.59662628173828,
+              "mean_token_log_prob": -16.79831314086914
+            },
+            {
+              "answer": "bean stew",
+              "token_count": 2,
+              "sequence_log_prob": -43.901737213134766,
+              "mean_token_log_prob": -21.950868606567383
+            },
+            {
+              "answer": "lemon cake",
+              "token_count": 2,
+              "sequence_log_prob": -32.70697784423828,
+              "mean_token_log_prob": -16.35348892211914
+            },
+            {
+              "answer": "roast squash",
+              "token_count": 2,
+              "sequence_log_prob": -49.09888458251953,
+              "mean_token_log_prob": -24.549442291259766
+            }
+          ],
+          "answer_cue": "\nFinal answer:"
+        }
+      }
+    },
+    "0,9,10,11": {
+      "selected_page_ids": [
+        10,
+        9,
+        11,
+        0
+      ],
+      "relevant_pages_selected": 1,
+      "all_relevant_pages_selected": false,
+      "independent_kv_refresh": {
+        "generated_answer": "The information provided does not include any direct mention of your wife's favorite food. However, based on the relationship note provided, Dario's closest friend is Nila, and it is also noted that Dario's favorite food is lemon cake",
+        "answer_correct": false,
+        "shortlist_latency_ms": 1090.2670020004734,
+        "total_with_attention_scan_latency_ms": 1134.5186890102923,
+        "selected_page_token_count": 45,
+        "final_cache_token_count": 100,
+        "answer_choice_scores": {
+          "expected_answer": "mushroom pie",
+          "expected_answer_rank": 2,
+          "choice_count": 4,
+          "expected_sequence_log_prob": -36.54445266723633,
+          "expected_mean_token_log_prob": -18.272226333618164,
+          "expected_margin_over_best_incorrect": -2.505613327026367,
+          "expected_restricted_choice_probability": 0.07538980560863517,
+          "ranking": [
+            "lemon cake",
+            "mushroom pie",
+            "bean stew",
+            "roast squash"
+          ],
+          "choices": [
+            {
+              "answer": "mushroom pie",
+              "token_count": 2,
+              "sequence_log_prob": -36.54445266723633,
+              "mean_token_log_prob": -18.272226333618164
+            },
+            {
+              "answer": "bean stew",
+              "token_count": 2,
+              "sequence_log_prob": -45.40309524536133,
+              "mean_token_log_prob": -22.701547622680664
+            },
+            {
+              "answer": "lemon cake",
+              "token_count": 2,
+              "sequence_log_prob": -31.533226013183594,
+              "mean_token_log_prob": -15.766613006591797
+            },
+            {
+              "answer": "roast squash",
+              "token_count": 2,
+              "sequence_log_prob": -49.68742370605469,
+              "mean_token_log_prob": -24.843711853027344
+            }
+          ],
+          "answer_cue": "\nFinal answer:"
+        }
+      },
+      "exact_text_replay": {
+        "generated_answer": "Based on the information provided, there is no direct mention of the user's wife's favorite food. The available information includes:\n\n- Dario's favorite food is lemon cake.\n- Vera's favorite food is mushroom pie.\n- The user's",
+        "answer_correct": true,
+        "shortlist_latency_ms": 1078.8453829591163,
+        "total_with_attention_scan_latency_ms": 1123.097069968935,
+        "answer_choice_scores": {
+          "expected_answer": "mushroom pie",
+          "expected_answer_rank": 1,
+          "choice_count": 4,
+          "expected_sequence_log_prob": -29.714080810546875,
+          "expected_mean_token_log_prob": -14.857040405273438,
+          "expected_margin_over_best_incorrect": 0.90625,
+          "expected_restricted_choice_probability": 0.7119688825586246,
+          "ranking": [
+            "mushroom pie",
+            "lemon cake",
+            "bean stew",
+            "roast squash"
+          ],
+          "choices": [
+            {
+              "answer": "mushroom pie",
+              "token_count": 2,
+              "sequence_log_prob": -29.714080810546875,
+              "mean_token_log_prob": -14.857040405273438
+            },
+            {
+              "answer": "bean stew",
+              "token_count": 2,
+              "sequence_log_prob": -45.02264404296875,
+              "mean_token_log_prob": -22.511322021484375
+            },
+            {
+              "answer": "lemon cake",
+              "token_count": 2,
+              "sequence_log_prob": -31.526580810546875,
+              "mean_token_log_prob": -15.763290405273438
+            },
+            {
+              "answer": "roast squash",
+              "token_count": 2,
+              "sequence_log_prob": -49.721439361572266,
+              "mean_token_log_prob": -24.860719680786133
+            }
+          ],
+          "answer_cue": "\nFinal answer:"
+        }
+      }
+    },
+    "6,9,10,11": {
+      "selected_page_ids": [
+        11,
+        10,
+        9,
+        6
+      ],
+      "relevant_pages_selected": 1,
+      "all_relevant_pages_selected": false,
+      "independent_kv_refresh": {
+        "generated_answer": "Based on the information provided, there is no direct mention of your wife's favorite food. The only specific preference mentioned is that Vera's favorite food is lemon cake. Since there is no relationship established between you and Vera, and no information about",
+        "answer_correct": false,
+        "shortlist_latency_ms": 1076.0422340244986,
+        "total_with_attention_scan_latency_ms": 1120.2939210343175,
+        "selected_page_token_count": 45,
+        "final_cache_token_count": 100,
+        "answer_choice_scores": {
+          "expected_answer": "mushroom pie",
+          "expected_answer_rank": 2,
+          "choice_count": 4,
+          "expected_sequence_log_prob": -35.787879943847656,
+          "expected_mean_token_log_prob": -17.893939971923828,
+          "expected_margin_over_best_incorrect": -2.3759756088256836,
+          "expected_restricted_choice_probability": 0.08486893467371961,
+          "ranking": [
+            "lemon cake",
+            "mushroom pie",
+            "bean stew",
+            "roast squash"
+          ],
+          "choices": [
+            {
+              "answer": "mushroom pie",
+              "token_count": 2,
+              "sequence_log_prob": -35.787879943847656,
+              "mean_token_log_prob": -17.893939971923828
+            },
+            {
+              "answer": "bean stew",
+              "token_count": 2,
+              "sequence_log_prob": -43.699623107910156,
+              "mean_token_log_prob": -21.849811553955078
+            },
+            {
+              "answer": "lemon cake",
+              "token_count": 2,
+              "sequence_log_prob": -31.03592872619629,
+              "mean_token_log_prob": -15.517964363098145
+            },
+            {
+              "answer": "roast squash",
+              "token_count": 2,
+              "sequence_log_prob": -48.0035514831543,
+              "mean_token_log_prob": -24.00177574157715
+            }
+          ],
+          "answer_cue": "\nFinal answer:"
+        }
+      },
+      "exact_text_replay": {
+        "generated_answer": "Based on the information provided, there is no direct mention of the user's wife's favorite food. The available information includes:\n\n- Brina's closest friend is Evren.\n- Vera's favorite food is mushroom pie.\n- Dario's",
+        "answer_correct": true,
+        "shortlist_latency_ms": 1072.715989954304,
+        "total_with_attention_scan_latency_ms": 1116.9676769641228,
+        "answer_choice_scores": {
+          "expected_answer": "mushroom pie",
+          "expected_answer_rank": 2,
+          "choice_count": 4,
+          "expected_sequence_log_prob": -31.943523406982422,
+          "expected_mean_token_log_prob": -15.971761703491211,
+          "expected_margin_over_best_incorrect": -0.3759765625,
+          "expected_restricted_choice_probability": 0.4068779191006136,
+          "ranking": [
+            "lemon cake",
+            "mushroom pie",
+            "bean stew",
+            "roast squash"
+          ],
+          "choices": [
+            {
+              "answer": "mushroom pie",
+              "token_count": 2,
+              "sequence_log_prob": -31.943523406982422,
+              "mean_token_log_prob": -15.971761703491211
+            },
+            {
+              "answer": "bean stew",
+              "token_count": 2,
+              "sequence_log_prob": -45.53568649291992,
+              "mean_token_log_prob": -22.76784324645996
+            },
+            {
+              "answer": "lemon cake",
+              "token_count": 2,
+              "sequence_log_prob": -31.191570281982422,
+              "mean_token_log_prob": -15.595785140991211
+            },
+            {
+              "answer": "roast squash",
+              "token_count": 2,
+              "sequence_log_prob": -48.89450454711914,
+              "mean_token_log_prob": -24.44725227355957
+            }
+          ],
+          "answer_cue": "\nFinal answer:"
+        }
+      }
+    },
+    "6,7,9,11": {
+      "selected_page_ids": [
+        11,
+        9,
+        7,
+        6
+      ],
+      "relevant_pages_selected": 1,
+      "all_relevant_pages_selected": false,
+      "independent_kv_refresh": {
+        "generated_answer": "Based on the information provided, there is no direct mention of the wife's favorite food in the archived records. The only specific detail provided is that Vera's favorite food is mushroom pie, and that Calder's closest friend is Lysa.",
+        "answer_correct": true,
+        "shortlist_latency_ms": 1072.6355980150402,
+        "total_with_attention_scan_latency_ms": 1116.887285024859,
+        "selected_page_token_count": 45,
+        "final_cache_token_count": 100,
+        "answer_choice_scores": {
+          "expected_answer": "mushroom pie",
+          "expected_answer_rank": 1,
+          "choice_count": 4,
+          "expected_sequence_log_prob": -33.233314514160156,
+          "expected_mean_token_log_prob": -16.616657257080078,
+          "expected_margin_over_best_incorrect": 3.195158004760742,
+          "expected_restricted_choice_probability": 0.9548096029752378,
+          "ranking": [
+            "mushroom pie",
+            "lemon cake",
+            "bean stew",
+            "roast squash"
+          ],
+          "choices": [
+            {
+              "answer": "mushroom pie",
+              "token_count": 2,
+              "sequence_log_prob": -33.233314514160156,
+              "mean_token_log_prob": -16.616657257080078
+            },
+            {
+              "answer": "bean stew",
+              "token_count": 2,
+              "sequence_log_prob": -43.62626266479492,
+              "mean_token_log_prob": -21.81313133239746
+            },
+            {
+              "answer": "lemon cake",
+              "token_count": 2,
+              "sequence_log_prob": -39.62363052368164,
+              "mean_token_log_prob": -19.81181526184082
+            },
+            {
+              "answer": "roast squash",
+              "token_count": 2,
+              "sequence_log_prob": -47.413978576660156,
+              "mean_token_log_prob": -23.706989288330078
+            }
+          ],
+          "answer_cue": "\nFinal answer:"
+        }
+      },
+      "exact_text_replay": {
+        "generated_answer": "Based on the information provided, there is no direct mention of the user's wife's favorite food. The only food-related fact provided is that Vera's favorite food is mushroom pie. Since the user's wife is not mentioned in the provided records",
+        "answer_correct": true,
+        "shortlist_latency_ms": 1081.4972260268405,
+        "total_with_attention_scan_latency_ms": 1125.7489130366594,
+        "answer_choice_scores": {
+          "expected_answer": "mushroom pie",
+          "expected_answer_rank": 1,
+          "choice_count": 4,
+          "expected_sequence_log_prob": -26.905040740966797,
+          "expected_mean_token_log_prob": -13.452520370483398,
+          "expected_margin_over_best_incorrect": 5.354793548583984,
+          "expected_restricted_choice_probability": 0.9939918799262719,
+          "ranking": [
+            "mushroom pie",
+            "lemon cake",
+            "bean stew",
+            "roast squash"
+          ],
+          "choices": [
+            {
+              "answer": "mushroom pie",
+              "token_count": 2,
+              "sequence_log_prob": -26.905040740966797,
+              "mean_token_log_prob": -13.452520370483398
+            },
+            {
+              "answer": "bean stew",
+              "token_count": 2,
+              "sequence_log_prob": -40.282814025878906,
+              "mean_token_log_prob": -20.141407012939453
+            },
+            {
+              "answer": "lemon cake",
+              "token_count": 2,
+              "sequence_log_prob": -37.614627838134766,
+              "mean_token_log_prob": -18.807313919067383
+            },
+            {
+              "answer": "roast squash",
+              "token_count": 2,
+              "sequence_log_prob": -45.919219970703125,
+              "mean_token_log_prob": -22.959609985351562
+            }
+          ],
+          "answer_cue": "\nFinal answer:"
+        }
+      }
+    },
+    "0,1,2,3": {
+      "selected_page_ids": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "relevant_pages_selected": 0,
+      "all_relevant_pages_selected": false,
+      "independent_kv_refresh": {
+        "generated_answer": "The information provided does not include the favorite food of the wife. However, based on the relationship note provided, we know that Iona's closest friend is Nila, and that Dario is Nila's neighbor. There is no direct",
+        "answer_correct": false,
+        "shortlist_latency_ms": 1087.541799992323,
+        "total_with_attention_scan_latency_ms": 1131.7934870021418,
+        "selected_page_token_count": 46,
+        "final_cache_token_count": 101,
+        "answer_choice_scores": {
+          "expected_answer": "mushroom pie",
+          "expected_answer_rank": 3,
+          "choice_count": 4,
+          "expected_sequence_log_prob": -46.21016311645508,
+          "expected_mean_token_log_prob": -23.10508155822754,
+          "expected_margin_over_best_incorrect": -8.739089012145996,
+          "expected_restricted_choice_probability": 0.0001591245664167368,
+          "ranking": [
+            "bean stew",
+            "lemon cake",
+            "mushroom pie",
+            "roast squash"
+          ],
+          "choices": [
+            {
+              "answer": "mushroom pie",
+              "token_count": 2,
+              "sequence_log_prob": -46.21016311645508,
+              "mean_token_log_prob": -23.10508155822754
+            },
+            {
+              "answer": "bean stew",
+              "token_count": 2,
+              "sequence_log_prob": -28.731985092163086,
+              "mean_token_log_prob": -14.365992546081543
+            },
+            {
+              "answer": "lemon cake",
+              "token_count": 2,
+              "sequence_log_prob": -38.820858001708984,
+              "mean_token_log_prob": -19.410429000854492
+            },
+            {
+              "answer": "roast squash",
+              "token_count": 2,
+              "sequence_log_prob": -46.31987762451172,
+              "mean_token_log_prob": -23.15993881225586
+            }
+          ],
+          "answer_cue": "\nFinal answer:"
+        }
+      },
+      "exact_text_replay": {
+        "generated_answer": "Based on the information provided, there is no direct mention of your wife's favorite food. The available information includes:\n\n- Dario's closest friend is Nila.\n- Iona's favorite food is bean stew.\n- Iona's neighbor",
+        "answer_correct": false,
+        "shortlist_latency_ms": 1081.7091149510816,
+        "total_with_attention_scan_latency_ms": 1125.9608019609004,
+        "answer_choice_scores": {
+          "expected_answer": "mushroom pie",
+          "expected_answer_rank": 3,
+          "choice_count": 4,
+          "expected_sequence_log_prob": -46.39812088012695,
+          "expected_mean_token_log_prob": -23.199060440063477,
+          "expected_margin_over_best_incorrect": -15.750068187713623,
+          "expected_restricted_choice_probability": 1.4448768037629314e-07,
+          "ranking": [
+            "bean stew",
+            "lemon cake",
+            "mushroom pie",
+            "roast squash"
+          ],
+          "choices": [
+            {
+              "answer": "mushroom pie",
+              "token_count": 2,
+              "sequence_log_prob": -46.39812088012695,
+              "mean_token_log_prob": -23.199060440063477
+            },
+            {
+              "answer": "bean stew",
+              "token_count": 2,
+              "sequence_log_prob": -14.897984504699707,
+              "mean_token_log_prob": -7.4489922523498535
+            },
+            {
+              "answer": "lemon cake",
+              "token_count": 2,
+              "sequence_log_prob": -40.238765716552734,
+              "mean_token_log_prob": -20.119382858276367
+            },
+            {
+              "answer": "roast squash",
+              "token_count": 2,
+              "sequence_log_prob": -46.8559455871582,
+              "mean_token_log_prob": -23.4279727935791
+            }
+          ],
+          "answer_cue": "\nFinal answer:"
+        }
+      }
+    },
+    "0,1,8,9": {
+      "selected_page_ids": [
+        8,
+        9,
+        0,
+        1
+      ],
+      "relevant_pages_selected": 2,
+      "all_relevant_pages_selected": true,
+      "independent_kv_refresh": {
+        "generated_answer": "Vera's favorite food is mushroom pie.\n\nAnswer: Vera's favorite food is mushroom pie.\n\nAnswer: Vera's favorite food is mushroom pie.\n\nAnswer: Vera's favorite food is mushroom pie.",
+        "answer_correct": true,
+        "shortlist_latency_ms": 1085.1300269714557,
+        "total_with_attention_scan_latency_ms": 1129.3817139812745,
+        "selected_page_token_count": 45,
+        "final_cache_token_count": 100,
+        "answer_choice_scores": {
+          "expected_answer": "mushroom pie",
+          "expected_answer_rank": 2,
+          "choice_count": 4,
+          "expected_sequence_log_prob": -43.63334274291992,
+          "expected_mean_token_log_prob": -21.81667137145996,
+          "expected_margin_over_best_incorrect": -2.5751953125,
+          "expected_restricted_choice_probability": 0.06951845362996174,
+          "ranking": [
+            "bean stew",
+            "mushroom pie",
+            "lemon cake",
+            "roast squash"
+          ],
+          "choices": [
+            {
+              "answer": "mushroom pie",
+              "token_count": 2,
+              "sequence_log_prob": -43.63334274291992,
+              "mean_token_log_prob": -21.81667137145996
+            },
+            {
+              "answer": "bean stew",
+              "token_count": 2,
+              "sequence_log_prob": -38.48295211791992,
+              "mean_token_log_prob": -19.24147605895996
+            },
+            {
+              "answer": "lemon cake",
+              "token_count": 2,
+              "sequence_log_prob": -46.54075241088867,
+              "mean_token_log_prob": -23.270376205444336
+            },
+            {
+              "answer": "roast squash",
+              "token_count": 2,
+              "sequence_log_prob": -51.7724723815918,
+              "mean_token_log_prob": -25.8862361907959
+            }
+          ],
+          "answer_cue": "\nFinal answer:"
+        }
+      },
+      "exact_text_replay": {
+        "generated_answer": "Based on the provided information:\n\n- The user's wife is Vera.\n- Vera's favorite food is mushroom pie.\n\nTherefore, the answer is: **Mushroom pie**.\n\nAnswer: Mushroom pie.\n\nAnswer",
+        "answer_correct": true,
+        "shortlist_latency_ms": 1072.8278289898299,
+        "total_with_attention_scan_latency_ms": 1117.0795159996487,
+        "answer_choice_scores": {
+          "expected_answer": "mushroom pie",
+          "expected_answer_rank": 1,
+          "choice_count": 4,
+          "expected_sequence_log_prob": -29.119426727294922,
+          "expected_mean_token_log_prob": -14.559713363647461,
+          "expected_margin_over_best_incorrect": 3.3138427734375,
+          "expected_restricted_choice_probability": 0.9645476168120675,
+          "ranking": [
+            "mushroom pie",
+            "bean stew",
+            "lemon cake",
+            "roast squash"
+          ],
+          "choices": [
+            {
+              "answer": "mushroom pie",
+              "token_count": 2,
+              "sequence_log_prob": -29.119426727294922,
+              "mean_token_log_prob": -14.559713363647461
+            },
+            {
+              "answer": "bean stew",
+              "token_count": 2,
+              "sequence_log_prob": -35.74711227416992,
+              "mean_token_log_prob": -17.87355613708496
+            },
+            {
+              "answer": "lemon cake",
+              "token_count": 2,
+              "sequence_log_prob": -45.13608932495117,
+              "mean_token_log_prob": -22.568044662475586
+            },
+            {
+              "answer": "roast squash",
+              "token_count": 2,
+              "sequence_log_prob": -49.06499481201172,
+              "mean_token_log_prob": -24.53249740600586
+            }
+          ],
+          "answer_cue": "\nFinal answer:"
+        }
+      }
+    }
+  },
+  "full_prefill_all_pages": {
+    "generated_answer": "Based on the provided information, your wife's favorite food is **mushroom pie**. This is directly stated in the preference note: \"Vera's favorite food is mushroom pie.\"\n\nAnswer: Mushroom pie.",
+    "answer_correct": true,
+    "online_latency_ms": 1089.7402290138416,
+    "answer_choice_scores": {
+      "expected_answer": "mushroom pie",
+      "expected_answer_rank": 2,
+      "choice_count": 4,
+      "expected_sequence_log_prob": -43.7827033996582,
+      "expected_mean_token_log_prob": -21.8913516998291,
+      "expected_margin_over_best_incorrect": -0.2978515625,
+      "expected_restricted_choice_probability": 0.27683704641240403,
+      "ranking": [
+        "bean stew",
+        "mushroom pie",
+        "lemon cake",
+        "roast squash"
+      ],
+      "choices": [
+        {
+          "answer": "mushroom pie",
+          "token_count": 2,
+          "sequence_log_prob": -43.7827033996582,
+          "mean_token_log_prob": -21.8913516998291
+        },
+        {
+          "answer": "bean stew",
+          "token_count": 2,
+          "sequence_log_prob": -43.1870002746582,
+          "mean_token_log_prob": -21.5935001373291
+        },
+        {
+          "answer": "lemon cake",
+          "token_count": 2,
+          "sequence_log_prob": -43.95458221435547,
+          "mean_token_log_prob": -21.977291107177734
+        },
+        {
+          "answer": "roast squash",
+          "token_count": 2,
+          "sequence_log_prob": -45.8959846496582,
+          "mean_token_log_prob": -22.9479923248291
+        }
+      ],
+      "answer_cue": "\nFinal answer:"
+    }
+  }
+}

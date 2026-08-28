@@ -1,0 +1,423 @@
+{
+  "model": "Qwen/Qwen3-1.7B",
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "torch_version": "2.11.0+cu130",
+  "seed_base": 400,
+  "trial_count": 24,
+  "blocks": 12,
+  "hop_depths": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "top_k": 4,
+  "globally_selected_kv_metric": "all_query_max_cosine",
+  "selected_metric_development": {
+    "all_trials": {
+      "trial_count": 12,
+      "all_relevant_top_k_rate": 0.25,
+      "mean_recall": 0.6180555555555556,
+      "mean_reciprocal_worst_relevant_rank": 0.340518278018278
+    },
+    "full_prefill_correct_trials": {
+      "trial_count": 5,
+      "all_relevant_top_k_rate": 0.6,
+      "mean_recall": 0.8,
+      "mean_reciprocal_worst_relevant_rank": 0.6619047619047619
+    }
+  },
+  "selected_metric_holdout": {
+    "all_trials": {
+      "trial_count": 12,
+      "all_relevant_top_k_rate": 0.25,
+      "mean_recall": 0.5625,
+      "mean_reciprocal_worst_relevant_rank": 0.3421386483886484
+    },
+    "full_prefill_correct_trials": {
+      "trial_count": 5,
+      "all_relevant_top_k_rate": 0.4,
+      "mean_recall": 0.7,
+      "mean_reciprocal_worst_relevant_rank": 0.49714285714285716
+    }
+  },
+  "kv_metric_aggregates": {
+    "all_top_pair_cosine": {
+      "development": {
+        "all_trials": {
+          "trial_count": 12,
+          "all_relevant_top_k_rate": 0.25,
+          "mean_recall": 0.5694444444444444,
+          "mean_reciprocal_worst_relevant_rank": 0.3364508177008177
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 5,
+          "all_relevant_top_k_rate": 0.6,
+          "mean_recall": 0.8,
+          "mean_reciprocal_worst_relevant_rank": 0.6571428571428571
+        }
+      },
+      "holdout": {
+        "all_trials": {
+          "trial_count": 12,
+          "all_relevant_top_k_rate": 0.25,
+          "mean_recall": 0.5416666666666666,
+          "mean_reciprocal_worst_relevant_rank": 0.3397877585377585
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 5,
+          "all_relevant_top_k_rate": 0.4,
+          "mean_recall": 0.7,
+          "mean_reciprocal_worst_relevant_rank": 0.48690476190476184
+        }
+      },
+      "all": {
+        "all_trials": {
+          "trial_count": 24,
+          "all_relevant_top_k_rate": 0.25,
+          "mean_recall": 0.5555555555555556,
+          "mean_reciprocal_worst_relevant_rank": 0.3381192881192881
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 10,
+          "all_relevant_top_k_rate": 0.5,
+          "mean_recall": 0.75,
+          "mean_reciprocal_worst_relevant_rank": 0.5720238095238095
+        }
+      }
+    },
+    "tail_top_pair_cosine": {
+      "development": {
+        "all_trials": {
+          "trial_count": 12,
+          "all_relevant_top_k_rate": 0.25,
+          "mean_recall": 0.4305555555555556,
+          "mean_reciprocal_worst_relevant_rank": 0.3364508177008177
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 5,
+          "all_relevant_top_k_rate": 0.6,
+          "mean_recall": 0.7,
+          "mean_reciprocal_worst_relevant_rank": 0.6571428571428571
+        }
+      },
+      "holdout": {
+        "all_trials": {
+          "trial_count": 12,
+          "all_relevant_top_k_rate": 0.25,
+          "mean_recall": 0.4930555555555556,
+          "mean_reciprocal_worst_relevant_rank": 0.33863035113035117
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 5,
+          "all_relevant_top_k_rate": 0.4,
+          "mean_recall": 0.7,
+          "mean_reciprocal_worst_relevant_rank": 0.48690476190476184
+        }
+      },
+      "all": {
+        "all_trials": {
+          "trial_count": 24,
+          "all_relevant_top_k_rate": 0.25,
+          "mean_recall": 0.4618055555555556,
+          "mean_reciprocal_worst_relevant_rank": 0.3375405844155844
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 10,
+          "all_relevant_top_k_rate": 0.5,
+          "mean_recall": 0.7,
+          "mean_reciprocal_worst_relevant_rank": 0.5720238095238095
+        }
+      }
+    },
+    "all_query_max_cosine": {
+      "development": {
+        "all_trials": {
+          "trial_count": 12,
+          "all_relevant_top_k_rate": 0.25,
+          "mean_recall": 0.6180555555555556,
+          "mean_reciprocal_worst_relevant_rank": 0.340518278018278
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 5,
+          "all_relevant_top_k_rate": 0.6,
+          "mean_recall": 0.8,
+          "mean_reciprocal_worst_relevant_rank": 0.6619047619047619
+        }
+      },
+      "holdout": {
+        "all_trials": {
+          "trial_count": 12,
+          "all_relevant_top_k_rate": 0.25,
+          "mean_recall": 0.5625,
+          "mean_reciprocal_worst_relevant_rank": 0.3421386483886484
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 5,
+          "all_relevant_top_k_rate": 0.4,
+          "mean_recall": 0.7,
+          "mean_reciprocal_worst_relevant_rank": 0.49714285714285716
+        }
+      },
+      "all": {
+        "all_trials": {
+          "trial_count": 24,
+          "all_relevant_top_k_rate": 0.25,
+          "mean_recall": 0.5902777777777778,
+          "mean_reciprocal_worst_relevant_rank": 0.3413284632034632
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 10,
+          "all_relevant_top_k_rate": 0.5,
+          "mean_recall": 0.75,
+          "mean_reciprocal_worst_relevant_rank": 0.5795238095238096
+        }
+      }
+    },
+    "tail_query_max_cosine": {
+      "development": {
+        "all_trials": {
+          "trial_count": 12,
+          "all_relevant_top_k_rate": 0.25,
+          "mean_recall": 0.5,
+          "mean_reciprocal_worst_relevant_rank": 0.34382215007215006
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 5,
+          "all_relevant_top_k_rate": 0.6,
+          "mean_recall": 0.7,
+          "mean_reciprocal_worst_relevant_rank": 0.6619047619047619
+        }
+      },
+      "holdout": {
+        "all_trials": {
+          "trial_count": 12,
+          "all_relevant_top_k_rate": 0.25,
+          "mean_recall": 0.5347222222222222,
+          "mean_reciprocal_worst_relevant_rank": 0.28912037037037036
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 5,
+          "all_relevant_top_k_rate": 0.4,
+          "mean_recall": 0.7,
+          "mean_reciprocal_worst_relevant_rank": 0.49833333333333335
+        }
+      },
+      "all": {
+        "all_trials": {
+          "trial_count": 24,
+          "all_relevant_top_k_rate": 0.25,
+          "mean_recall": 0.517361111111111,
+          "mean_reciprocal_worst_relevant_rank": 0.3164712602212602
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 10,
+          "all_relevant_top_k_rate": 0.5,
+          "mean_recall": 0.7,
+          "mean_reciprocal_worst_relevant_rank": 0.5801190476190476
+        }
+      }
+    },
+    "all_page_max_cosine": {
+      "development": {
+        "all_trials": {
+          "trial_count": 12,
+          "all_relevant_top_k_rate": 0.25,
+          "mean_recall": 0.46527777777777773,
+          "mean_reciprocal_worst_relevant_rank": 0.3392917267917268
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 5,
+          "all_relevant_top_k_rate": 0.6,
+          "mean_recall": 0.7,
+          "mean_reciprocal_worst_relevant_rank": 0.6571428571428571
+        }
+      },
+      "holdout": {
+        "all_trials": {
+          "trial_count": 12,
+          "all_relevant_top_k_rate": 0.25,
+          "mean_recall": 0.4930555555555556,
+          "mean_reciprocal_worst_relevant_rank": 0.344973544973545
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 5,
+          "all_relevant_top_k_rate": 0.4,
+          "mean_recall": 0.5,
+          "mean_reciprocal_worst_relevant_rank": 0.48690476190476184
+        }
+      },
+      "all": {
+        "all_trials": {
+          "trial_count": 24,
+          "all_relevant_top_k_rate": 0.25,
+          "mean_recall": 0.4791666666666667,
+          "mean_reciprocal_worst_relevant_rank": 0.3421326358826359
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 10,
+          "all_relevant_top_k_rate": 0.5,
+          "mean_recall": 0.6,
+          "mean_reciprocal_worst_relevant_rank": 0.5720238095238095
+        }
+      }
+    },
+    "tail_page_max_cosine": {
+      "development": {
+        "all_trials": {
+          "trial_count": 12,
+          "all_relevant_top_k_rate": 0.25,
+          "mean_recall": 0.4236111111111111,
+          "mean_reciprocal_worst_relevant_rank": 0.34160654160654164
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 5,
+          "all_relevant_top_k_rate": 0.6,
+          "mean_recall": 0.6,
+          "mean_reciprocal_worst_relevant_rank": 0.6571428571428571
+        }
+      },
+      "holdout": {
+        "all_trials": {
+          "trial_count": 12,
+          "all_relevant_top_k_rate": 0.25,
+          "mean_recall": 0.5069444444444444,
+          "mean_reciprocal_worst_relevant_rank": 0.3454064454064454
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 5,
+          "all_relevant_top_k_rate": 0.4,
+          "mean_recall": 0.6,
+          "mean_reciprocal_worst_relevant_rank": 0.48690476190476184
+        }
+      },
+      "all": {
+        "all_trials": {
+          "trial_count": 24,
+          "all_relevant_top_k_rate": 0.25,
+          "mean_recall": 0.46527777777777773,
+          "mean_reciprocal_worst_relevant_rank": 0.34350649350649354
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 10,
+          "all_relevant_top_k_rate": 0.5,
+          "mean_recall": 0.6,
+          "mean_reciprocal_worst_relevant_rank": 0.5720238095238095
+        }
+      }
+    },
+    "all_max_cosine": {
+      "development": {
+        "all_trials": {
+          "trial_count": 12,
+          "all_relevant_top_k_rate": 0.25,
+          "mean_recall": 0.5208333333333334,
+          "mean_reciprocal_worst_relevant_rank": 0.3433261183261183
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 5,
+          "all_relevant_top_k_rate": 0.6,
+          "mean_recall": 0.8,
+          "mean_reciprocal_worst_relevant_rank": 0.6571428571428571
+        }
+      },
+      "holdout": {
+        "all_trials": {
+          "trial_count": 12,
+          "all_relevant_top_k_rate": 0.25,
+          "mean_recall": 0.5416666666666666,
+          "mean_reciprocal_worst_relevant_rank": 0.3461008898508899
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 5,
+          "all_relevant_top_k_rate": 0.4,
+          "mean_recall": 0.6,
+          "mean_reciprocal_worst_relevant_rank": 0.48690476190476184
+        }
+      },
+      "all": {
+        "all_trials": {
+          "trial_count": 24,
+          "all_relevant_top_k_rate": 0.25,
+          "mean_recall": 0.53125,
+          "mean_reciprocal_worst_relevant_rank": 0.3447135040885041
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 10,
+          "all_relevant_top_k_rate": 0.5,
+          "mean_recall": 0.7,
+          "mean_reciprocal_worst_relevant_rank": 0.5720238095238095
+        }
+      }
+    },
+    "tail_max_cosine": {
+      "development": {
+        "all_trials": {
+          "trial_count": 12,
+          "all_relevant_top_k_rate": 0.25,
+          "mean_recall": 0.40972222222222227,
+          "mean_reciprocal_worst_relevant_rank": 0.338534151034151
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 5,
+          "all_relevant_top_k_rate": 0.6,
+          "mean_recall": 0.7,
+          "mean_reciprocal_worst_relevant_rank": 0.6571428571428571
+        }
+      },
+      "holdout": {
+        "all_trials": {
+          "trial_count": 12,
+          "all_relevant_top_k_rate": 0.25,
+          "mean_recall": 0.4444444444444444,
+          "mean_reciprocal_worst_relevant_rank": 0.33856120731120726
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 5,
+          "all_relevant_top_k_rate": 0.4,
+          "mean_recall": 0.7,
+          "mean_reciprocal_worst_relevant_rank": 0.48690476190476184
+        }
+      },
+      "all": {
+        "all_trials": {
+          "trial_count": 24,
+          "all_relevant_top_k_rate": 0.25,
+          "mean_recall": 0.4270833333333333,
+          "mean_reciprocal_worst_relevant_rank": 0.33854767917267914
+        },
+        "full_prefill_correct_trials": {
+          "trial_count": 10,
+          "all_relevant_top_k_rate": 0.5,
+          "mean_recall": 0.7,
+          "mean_reciprocal_worst_relevant_rank": 0.5720238095238095
+        }
+      }
+    }
+  },
+  "attention_reference_metric": "all_query_mass",
+  "attention_reference_all_relevant_top_k_rate": 0.375,
+  "packed_all_max_top_k_set_match_rate": 1.0,
+  "packed_all_max_all_relevant_top_k_rate": 0.25,
+  "full_prefill_correct_count": 10,
+  "packed_index_build_latency_ms": {
+    "mean": 2.707871242212908,
+    "min": 1.7983770230785012,
+    "max": 20.97261295421049
+  },
+  "packed_scan_latency_ms": {
+    "mean": 8.240614704845939,
+    "min": 6.091760995332152,
+    "max": 50.35280802985653
+  },
+  "kv_scan_latency_ms": {
+    "mean": 75.73384916516564,
+    "min": 73.52194801205769,
+    "max": 95.65839200513437
+  },
+  "attention_scan_latency_ms": {
+    "mean": 34.78668387591218,
+    "min": 33.13969500595704,
+    "max": 43.8499019946903
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "seed": 607,
+  "model": "Qwen/Qwen3-1.7B",
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "torch_version": "2.11.0+cu130",
+  "block_count": 128,
+  "hop_depth_evaluation_only": 4,
+  "question": "What is my wife's closest friend's neighbor's favorite food?",
+  "answer": "saffron rice",
+  "relevant_page_ids_evaluation_only": [
+    56,
+    88,
+    44,
+    59
+  ],
+  "retrieval_k": 1,
+  "retriever": "token",
+  "attention_metric": "all_query_mass",
+  "max_navigation_steps": 5,
+  "cold_prepare_latency_ms_offline": 3323.9499870105647,
+  "packed_build_latency_ms_offline": 27.560670976527035,
+  "token_index_build_latency_ms_offline": 2.250707009807229,
+  "steps": [
+    {
+      "step_index": 0,
+      "current_question": "What is my wife's closest friend's neighbor's favorite food?",
+      "selected_page_ids": [
+        56
+      ],
+      "selected_relevant_page_ids": [
+        56
+      ],
+      "query_prepare_latency_ms": 0.0,
+      "packed_scan_latency_ms": 0.0,
+      "token_scan_latency_ms": 0.1330000231973827,
+      "attention_scan_latency_ms": 0.0,
+      "kv_reference_scan_latency_ms": 0.0,
+      "navigation_latency_ms": 371.5145689784549,
+      "step_online_latency_ms": 371.6475690016523,
+      "generated_navigation": "LOOKUP: What is Rowan's closest friend's neighbor's favorite food?",
+      "repair_generated_navigation": null,
+      "repair_navigation_latency_ms": 0.0,
+      "decision_kind": "lookup",
+      "decision_content": "What is Rowan's closest friend's neighbor's favorite food?"
+    },
+    {
+      "step_index": 1,
+      "current_question": "What is Rowan's closest friend's neighbor's favorite food?",
+      "selected_page_ids": [
+        88
+      ],
+      "selected_relevant_page_ids": [
+        88
+      ],
+      "query_prepare_latency_ms": 0.0,
+      "packed_scan_latency_ms": 0.0,
+      "token_scan_latency_ms": 0.12651801807805896,
+      "attention_scan_latency_ms": 0.0,
+      "kv_reference_scan_latency_ms": 0.0,
+      "navigation_latency_ms": 306.3137329882011,
+      "step_online_latency_ms": 306.44025100627914,
+      "generated_navigation": "LOOKUP: What is Elara's neighbor's favorite food?",
+      "repair_generated_navigation": null,
+      "repair_navigation_latency_ms": 0.0,
+      "decision_kind": "lookup",
+      "decision_content": "What is Elara's neighbor's favorite food?"
+    },
+    {
+      "step_index": 2,
+      "current_question": "What is Elara's neighbor's favorite food?",
+      "selected_page_ids": [
+        44
+      ],
+      "selected_relevant_page_ids": [
+        44
+      ],
+      "query_prepare_latency_ms": 0.0,
+      "packed_scan_latency_ms": 0.0,
+      "token_scan_latency_ms": 0.12392300413921475,
+      "attention_scan_latency_ms": 0.0,
+      "kv_reference_scan_latency_ms": 0.0,
+      "navigation_latency_ms": 265.21092001348734,
+      "step_online_latency_ms": 265.33484301762655,
+      "generated_navigation": "LOOKUP: What is Niko's favorite food?",
+      "repair_generated_navigation": null,
+      "repair_navigation_latency_ms": 0.0,
+      "decision_kind": "lookup",
+      "decision_content": "What is Niko's favorite food?"
+    },
+    {
+      "step_index": 3,
+      "current_question": "What is Niko's favorite food?",
+      "selected_page_ids": [
+        59
+      ],
+      "selected_relevant_page_ids": [
+        59
+      ],
+      "query_prepare_latency_ms": 0.0,
+      "packed_scan_latency_ms": 0.0,
+      "token_scan_latency_ms": 0.11702999472618103,
+      "attention_scan_latency_ms": 0.0,
+      "kv_reference_scan_latency_ms": 0.0,
+      "navigation_latency_ms": 257.2011830052361,
+      "step_online_latency_ms": 438.37726302444935,
+      "generated_navigation": "LOOKUP: What is Niko's favorite food?",
+      "repair_generated_navigation": "ANSWER: saffron rice",
+      "repair_navigation_latency_ms": 181.05905002448708,
+      "decision_kind": "answer",
+      "decision_content": "saffron rice"
+    }
+  ],
+  "stop_reason": "model_answer",
+  "final_answer": "saffron rice",
+  "final_answer_phrase_present": true,
+  "final_answer_asserted_correct": true,
+  "iterative_online_latency_ms": 1381.7999260500073,
+  "no_page": {
+    "generated_answer": "To determine your wife's closest friend's neighbor's favorite food, we need to piece together the information from the archived records. Here's a logical breakdown:\n\n1. **Your wife's closest friend**:  \n   - The archived records do not explicitly state who your wife's closest friend is. However, it is reasonable to",
+    "answer_correct": false,
+    "online_latency_ms": 1391.2722370005213
+  },
+  "full_prefill": {
+    "generated_answer": "To determine the answer, let's break down the information step by step:\n\n1. **Identify the user's wife**:  \n   - The user's wife is **Rowan** (from the relationship note: \"The user's wife is Rowan\").\n\n2. **Find Rowan's closest friend**:  \n  ",
+    "answer_correct": false,
+    "online_latency_ms": 1933.890981017612
+  }
+}

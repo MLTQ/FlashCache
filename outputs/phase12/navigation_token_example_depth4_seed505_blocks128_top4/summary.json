@@ -1,0 +1,108 @@
+{
+  "seed": 505,
+  "model": "Qwen/Qwen3-1.7B",
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "torch_version": "2.11.0+cu130",
+  "block_count": 128,
+  "hop_depth_evaluation_only": 4,
+  "question": "What is my wife's closest friend's neighbor's favorite food?",
+  "answer": "tacos",
+  "relevant_page_ids_evaluation_only": [
+    35,
+    123,
+    5,
+    91
+  ],
+  "retrieval_k": 4,
+  "retriever": "token",
+  "attention_metric": "all_query_mass",
+  "max_navigation_steps": 5,
+  "cold_prepare_latency_ms_offline": 3357.5258089695126,
+  "packed_build_latency_ms_offline": 30.693552049342543,
+  "token_index_build_latency_ms_offline": 2.2421390167437494,
+  "steps": [
+    {
+      "step_index": 0,
+      "current_question": "What is my wife's closest friend's neighbor's favorite food?",
+      "selected_page_ids": [
+        35,
+        4,
+        5,
+        73
+      ],
+      "selected_relevant_page_ids": [
+        35,
+        5
+      ],
+      "query_prepare_latency_ms": 0.0,
+      "packed_scan_latency_ms": 0.0,
+      "token_scan_latency_ms": 0.12568599777296185,
+      "attention_scan_latency_ms": 0.0,
+      "kv_reference_scan_latency_ms": 0.0,
+      "navigation_latency_ms": 311.72079202951863,
+      "step_online_latency_ms": 311.8464780272916,
+      "generated_navigation": "LOOKUP: What is Iona's neighbor's favorite food?",
+      "decision_kind": "lookup",
+      "decision_content": "What is Iona's neighbor's favorite food?"
+    },
+    {
+      "step_index": 1,
+      "current_question": "What is Iona's neighbor's favorite food?",
+      "selected_page_ids": [
+        4,
+        125,
+        43,
+        5
+      ],
+      "selected_relevant_page_ids": [
+        5
+      ],
+      "query_prepare_latency_ms": 0.0,
+      "packed_scan_latency_ms": 0.0,
+      "token_scan_latency_ms": 0.12349197641015053,
+      "attention_scan_latency_ms": 0.0,
+      "kv_reference_scan_latency_ms": 0.0,
+      "navigation_latency_ms": 252.00963101815432,
+      "step_online_latency_ms": 252.13312299456447,
+      "generated_navigation": "LOOKUP: What is Bram's favorite food?",
+      "decision_kind": "lookup",
+      "decision_content": "What is Bram's favorite food?"
+    },
+    {
+      "step_index": 2,
+      "current_question": "What is Bram's favorite food?",
+      "selected_page_ids": [
+        10,
+        125,
+        1,
+        3
+      ],
+      "selected_relevant_page_ids": [],
+      "query_prepare_latency_ms": 0.0,
+      "packed_scan_latency_ms": 0.0,
+      "token_scan_latency_ms": 0.13314001262187958,
+      "attention_scan_latency_ms": 0.0,
+      "kv_reference_scan_latency_ms": 0.0,
+      "navigation_latency_ms": 244.90276904543862,
+      "step_online_latency_ms": 245.0359090580605,
+      "generated_navigation": "LOOKUP: What is Bram's favorite food?",
+      "decision_kind": "lookup",
+      "decision_content": "What is Bram's favorite food?"
+    }
+  ],
+  "stop_reason": "repeated_question",
+  "final_answer": null,
+  "final_answer_phrase_present": false,
+  "final_answer_asserted_correct": false,
+  "iterative_online_latency_ms": 809.0155100799166,
+  "no_page": {
+    "generated_answer": "To determine your wife's closest friend's neighbor's favorite food, we need to piece together the information from the archived records. Here's a logical breakdown:\n\n1. **Your wife's closest friend**:  \n   - The archived records do not explicitly state who your wife's closest friend is. However, it is reasonable to",
+    "answer_correct": false,
+    "online_latency_ms": 1369.4843630073592
+  },
+  "full_prefill": {
+    "generated_answer": "To determine the answer, let's follow a logical sequence of steps based on the provided information:\n\n---\n\n### Step 1: Identify the user's wife\nFrom the records:\n- **\"The user's wife is Shirly.\"**\n\n---\n\n### Step 2: Identify Shirly's closest friend\nFrom the records:\n",
+    "answer_correct": false,
+    "online_latency_ms": 2027.3825679905713
+  }
+}

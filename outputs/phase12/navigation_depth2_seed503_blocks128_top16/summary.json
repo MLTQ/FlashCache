@@ -1,0 +1,67 @@
+{
+  "seed": 503,
+  "model": "Qwen/Qwen3-1.7B",
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "torch_version": "2.11.0+cu130",
+  "block_count": 128,
+  "hop_depth_evaluation_only": 2,
+  "question": "What is my wife's favorite food?",
+  "answer": "mushroom pie",
+  "relevant_page_ids_evaluation_only": [
+    84,
+    64
+  ],
+  "retrieval_k": 16,
+  "max_navigation_steps": 5,
+  "cold_prepare_latency_ms_offline": 3367.5064879935235,
+  "packed_build_latency_ms_offline": 29.895526997279376,
+  "steps": [
+    {
+      "step_index": 0,
+      "current_question": "What is my wife's favorite food?",
+      "selected_page_ids": [
+        93,
+        13,
+        4,
+        110,
+        114,
+        64,
+        9,
+        79,
+        101,
+        113,
+        5,
+        6,
+        69,
+        18,
+        16,
+        32
+      ],
+      "selected_relevant_page_ids": [
+        64
+      ],
+      "query_prepare_latency_ms": 30.543897999450564,
+      "packed_scan_latency_ms": 40.96325900172815,
+      "navigation_latency_ms": 313.53634101105854,
+      "step_online_latency_ms": 385.04349801223725,
+      "generated_navigation": "LOOKUP: What is my wife's favorite food?",
+      "decision_kind": "lookup",
+      "decision_content": "What is my wife's favorite food?"
+    }
+  ],
+  "stop_reason": "repeated_question",
+  "final_answer": null,
+  "final_answer_phrase_present": false,
+  "final_answer_asserted_correct": false,
+  "iterative_online_latency_ms": 385.04349801223725,
+  "no_page": {
+    "generated_answer": "Based on the information provided in the archived records, there is no specific mention of a favorite food for the wife. The records do not include details about personal preferences, dietary habits, or favorite foods. Therefore, it is not possible to determine",
+    "answer_correct": false,
+    "online_latency_ms": 1062.5685490085743
+  },
+  "full_prefill": {
+    "generated_answer": "Based on the provided information, your wife is Vera. There is no direct mention of Vera's favorite food in the archived records. However, there is a note that says:  \n**\"Vera's favorite food is mushroom pie.\"**",
+    "answer_correct": false,
+    "online_latency_ms": 1605.174390017055
+  }
+}

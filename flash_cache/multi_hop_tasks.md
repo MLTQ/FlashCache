@@ -14,6 +14,11 @@ Builds deterministic calibration and multi-hop questions requiring one to four s
 - **Does**: Constructs a direct preference calibration or a wife-to-person relationship chain ending in a favorite food, mixes it with same-domain distractors, and shuffles all pages by seed.
 - **Rationale**: No individual page contains both the query path and answer. Success requires information to survive across page flashes.
 
+### `_extended_distractors`
+
+- **Does**: Preserves the original 16-note distractor pool for existing trials and deterministically appends unique relationship/preference filler notes only when a scale test requests more.
+- **Rationale**: Retrieval latency and memory behavior need 32–128 page archives without changing the established 12-page task distribution.
+
 ## Contracts
 
 | Dependent | Expects | Breaking changes |
@@ -26,3 +31,4 @@ Builds deterministic calibration and multi-hop questions requiring one to four s
 
 - Hop depth counts source blocks, not generated tokens. Depth one is a carrier-retention calibration; depths two through four require relational composition.
 - Relevant IDs and answers are evaluation labels only; the streaming algorithm never receives them.
+- Existing tasks needing at most 16 distractors are bit-for-bit unchanged because the filler pool is not extended for them.

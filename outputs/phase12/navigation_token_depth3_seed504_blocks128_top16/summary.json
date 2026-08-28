@@ -1,0 +1,146 @@
+{
+  "seed": 504,
+  "model": "Qwen/Qwen3-1.7B",
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "torch_version": "2.11.0+cu130",
+  "block_count": 128,
+  "hop_depth_evaluation_only": 3,
+  "question": "What is my wife's closest friend's favorite food?",
+  "answer": "dumplings",
+  "relevant_page_ids_evaluation_only": [
+    8,
+    116,
+    16
+  ],
+  "retrieval_k": 16,
+  "retriever": "token",
+  "attention_metric": "all_query_mass",
+  "max_navigation_steps": 5,
+  "cold_prepare_latency_ms_offline": 3291.532600997016,
+  "packed_build_latency_ms_offline": 29.70542397815734,
+  "token_index_build_latency_ms_offline": 2.249631972517818,
+  "steps": [
+    {
+      "step_index": 0,
+      "current_question": "What is my wife's closest friend's favorite food?",
+      "selected_page_ids": [
+        8,
+        6,
+        7,
+        10,
+        13,
+        17,
+        18,
+        19,
+        25,
+        26,
+        27,
+        29,
+        30,
+        31,
+        33,
+        35
+      ],
+      "selected_relevant_page_ids": [
+        8
+      ],
+      "query_prepare_latency_ms": 0.0,
+      "packed_scan_latency_ms": 0.0,
+      "token_scan_latency_ms": 0.16562198288738728,
+      "attention_scan_latency_ms": 0.0,
+      "kv_reference_scan_latency_ms": 0.0,
+      "navigation_latency_ms": 369.2839239956811,
+      "step_online_latency_ms": 369.4495459785685,
+      "generated_navigation": "LOOKUP: What is Maren's closest friend's favorite food?",
+      "decision_kind": "lookup",
+      "decision_content": "What is Maren's closest friend's favorite food?"
+    },
+    {
+      "step_index": 1,
+      "current_question": "What is Maren's closest friend's favorite food?",
+      "selected_page_ids": [
+        116,
+        8,
+        6,
+        7,
+        10,
+        13,
+        17,
+        18,
+        19,
+        25,
+        26,
+        27,
+        29,
+        30,
+        31,
+        33
+      ],
+      "selected_relevant_page_ids": [
+        8,
+        116
+      ],
+      "query_prepare_latency_ms": 0.0,
+      "packed_scan_latency_ms": 0.0,
+      "token_scan_latency_ms": 0.12622802751138806,
+      "attention_scan_latency_ms": 0.0,
+      "kv_reference_scan_latency_ms": 0.0,
+      "navigation_latency_ms": 292.90680098347366,
+      "step_online_latency_ms": 293.03302901098505,
+      "generated_navigation": "LOOKUP: What is Ivo's favorite food?",
+      "decision_kind": "lookup",
+      "decision_content": "What is Ivo's favorite food?"
+    },
+    {
+      "step_index": 2,
+      "current_question": "What is Ivo's favorite food?",
+      "selected_page_ids": [
+        16,
+        116,
+        85,
+        38,
+        126,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        9,
+        11,
+        12,
+        14,
+        15
+      ],
+      "selected_relevant_page_ids": [
+        116,
+        16
+      ],
+      "query_prepare_latency_ms": 0.0,
+      "packed_scan_latency_ms": 0.0,
+      "token_scan_latency_ms": 0.10968698188662529,
+      "attention_scan_latency_ms": 0.0,
+      "kv_reference_scan_latency_ms": 0.0,
+      "navigation_latency_ms": 319.86107799457386,
+      "step_online_latency_ms": 319.9707649764605,
+      "generated_navigation": "LOOKUP: Ivo's favorite food is dumplings.",
+      "decision_kind": "answer",
+      "decision_content": "Ivo's favorite food is dumplings."
+    }
+  ],
+  "stop_reason": "model_answer",
+  "final_answer": "Ivo's favorite food is dumplings.",
+  "final_answer_phrase_present": true,
+  "final_answer_asserted_correct": true,
+  "iterative_online_latency_ms": 982.453339966014,
+  "no_page": {
+    "generated_answer": "The information provided does not include any details about the wife's closest friend or their favorite food. Therefore, it is not possible to determine the answer based on the available records.\n\nAnswer: The information is not available in the provided",
+    "answer_correct": false,
+    "online_latency_ms": 1039.38723198371
+  },
+  "full_prefill": {
+    "generated_answer": "Based on the provided information, let's break down the relevant details step by step:\n\n1. **The user's wife is Maren** (from the relationship note).\n2. **Maren's closest friend is Ivo** (from",
+    "answer_correct": false,
+    "online_latency_ms": 1683.9897200115956
+  }
+}

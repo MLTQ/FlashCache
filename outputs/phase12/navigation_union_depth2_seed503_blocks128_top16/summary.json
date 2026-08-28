@@ -1,0 +1,70 @@
+{
+  "seed": 503,
+  "model": "Qwen/Qwen3-1.7B",
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "torch_version": "2.11.0+cu130",
+  "block_count": 128,
+  "hop_depth_evaluation_only": 2,
+  "question": "What is my wife's favorite food?",
+  "answer": "mushroom pie",
+  "relevant_page_ids_evaluation_only": [
+    84,
+    64
+  ],
+  "retrieval_k": 16,
+  "retriever": "union",
+  "attention_metric": "all_query_mass",
+  "max_navigation_steps": 5,
+  "cold_prepare_latency_ms_offline": 3327.6426359661855,
+  "packed_build_latency_ms_offline": 27.501438977196813,
+  "steps": [
+    {
+      "step_index": 0,
+      "current_question": "What is my wife's favorite food?",
+      "selected_page_ids": [
+        93,
+        13,
+        4,
+        110,
+        114,
+        64,
+        9,
+        79,
+        127,
+        126,
+        125,
+        124,
+        119,
+        122,
+        123,
+        101
+      ],
+      "selected_relevant_page_ids": [
+        64
+      ],
+      "query_prepare_latency_ms": 30.593150993809104,
+      "packed_scan_latency_ms": 6.450106971897185,
+      "attention_scan_latency_ms": 70.26668201433495,
+      "navigation_latency_ms": 322.2343109664507,
+      "step_online_latency_ms": 429.54425094649196,
+      "generated_navigation": "LOOKUP: What is my wife's favorite food?",
+      "decision_kind": "lookup",
+      "decision_content": "What is my wife's favorite food?"
+    }
+  ],
+  "stop_reason": "repeated_question",
+  "final_answer": null,
+  "final_answer_phrase_present": false,
+  "final_answer_asserted_correct": false,
+  "iterative_online_latency_ms": 429.54425094649196,
+  "no_page": {
+    "generated_answer": "Based on the information provided in the archived records, there is no specific mention of a favorite food for the wife. The records do not include details about personal preferences, dietary habits, or favorite foods. Therefore, it is not possible to determine",
+    "answer_correct": false,
+    "online_latency_ms": 1054.1200219886377
+  },
+  "full_prefill": {
+    "generated_answer": "Based on the provided information, your wife is Vera. There is no direct mention of Vera's favorite food in the archived records. However, there is a note that says:  \n**\"Vera's favorite food is mushroom pie.\"**",
+    "answer_correct": false,
+    "online_latency_ms": 1620.5940609797835
+  }
+}

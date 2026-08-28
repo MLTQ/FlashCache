@@ -1,0 +1,76 @@
+{
+  "seed": 505,
+  "model": "Qwen/Qwen3-1.7B",
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "torch_version": "2.11.0+cu130",
+  "block_count": 128,
+  "hop_depth_evaluation_only": 4,
+  "question": "What is my wife's closest friend's neighbor's favorite food?",
+  "answer": "tacos",
+  "relevant_page_ids_evaluation_only": [
+    35,
+    123,
+    5,
+    91
+  ],
+  "retrieval_k": 16,
+  "retriever": "token",
+  "attention_metric": "all_query_mass",
+  "max_navigation_steps": 5,
+  "cold_prepare_latency_ms_offline": 3387.8587739891373,
+  "packed_build_latency_ms_offline": 28.55221601203084,
+  "token_index_build_latency_ms_offline": 2.26660497719422,
+  "steps": [
+    {
+      "step_index": 0,
+      "current_question": "What is my wife's closest friend's neighbor's favorite food?",
+      "selected_page_ids": [
+        35,
+        4,
+        5,
+        73,
+        125,
+        0,
+        2,
+        8,
+        9,
+        11,
+        12,
+        14,
+        16,
+        17,
+        18,
+        21
+      ],
+      "selected_relevant_page_ids": [
+        35,
+        5
+      ],
+      "query_prepare_latency_ms": 0.0,
+      "packed_scan_latency_ms": 0.0,
+      "token_scan_latency_ms": 0.13226899318397045,
+      "attention_scan_latency_ms": 0.0,
+      "kv_reference_scan_latency_ms": 0.0,
+      "navigation_latency_ms": 405.77767201466486,
+      "step_online_latency_ms": 405.90994100784883,
+      "generated_navigation": "LOOKUP: What is my wife's closest friend's neighbor's favorite food?",
+      "decision_kind": "lookup",
+      "decision_content": "What is my wife's closest friend's neighbor's favorite food?"
+    }
+  ],
+  "stop_reason": "repeated_question",
+  "final_answer": null,
+  "final_answer_phrase_present": false,
+  "final_answer_asserted_correct": false,
+  "iterative_online_latency_ms": 405.90994100784883,
+  "no_page": {
+    "generated_answer": "To determine your wife's closest friend's neighbor's favorite food, we need to piece together the information from the archived records. Here's a logical breakdown:\n\n1. **Your wife's closest friend**:  \n   - The archived records do not explicitly state who your wife's closest friend is. However, it is reasonable to",
+    "answer_correct": false,
+    "online_latency_ms": 1420.1444700011052
+  },
+  "full_prefill": {
+    "generated_answer": "To determine the answer, let's follow a logical sequence of steps based on the provided information:\n\n---\n\n### Step 1: Identify the user's wife\nFrom the records:\n- **\"The user's wife is Shirly.\"**\n\n---\n\n### Step 2: Identify Shirly's closest friend\nFrom the records:\n",
+    "answer_correct": false,
+    "online_latency_ms": 2016.526271996554
+  }
+}

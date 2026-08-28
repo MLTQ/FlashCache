@@ -1,0 +1,54 @@
+{
+  "seed": 62,
+  "model": "Qwen/Qwen3-1.7B",
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "torch_version": "2.11.0+cu130",
+  "task_family": "multi_hop_preference",
+  "task_variant": 0,
+  "hop_depth": 2,
+  "question": "What is my wife's favorite food?",
+  "answer": "tacos",
+  "block_count": 4,
+  "relevant_block_ids_logical_order": [
+    1,
+    2
+  ],
+  "capsule_width": 16,
+  "continuation_horizon": 48,
+  "prompt_format": "chat",
+  "pinned_token_count": 38,
+  "cold_page_token_count": 47,
+  "recent_query_prefix_token_count": 17,
+  "cold_prepare_latency_ms": 310.9159229788929,
+  "no_page": {
+    "generated_answer": "Based on the archived records provided, there is no specific information about your wife's favorite food. The records do not include any details regarding personal preferences, dietary habits, or food preferences. Therefore, it is not possible to determine your wife's",
+    "answer_correct": false,
+    "online_latency_ms": 1080.775462964084
+  },
+  "stale_query_all_pages": {
+    "generated_answer": "Based on the information provided, there is no direct mention of what Shirly's favorite food is. However, it is noted that Lysa's favorite food is roast squash. Since Shirly is mentioned as the user's wife, and",
+    "answer_correct": false,
+    "online_latency_ms": 1029.802025994286
+  },
+  "query_refresh": {
+    "generated_answer": "Based on the provided information, your wife's favorite food is **roast squash**. This is directly stated in the preference note: \"Lysa's favorite food is roast squash.\" Since the user's wife is referred to as L",
+    "answer_correct": false,
+    "online_latency_ms": 1070.2972769504413
+  },
+  "query_capsules": {
+    "generated_answer": "The information provided is insufficient to determine your wife's favorite food. The archived records do not include any specific information about your wife's preferences or favorites.\n\n**Answer:** The information provided is insufficient to determine your wife's favorite food",
+    "answer_correct": false,
+    "online_latency_ms": 1184.6560040139593,
+    "capsule_token_count": 64,
+    "capsule_width": 16,
+    "refreshed_query_token_count": 17,
+    "final_cache_token_count": 119,
+    "final_probe_position": 167,
+    "capsule_to_raw_page_token_ratio": 1.3617021276595744
+  },
+  "full_prefill": {
+    "generated_answer": "Your wife's favorite food is tacos.",
+    "answer_correct": true,
+    "online_latency_ms": 214.70871201017871
+  }
+}

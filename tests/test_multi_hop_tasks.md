@@ -15,6 +15,10 @@ Verifies deterministic construction and provenance for questions that require mu
 ### `test_depth_one_is_a_direct_carrier_retention_calibration`
 - **Does**: Confirms the one-page condition names its subject directly and has one relevant source block.
 
+### `test_large_archive_extends_distractors_without_duplicate_records`
+
+- **Does**: Confirms a 128-page task contains unique deterministic filler notes and still exposes the answer exactly once.
+
 ## Contracts
 
 | Dependent | Expects | Breaking changes |

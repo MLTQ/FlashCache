@@ -1,0 +1,145 @@
+{
+  "model": "Qwen/Qwen3-1.7B",
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "torch_version": "2.11.0+cu130",
+  "seed_base": 412,
+  "trial_count": 12,
+  "blocks": 12,
+  "coarse_k": 8,
+  "final_k": 4,
+  "packed_metric": "all_max_cosine",
+  "attention_metric": "all_query_mass",
+  "coverage": {
+    "coarse_all_relevant": 0.75,
+    "hybrid_all_relevant": 0.5,
+    "packed_final_all_relevant": 0.25,
+    "attention_all_relevant": 0.4166666666666667
+  },
+  "all_trials": {
+    "no_page": {
+      "trial_count": 12,
+      "asserted_answer_correct_count": 0,
+      "asserted_answer_accuracy": 0.0,
+      "phrase_present_count": 0,
+      "mean_online_latency_ms": 1029.549671666852
+    },
+    "hybrid_independent_kv": {
+      "trial_count": 12,
+      "asserted_answer_correct_count": 1,
+      "asserted_answer_accuracy": 0.08333333333333333,
+      "phrase_present_count": 3,
+      "mean_online_latency_ms": 1054.2460289191997
+    },
+    "hybrid_exact_replay": {
+      "trial_count": 12,
+      "asserted_answer_correct_count": 5,
+      "asserted_answer_accuracy": 0.4166666666666667,
+      "phrase_present_count": 7,
+      "mean_online_latency_ms": 1053.1296634968992
+    },
+    "packed_exact_replay": {
+      "trial_count": 12,
+      "asserted_answer_correct_count": 3,
+      "asserted_answer_accuracy": 0.25,
+      "phrase_present_count": 3,
+      "mean_online_latency_ms": 1051.6612727515167
+    },
+    "attention_exact_replay": {
+      "trial_count": 12,
+      "asserted_answer_correct_count": 5,
+      "asserted_answer_accuracy": 0.4166666666666667,
+      "phrase_present_count": 5,
+      "mean_online_latency_ms": 1052.9555643346005
+    },
+    "fixed_prefix_exact_replay": {
+      "trial_count": 12,
+      "asserted_answer_correct_count": 2,
+      "asserted_answer_accuracy": 0.16666666666666666,
+      "phrase_present_count": 7,
+      "mean_online_latency_ms": 1052.495850584819
+    },
+    "full_prefill": {
+      "trial_count": 12,
+      "asserted_answer_correct_count": 6,
+      "asserted_answer_accuracy": 0.5,
+      "phrase_present_count": 6,
+      "mean_online_latency_ms": 1066.0003292626545
+    }
+  },
+  "full_prefill_correct_trials": {
+    "trial_count": 6,
+    "conditions": {
+      "no_page": {
+        "trial_count": 6,
+        "asserted_answer_correct_count": 0,
+        "asserted_answer_accuracy": 0.0,
+        "phrase_present_count": 0,
+        "mean_online_latency_ms": 1032.1497035038192
+      },
+      "hybrid_independent_kv": {
+        "trial_count": 6,
+        "asserted_answer_correct_count": 1,
+        "asserted_answer_accuracy": 0.16666666666666666,
+        "phrase_present_count": 3,
+        "mean_online_latency_ms": 1054.6198005128342
+      },
+      "hybrid_exact_replay": {
+        "trial_count": 6,
+        "asserted_answer_correct_count": 5,
+        "asserted_answer_accuracy": 0.8333333333333334,
+        "phrase_present_count": 6,
+        "mean_online_latency_ms": 1052.6526163351566
+      },
+      "packed_exact_replay": {
+        "trial_count": 6,
+        "asserted_answer_correct_count": 3,
+        "asserted_answer_accuracy": 0.5,
+        "phrase_present_count": 3,
+        "mean_online_latency_ms": 1052.6004181689739
+      },
+      "attention_exact_replay": {
+        "trial_count": 6,
+        "asserted_answer_correct_count": 5,
+        "asserted_answer_accuracy": 0.8333333333333334,
+        "phrase_present_count": 5,
+        "mean_online_latency_ms": 1049.5154539918683
+      },
+      "fixed_prefix_exact_replay": {
+        "trial_count": 6,
+        "asserted_answer_correct_count": 2,
+        "asserted_answer_accuracy": 0.3333333333333333,
+        "phrase_present_count": 2,
+        "mean_online_latency_ms": 1049.2299900118571
+      },
+      "full_prefill": {
+        "trial_count": 6,
+        "asserted_answer_correct_count": 6,
+        "asserted_answer_accuracy": 1.0,
+        "phrase_present_count": 6,
+        "mean_online_latency_ms": 1064.9225625190109
+      }
+    }
+  },
+  "scan_latency_ms": {
+    "packed_scan_latency_ms": {
+      "mean": 9.785580584624162,
+      "min": 6.367961002979428,
+      "max": 42.41272702347487
+    },
+    "subset_attention_latency_ms": {
+      "mean": 33.94166741539569,
+      "min": 32.67283702734858,
+      "max": 36.16319899447262
+    },
+    "hybrid_scan_latency_ms": {
+      "mean": 43.72724800001985,
+      "min": 39.219255035277456,
+      "max": 78.5759260179475
+    },
+    "full_attention_latency_ms": {
+      "mean": 34.07669175552049,
+      "min": 33.1860120058991,
+      "max": 34.96617602650076
+    }
+  }
+}

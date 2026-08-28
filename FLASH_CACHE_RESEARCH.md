@@ -5,6 +5,10 @@
 **Status:** exploratory / hypothesis-generating  
 **Goal:** determine whether an LLM can behave as though it has access to a context substantially larger than its active attention budget by dynamically swapping blocks of precomputed KV cache and using the model's own speculative predictions as a signal for which blocks matter.
 
+### Current empirical boundary (2026-08-28)
+
+Qwen3-1.7B supports exact KV slicing and relevant late insertion can correct an answer, but inference-only hidden-state accumulation has not survived causal controls. The best tested 128-page mechanism uses an IDF token sidecar, a short model-written query carrier, and ordinary prefill of one selected source page per hop; it does not require cold-page KV. It reaches `10/12` on a disjoint mixed-domain suite versus `0/12` without pages, with approximately `0.145 ms` sidecar lookup per hop. This supports a large cold-context memory hierarchy, but not arbitrary independent-KV composition; see `EXPERIMENT_LOG.md` for the full result and caveats.
+
 ---
 
 ## 1. Motivation

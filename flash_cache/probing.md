@@ -26,6 +26,11 @@ Implements the first late-insertion Flash Cache probe for an all-attention model
 - **Does**: Builds pinned+recent baseline KV and candidate blocks conditioned only on pinned context, using original positions or a shared hot slot.
 - **Rationale**: This prevents candidate information from leaking into the baseline recent cache.
 
+### `prepare_baseline_cache`
+
+- **Does**: Builds only pinned-plus-recent query KV, with cold pages omitted and original logical query positions retained.
+- **Rationale**: Iterative retrieval can rewrite the current question and refresh its query-value index without re-encoding immutable cold pages.
+
 ### `flash_candidate`
 - **Does**: Physically inserts candidate KV between pinned and recent KV without recomputing recent tokens.
 
@@ -47,6 +52,7 @@ Implements the first late-insertion Flash Cache probe for an all-attention model
 | Prompt control | Chat format uses the tokenizer's official template with one block placeholder | Hand-writing model-specific special tokens |
 | Metrics | Candidate rollout can follow the exact baseline token path | Removing `forced_tokens` |
 | Iterative search | One-step candidate branches can be discarded or retained independently | Mutating the source cache in `advance_cache` |
+| Iterative query rewrite | A new baseline can be paired with existing cold blocks when pinned text and archive blocks are unchanged | Conditioning cold pages on the rewritten query |
 
 ## Notes
 

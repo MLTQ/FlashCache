@@ -32,3 +32,12 @@ def test_depth_one_is_a_direct_carrier_retention_calibration() -> None:
     assert task.query_message == "What is Shirly's favorite food?"
     assert len(task.relevant_block_ids) == 1
     assert task.answer in task.blocks[task.relevant_block_ids[0]]
+
+
+def test_large_archive_extends_distractors_without_duplicate_records() -> None:
+    task = make_multi_hop_task(seed=31, block_count=128, hop_depth=2, variant=1)
+
+    assert len(task.blocks) == 128
+    assert len(set(task.blocks)) == 128
+    assert any("FillerPerson" in block for block in task.blocks)
+    assert sum(contains_answer_text(block, task.answer_match) for block in task.blocks) == 1

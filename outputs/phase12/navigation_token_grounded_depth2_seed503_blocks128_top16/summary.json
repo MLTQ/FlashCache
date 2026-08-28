@@ -1,0 +1,109 @@
+{
+  "seed": 503,
+  "model": "Qwen/Qwen3-1.7B",
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "torch_version": "2.11.0+cu130",
+  "block_count": 128,
+  "hop_depth_evaluation_only": 2,
+  "question": "What is my wife's favorite food?",
+  "answer": "mushroom pie",
+  "relevant_page_ids_evaluation_only": [
+    84,
+    64
+  ],
+  "retrieval_k": 16,
+  "retriever": "token",
+  "attention_metric": "all_query_mass",
+  "max_navigation_steps": 5,
+  "cold_prepare_latency_ms_offline": 3295.6406800076365,
+  "packed_build_latency_ms_offline": 28.382951975800097,
+  "token_index_build_latency_ms_offline": 2.3102060076780617,
+  "steps": [
+    {
+      "step_index": 0,
+      "current_question": "What is my wife's favorite food?",
+      "selected_page_ids": [
+        84,
+        1,
+        4,
+        5,
+        6,
+        9,
+        10,
+        12,
+        13,
+        15,
+        16,
+        17,
+        18,
+        20,
+        21,
+        22
+      ],
+      "selected_relevant_page_ids": [
+        84
+      ],
+      "query_prepare_latency_ms": 0.0,
+      "packed_scan_latency_ms": 0.0,
+      "token_scan_latency_ms": 0.14906999422237277,
+      "attention_scan_latency_ms": 0.0,
+      "kv_reference_scan_latency_ms": 0.0,
+      "navigation_latency_ms": 537.805924017448,
+      "step_online_latency_ms": 537.9549940116704,
+      "generated_navigation": "LOOKUP: The user's wife is Vera. Vera's favorite food is not listed in the retrieved notes.",
+      "decision_kind": "lookup",
+      "decision_content": "The user's wife is Vera. Vera's favorite food is not listed in the retrieved notes."
+    },
+    {
+      "step_index": 1,
+      "current_question": "The user's wife is Vera. Vera's favorite food is not listed in the retrieved notes.",
+      "selected_page_ids": [
+        84,
+        64,
+        89,
+        123,
+        1,
+        4,
+        5,
+        6,
+        9,
+        10,
+        12,
+        13,
+        15,
+        16,
+        17,
+        18
+      ],
+      "selected_relevant_page_ids": [
+        84,
+        64
+      ],
+      "query_prepare_latency_ms": 0.0,
+      "packed_scan_latency_ms": 0.0,
+      "token_scan_latency_ms": 0.14032400213181973,
+      "attention_scan_latency_ms": 0.0,
+      "kv_reference_scan_latency_ms": 0.0,
+      "navigation_latency_ms": 302.6545280008577,
+      "step_online_latency_ms": 302.7948520029895,
+      "generated_navigation": "LOOKUP: Vera's favorite food is mushroom pie.",
+      "decision_kind": "answer",
+      "decision_content": "Vera's favorite food is mushroom pie."
+    }
+  ],
+  "stop_reason": "model_answer",
+  "final_answer": "Vera's favorite food is mushroom pie.",
+  "final_answer_phrase_present": true,
+  "final_answer_asserted_correct": true,
+  "iterative_online_latency_ms": 840.7498460146599,
+  "no_page": {
+    "generated_answer": "Based on the information provided in the archived records, there is no specific mention of a favorite food for the wife. The records do not include details about personal preferences, dietary habits, or favorite foods. Therefore, it is not possible to determine",
+    "answer_correct": false,
+    "online_latency_ms": 1049.4934509624727
+  },
+  "full_prefill": {
+    "generated_answer": "Based on the provided information, your wife is Vera. There is no direct mention of Vera's favorite food in the archived records. However, there is a note that says:  \n**\"Vera's favorite food is mushroom pie.\"**",
+    "answer_correct": false,
+    "online_latency_ms": 1587.0297459769063
+  }
+}

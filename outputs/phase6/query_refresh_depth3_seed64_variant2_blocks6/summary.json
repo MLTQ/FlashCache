@@ -1,0 +1,46 @@
+{
+  "seed": 64,
+  "model": "Qwen/Qwen3-1.7B",
+  "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+  "torch_version": "2.11.0+cu130",
+  "task_family": "multi_hop_preference",
+  "task_variant": 2,
+  "hop_depth": 3,
+  "question": "What is my wife's closest friend's favorite food?",
+  "answer": "dumplings",
+  "block_count": 6,
+  "relevant_block_ids_logical_order": [
+    3,
+    4,
+    0
+  ],
+  "continuation_horizon": 48,
+  "prompt_format": "chat",
+  "pinned_token_count": 38,
+  "cold_page_token_count": 71,
+  "recent_query_prefix_token_count": 20,
+  "cold_prepare_latency_ms": 353.0529619893059,
+  "no_page": {
+    "generated_answer": "Based on the information provided in the archived records, there is no direct mention of a wife's closest friend or their favorite food. The records do not include any details about personal relationships, preferences, or specific individual preferences such as favorite foods.",
+    "answer_correct": false,
+    "online_latency_ms": 1082.578522968106
+  },
+  "stale_query_all_pages": {
+    "generated_answer": "Based on the information provided, there is no direct mention of a favorite food for Ivo, the closest friend of Maren. However, it is noted that Maren's favorite food is lemon cake. Since Ivo is Maren's",
+    "answer_correct": false,
+    "online_latency_ms": 1047.24249598803
+  },
+  "query_refresh": {
+    "generated_answer": "Based on the provided information:\n\n- Ivo is Maren's closest friend.\n- Ivo's favorite food is not explicitly stated in the archived records.\n- Maren's favorite food is lemon cake.\n\nSince the question asks for the closest",
+    "answer_correct": false,
+    "online_latency_ms": 1079.8578850226477,
+    "cold_archive_token_count": 109,
+    "refreshed_query_token_count": 20,
+    "final_cache_token_count": 129
+  },
+  "full_prefill": {
+    "generated_answer": "Based on the provided information:\n\n1. Your wife is **Maren**.\n2. Maren's closest friend is **Ivo**.\n3. Ivo's favorite food is **dumplings**.\n\nTherefore, your wife's",
+    "answer_correct": true,
+    "online_latency_ms": 1084.4133750069886
+  }
+}
